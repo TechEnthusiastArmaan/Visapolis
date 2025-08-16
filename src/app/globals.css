@@ -3,23 +3,9 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -35,8 +21,332 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.navbar .dropdown-toggle::after {
+  display: inline-block !important;
+  margin-left: .255em;
+  vertical-align: .255em;
+  content: "";
+  border-top: .3em solid;
+  border-right: .3em solid transparent;
+  border-left: .3em solid transparent;
+}
+.navbar .dropdown-toggle::before {
+  display: none !important;
+}
+/* ========================
+   Breadcrumb Styling Fixes
+   ======================== */
+
+.breadcrumb-area {
+    padding: 50px 0; /* Ensures correct height */
+}
+
+/* Center the breadcrumb links horizontally */
+.breadcrumb-area .breadcrumb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Positioning for decorative shapes */
+.breadcrumb-area .shape-left,
+.breadcrumb-area .shape-right {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    height: 100%;
+}
+.breadcrumb-area .shape-left {
+    left: 0;
+}
+.breadcrumb-area .shape-right {
+    right: 0;
+}
+
+.breadcrumb-area .shape-left img,
+.breadcrumb-area .shape-right img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+/* Responsive adjustments to maintain the look */
+@media (max-width: 991px) {
+    .breadcrumb-area {
+        padding: 120px 0;
+    }
+}
+@media (max-width: 767px) {
+    .breadcrumb-area {
+        padding: 80px 0;
+    }
+    .breadcrumb-area h1 {
+        font-size: 36px;
+    }
+}
+/* ========================
+   Pagination Centering Fix
+   ======================== */
+
+/* =====================================
+   Custom Pagination Styles for Visaco
+   ===================================== */
+
+/* Container for centering */
+.pagi-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px; /* Adjusted from 30px for better spacing */
+}
+
+/* Main pagination container */
+.pagi-area .pagination {
+    margin-bottom: 0;
+    gap: 10px; /* Adds space between the buttons */
+}
+
+/* Individual page link items */
+.pagi-area .pagination .page-item .page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #e7e7e7;
+    background-color: #ffffff;
+    color: var(--color-heading);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover state for links */
+.pagi-area .pagination .page-item .page-link:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+}
+
+/* Active (current page) state */
+.pagi-area .pagination .page-item.active .page-link {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+    z-index: 3;
+}
+
+/* Ensure focus state doesn't add a blue shadow */
+.pagi-area .pagination .page-link:focus {
+    box-shadow: none;
+}
+/* =========================================
+   Blog Single & Post Components Styling
+   ========================================= */
+
+/* Blockquote Styling */
+.blog-area blockquote {
+    position: relative;
+    z-index: 1;
+    border: none;
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #c3d2ff; /* Light text for dark background */
+    font-weight: 500;
+    background: var(--dark); /* Correct dark blue background */
+    padding: 70px 50px;
+    font-style: italic;
+    line-height: 1.8;
+    overflow: hidden;
+    border-radius: 8px; /* Added for softer edges */
+}
+
+.blog-area blockquote::after {
+    position: absolute;
+    right: 50px;
+    content: "\f10d"; /* Font Awesome quote icon */
+    font-family: var(--fontawesome);
+    color: var(--white);
+    bottom: -50px;
+    font-weight: 900; /* Use font-weight 900 for solid icons */
+    opacity: 0.1;
+    font-size: 160px;
+    font-style: normal;
+    line-height: 1;
+}
+
+.blog-area blockquote p {
+	margin: 0;
+	position: relative;
+	z-index: 1;
+	line-height: 34px;
+	font-size: 20px; /* Adjusted for better readability */
+	font-style: italic;
+	font-weight: 600; /* Bolder for contrast */
+	color: #c3d2ff;
+}
+
+/* Post Author Box Styling */
+.post-author {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    border: 1px solid #e7e7e7;
+    padding: 37px;
+    margin-top: 50px;
+    border-radius: 8px;
+}
+
+.post-author .thumb img {
+    height: 150px;
+    width: 150px;
+    min-width: 150px;
+    border-radius: 50%;
+}
+
+.post-author p {
+    margin: 0;
+}
+
+/* Post Tags & Share Section Styling */
+.post-tags.share {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.post-tags.share .tags,
+.post-tags.share .social {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.post-tags.share .tags a {
+    display: inline-block;
+    background: #f4f4f4;
+    padding: 7px 23px;
+    margin-right: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 5px;
+    color: var(--color-heading);
+}
+.post-tags.share .tags a:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+}
+
+.post-tags.share .social ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+.post-tags.share .social ul li a {
+    display: inline-flex;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark);
+    text-align: center;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 50%;
+}
+.post-tags.share .social ul li a:hover {
+    background: var(--color-primary);
+}
+
+/* Post Pagination Styling */
+.post-pagi-area {
+    margin-top: 50px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.post-pagi-area > div a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 30px;
+    border: 1px solid #e7e7e7;
+    border-radius: 8px;
+    min-width: 250px;
+}
+
+.post-pagi-area .post-next a {
+    text-align: right;
+    flex-direction: row-reverse;
+}
+
+.post-pagi-area .nav-title {
+    font-size: 14px;
+    color: #666666;
+    font-weight: 500;
+}
+.post-pagi-area a:hover .nav-title {
+    color: var(--color-primary);
+}
+
+.post-pagi-area h5 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 800;
+    color: var(--color-heading);
+    transition: all .35s ease;
+}
+.post-pagi-area a:hover h5 {
+    color: var(--color-primary);
+}
+
+.post-pagi-area .icon i {
+    font-size: 24px;
+    color: var(--color-heading);
+    font-weight: 300;
+}
+
+@media (max-width: 767px) {
+    .post-author { display: block; text-align: center; }
+    .post-author .thumb { margin: 0 auto 30px; }
+    .post-tags.share { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .post-pagi-area { flex-direction: column; gap: 20px; }
+    .post-pagi-area > div a { width: 100%; justify-content: space-between; }
+    .blog-area blockquote { padding: 40px 30px; }
+}
+/* =========================================
+   Navbar Dropdown Icon Fix
+   ========================================= */
+
+/* This specifically targets the dropdown links in the main navigation */
+nav.navbar.validnavs ul.nav > li.dropdown > a.dropdown-toggle::after {
+    /*
+     * We are removing the default icon character from the template's CSS 
+     * because we are using the <FontAwesomeIcon> component instead.
+     */
+    content: "" !important; /* Prevents the box character from appearing */
+    display: none !important; /* Hides the pseudo-element completely */
+}
+
+/*
+ * When using the FontAwesomeIcon component, this ensures it has a 
+ * bit of space and is aligned correctly next to the text.
+*/
+nav.navbar.validnavs ul.nav > li.dropdown > a.dropdown-toggle > svg {
+    margin-left: -3px;
+    position: relative;
+    top: -1px;
 }

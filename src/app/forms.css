@@ -1,0 +1,88 @@
+/* src/app/forms.css */
+
+/* --- Custom Radio Button and Checkbox Styles --- */
+
+/* Base container for a custom form control */
+.custom-form-check {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 35px; /* Space for the custom box */
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio/checkbox */
+.custom-form-check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom box */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px; /* Square for checkbox */
+    transition: all 0.2s ease;
+}
+
+/* Create custom style for Radio button */
+.custom-form-check.is-radio .checkmark {
+    border-radius: 50%; /* Circle for radio */
+}
+
+
+/* When the radio/checkbox is checked, add a blue background */
+.custom-form-check input:checked ~ .checkmark {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.custom-form-check input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator for checkbox */
+.custom-form-check .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Style the indicator for radio button */
+.custom-form-check.is-radio .checkmark:after {
+    top: 7px;
+    left: 7px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+}
