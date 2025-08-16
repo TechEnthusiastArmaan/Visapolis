@@ -7,7 +7,7 @@ import { faPhoneAlt, faClock, faEnvelope } from '@fortawesome/free-solid-svg-ico
 export default function Footer() {
     return (
         <footer className="footer-style-two bg-dark overflow-hidden text-light" style={{ backgroundImage: `url(/assets/img/shape/globe.png)` }}>
-            <div className="container">
+            {/* <div className="container">
                 <div className="footer-top-style-two">
                     <div className="row">
                         <div className='col-lg-4'>
@@ -32,7 +32,7 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div className="shape">
                 <Image src="/assets/img/shape/globe-half.png" alt="Decorative Globe Shape" width={273.73} height={374.75} />
                 <Image src="/assets/img/shape/13.png" alt="Decorative Shape" width={250} height={550} />
@@ -100,7 +100,7 @@ export default function Footer() {
                 <div className="container">
                     <div className='row'>
                         <div className='col-lg-12'>
-                            <p>© Copyright 2025. All Rights Reserved by <a href="#">validthemes</a></p>
+                            <p>© Copyright 2025. All Rights Reserved by <a href="#">Vidya Corp.</a></p>
                         </div>
                     </div>
                 </div>

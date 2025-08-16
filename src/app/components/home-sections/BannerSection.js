@@ -10,7 +10,7 @@ const BannerSection = () => {
                         <div className="item bg-cover shadow dark" style={{ backgroundImage: `url(/assets/img/banner/4.jpg)` }}>
                             <div className="banner-syle-six-shape">
                                 <Image src="/assets/img/shape/11.png" alt="Shape" width={1368} height={699} />
-                                <Image src="/assets/img/shape/10.png" alt="Shape" width={205} height={230} />
+                                {/* <Image src="/assets/img/shape/10.png" alt="Shape" width={205} height={230} /> */}
                             </div>
                             <div className="container">
                                 <div className="row align-items-center">

@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleLeft, faAngleDoubleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const AboutSection = () => {
     return (
@@ -36,12 +38,16 @@ const AboutSection = () => {
                         <div className="about-style-six-thumb">
                             <div className="left-info wow fadeInUp" data-wow-delay="100ms">
                                 <div className="curve-text">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" version="1.1">
-                                        <path id="textPath" d="M 0,75 a 75,75 0 1,1 0,1 z"></path>
-                                        <text><textPath href="#textPath">Award Winning Agency</textPath></text>
-                                    </svg>
-                                    <a href="https://www.youtube.com/watch?v=ipUuoMCEbDQ" className="popup-youtube"><i className="fas fa-arrow-right"></i></a>
-                                </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" version="1.1">
+        <path id="textPath" d="M 0,75 a 75,75 0 1,1 0,1 z"></path>
+        <text><textPath href="#textPath">Award Winning Agency</textPath></text>
+    </svg>
+    
+    <Link href="/about" className="spin-inner-link">
+        <FontAwesomeIcon icon={faArrowRight} />
+    </Link>
+    
+</div>
                                 <Image src="/assets/img/about/9.jpg" alt="About thumbnail" width={279} height={317}/>
                             </div>
                             <div className="right-info wow fadeInUp" data-wow-delay="250ms">

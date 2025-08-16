@@ -350,3 +350,133 @@ nav.navbar.validnavs ul.nav > li.dropdown > a.dropdown-toggle > svg {
     position: relative;
     top: -1px;
 }
+/* =======================================================
+   Fix for Award Winning Agency Spinning Text Circle
+   ======================================================= */
+
+/* The main container for the spinning element */
+.curve-text {
+    position: relative;
+    display: inline-block;
+    border: 10px solid #ffffff; 
+    border-radius: 50%;
+    margin-bottom: -80px; 
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1); 
+}
+
+/* The decorative "bites" that connect it to the image below */
+.curve-text::before {
+    position: absolute;
+    content: "";
+    left: -35px;
+    bottom: 38px;
+    height: 40px;
+    width: 22px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 20px 0 0 var(--white);
+    transform: rotate(-100deg);
+}
+.curve-text::after {
+    position: absolute;
+    content: "";
+    right: -30px;
+    bottom: 47px;
+    height: 30px;
+    width: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 20px 0 0 var(--white);
+    transform: rotate(104deg);
+}
+
+/* The SVG element itself */
+.curve-text svg {
+    display: block;
+    height: 170px;
+    width: 170px;
+    overflow: visible;
+    animation: spinner 20s infinite linear;
+    background: var(--bg-gradient); 
+    border-radius: 50%;
+    padding: 35px;
+}
+
+/* Ensure the SVG path used for the text is not visible */
+.curve-text svg path { 
+    fill: none; 
+}
+
+/* Style the text that follows the path */
+.curve-text svg text {
+    font-size: 25px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    fill: var(--white); 
+}
+
+/* The inner link that contains the arrow icon */
+.curve-text .spin-inner-link {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Center the link */
+    z-index: 1;
+    font-size: 36px;
+    line-height: 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-stroke: 1px var(--white);
+    color: transparent; 
+    transition: all 0.3s ease-in-out;
+}
+
+/* Rotate the FontAwesome SVG icon itself, not its container */
+.curve-text .spin-inner-link svg {
+    transform: rotate(-45deg);
+    padding: 0;
+    background: transparent;
+    animation: none; /* Prevent it from spinning with its parent */
+    height: 30px; /* Explicit size for the icon */
+    width: 30px;
+}
+
+/* Style for when hovering over the link */
+.curve-text .spin-inner-link:hover {
+    color: var(--white); 
+    -webkit-text-stroke: 1px var(--white); 
+}
+/* =========================================
+   Inner Page Header White Background Fix
+   ========================================= */
+
+/* Target the header only on inner pages */
+.navbar-style-inner a.navbar-brand::after {
+    /* Override the template's red background shape with white */
+    background: #ffffff !important; 
+    z-index: -1;
+}
+
+/* Ensure the logo image has a higher z-index to appear on top of the new white background */
+.navbar-style-inner a.navbar-brand .logo {
+    position: relative;
+    z-index: 2;
+}
+
+/*
+   By default, the template may try to hide the dark logo on non-sticked headers.
+   We force it to be visible.
+*/
+.navbar-style-inner .logo-scrolled {
+    display: block !important;
+}
+.navbar-style-inner .logo-display {
+    display: none !important;
+}
+
+/* On mobile, ensure the hamburger menu icon is visible */
+@media (max-width: 991px) {
+    .navbar-style-inner .navbar-toggle i {
+        color: var(--color-heading) !important;
+    }
+}

@@ -114,7 +114,9 @@ export const useTemplateScripts = () => {
             if ($.fn.circleProgress) {
                 $('.circle-progress .circle').each(function() {
                     const circle = $(this);
-                    if (circle.data('circle-progress')) circle.data('circle-progress').destroy(); // Destroy before re-init
+                     if (circle.data('circle-progress')) {
+                        return; // Already initialized, so skip.
+                    } // Destroy before re-init
                     
                     circle.circleProgress({
                         startAngle: -Math.PI / 4 * 2, value: circle.data('percent') / 100, size: 110,

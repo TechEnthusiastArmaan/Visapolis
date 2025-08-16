@@ -56,7 +56,7 @@ export default function HomePageHeader() {
         <i className="fa fa-bars"></i>
       </button>
       <a className="navbar-brand" href="#">
-        <Image alt="Logo" className="logo" src="/assets/img/logo.jpg" width={174} height={50} />
+        <Image alt="Logo" className="logo" src="/assets/img/logo.png" width={174} height={50} />
       </a>
     </div>
 
