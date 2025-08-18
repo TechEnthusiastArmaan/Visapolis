@@ -1,57 +1,69 @@
 // src/app/components/HomePageHeader.js
 import Link from 'next/link';
+import { useState, useEffect } from 'react'; // Make sure useState is imported
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'; // Import the correct icon
 import { faFacebookF, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import { faPhoneAlt, faClock, faEnvelope, faMapMarkerAlt, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faClock, faEnvelope, faMapMarkerAlt, faEnvelopeOpenText, faBars } from '@fortawesome/free-solid-svg-icons';
 
 export default function HomePageHeader() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const [isScrolled, setIsScrolled] = useState(false);
+  const toggleMenu = () => {
+  setIsMenuOpen(!isMenuOpen);
+};
+
+const closeMenu = () => {
+  setIsMenuOpen(false);
+};
   return (
     <>
       {/* Start Header Top */}
       <div className="top-bar-area bg-dark text-light">
         <div className="container-full">
-          <div className="row align-center">
+          {/* New & Corrected JSX Structure */}
+<div className="row align-center">
 
-            {/* Column 1: Address Info (Takes up ~4 cols) */}
-            <div className="col-xl-5 col-lg-4 info">
-              <div className="address-info">
-                <ul className="item-flex">
-                  <li><FontAwesomeIcon icon={faMapMarkerAlt} className="me-2" /> California, TX 70240</li>
-                  <li><FontAwesomeIcon icon={faEnvelopeOpenText} className="me-2" /> Info@validtheme.com</li>
-                </ul>
-              </div>
-            </div>
+  {/* Column 1: Address Info (Remains on the left) */}
+  <div className="col-lg-6 info">
+    <div className="address-info">
+      <ul className="item-flex">
+        <li><FontAwesomeIcon icon={faMapMarkerAlt} className="me-2" /> California, TX 70240</li>
+        <li><FontAwesomeIcon icon={faEnvelopeOpenText} className="me-2" /> Info@validtheme.com</li>
+      </ul>
+    </div>
+  </div>
 
-            {/* Column 2: Call to Action (Takes up ~4 cols, centered) */}
-            <div className="col-xl-4 col-lg-4 text-center">
-              <div className="call">
-                <div className="icon">
-                    <Image alt="Phone" src="/assets/img/icon/phone.png" width={45} height={45} />
-                </div>
-                <div className="info">
-                    <p>Need to discuss?</p>
-                    <h5><a href="tel:+96427395">+(964)-27395</a></h5>
-                </div>
-              </div>
-            </div>
-            
-            {/* Column 3: Social Icons (Takes up ~3 cols, aligned to the right) */}
-            <div className="col-xl-3 col-lg-4 text-end">
-              <div className="social">
-                <ul className="item-flex">
-                  <li><a href="#"><FontAwesomeIcon icon={faFacebookF} /></a></li>
-                  <li><a href="#"><Image alt="Twitter" src="/assets/img/icon/twitter-x.png" width={16} height={16} /></a></li>
-                  <li><a href="#"><FontAwesomeIcon icon={faLinkedinIn} /></a></li>
-                </ul>
-              </div>
-            </div>
+  {/* Column 2: Combined Group for Call & Social (Aligned to the right) */}
+  <div className="col-lg-6">
+    <div className="top-bar-right-group">
+     {/* Item 1: Call to Action - CORRECTED STRUCTURE */}
+<div className="call">
+    <a href="tel:+96427395" className="call-icon-link">
+        <FontAwesomeIcon icon={faPhoneAlt} />
+    </a>
+    <div className="info">
+        <p>Need to discuss?</p>
+        <h5><a href="tel:+96427395">+(964)-27395</a></h5>
+    </div>
+</div>
 
-          </div>
+      {/* Item 2: Social Icons */}
+      <div className="social">
+        <ul className="item-flex">
+          <li><a href="#"><FontAwesomeIcon icon={faFacebookF} /></a></li>
+          <li><a href="#"><Image alt="Twitter" src="/assets/img/icon/twitter-x.png" width={16} height={16} /></a></li>
+          <li><a href="#"><FontAwesomeIcon icon={faLinkedinIn} /></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
         </div>
       </div>
-      {/* End Header Top */}
+      {/* End Header Top */} 
 
 
       {/* Header */}
@@ -71,9 +83,13 @@ export default function HomePageHeader() {
   <div className="container-full d-flex justify-content-between align-items-center w-100">
     {/* Header Navigation */}
     <div className="navbar-header">
-      <button className="navbar-toggle" data-target="#navbar-menu" data-toggle="collapse" type="button">
-        <i className="fa fa-bars"></i>
-      </button>
+      <button
+  type="button"
+  className="navbar-toggle"
+  onClick={toggleMenu} // Use React's onClick handler
+>
+  <FontAwesomeIcon icon={faBars} />
+</button>
       <a className="navbar-brand" href="#">
         <Image alt="Logo" className="logo" src="/assets/img/logo.svg" width={174} height={50} />
       </a>

@@ -524,3 +524,137 @@ nav.navbar.validnavs ul.nav > li.dropdown > a.dropdown-toggle > svg {
         color: var(--color-heading) !important;
     }
 }
+
+.top-bar-area .call {
+    display: flex;
+    align-items: center; /* This is the key property for vertical alignment */
+    justify-content: center; /* Horizontally centers the icon and text group */
+    gap: 15px; /* Adds a nice space between the icon and the text */
+}
+
+.top-bar-area .call .info p,
+.top-bar-area .call .info h5 {
+    margin: 0; /* Removes any default margins that might throw off alignment */
+    line-height: 1.2; /* Adjust line-height for tighter spacing */
+}
+/* =========================================
+   FEATURE: Top Bar Phone Number Hover Effect
+   ========================================= */
+.top-bar-area .call .info h5 a:hover {
+    color: #5595FF; /* A brighter blue for the hover effect */
+    transition: color 0.3s ease; /* Adds a smooth transition */
+}
+/* =========================================
+   LAYOUT: Top Bar Right Group
+   ========================================= */
+.top-bar-right-group {
+    display: flex;
+    justify-content: flex-end; /* Aligns the group to the right */
+    align-items: center;
+    gap: 50px; /* Creates space between the "call" section and social icons */
+}
+
+/* ================================================================
+   STYLE: Unified Top Bar Icons (Phone & Social)
+   ================================================================ */
+
+/* --- 1. Shared styles for all circular icon links --- */
+.top-bar-area .call-icon-link,
+.top-bar-area .social ul li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px; /* Circle width */
+    height: 45px; /* Circle height */
+    font-size: 16px; /* Icon size inside the circle */
+    color: #ffffff; /* Icon color is white */
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Default border */
+    border-radius: 50%; /* This makes it a circle */
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- 2. Shared hover effect for all icon links --- */
+.top-bar-area .call-icon-link:hover,
+.top-bar-area .social ul li a:hover {
+    background-color: #ffffff; /* Changes the circle's background to WHITE */
+    border-color: #ffffff; /* Makes the border white for a solid circle */
+    color: var(--color-heading, #00224D); /* Changes the ICON color to dark so it's visible */
+}
+
+/* --- 3. Keep the text hover effect separate --- */
+.top-bar-area .call .info h5 a:hover {
+    color: #E13833;
+    transition: color 0.3s ease;
+}
+/* ================================================================
+   FIX: Forcing Navbar Dropdown Link Hover Effect
+   ================================================================ */
+
+/* --- This rule targets the links with high specificity --- */
+nav.navbar.validnavs .navbar-collapse .dropdown-menu li a {
+    transition: all 0.2s ease-in-out !important;
+}
+
+/* --- This is the stronger hover effect --- */
+nav.navbar.validnavs .navbar-collapse .dropdown-menu li a:hover {
+    color: var(--color-primary, #E13833) !important;  /* Force the text color change */
+    background-color: rgba(0, 0, 0, 0.04) !important; /* Add a subtle background highlight */
+}
+
+/* ================================================================
+   FIX: Mobile Hamburger Menu Visibility & Clickability
+   ================================================================ */
+
+/* This media query targets tablets and mobile phones (screens <= 991px) */
+@media (max-width: 991px) {
+
+    /* --- 1. Force the button to be visible --- */
+    nav.navbar.validnavs .navbar-toggle {
+        display: block !important; /* Overrides any 'display: none' from the template */
+        position: relative;
+        z-index: 1100 !important;  /* Ensure it's on top of all other elements */
+    }
+
+    /* --- 2. Ensure the icon inside is visible --- */
+    /* --- 2. Ensure the icon inside is visible --- */
+nav.navbar.validnavs .navbar-toggle svg {
+    color: var(--color-heading, #000000) !important; /* Force the icon color to be dark */
+    font-size: 24px; /* Make the icon a bit larger and easier to tap */
+    height: 24px; /* Explicitly set height for SVGs */
+}
+    
+}
+/* ================================================================
+   FIX: Mobile Menu Background & Clickability
+   ================================================================ */
+
+@media (max-width: 991px) {
+
+    /* --- 1. Style the main container of the open menu --- */
+    nav.navbar.validnavs .navbar-collapse.show {
+        background-color: #ffffff !important; /* Makes the background solid white */
+        z-index: 1050 !important;             /* Brings the menu in front of ALL other content */
+
+        /* These styles ensure proper positioning and appearance */
+        position: absolute;
+        top: 100%; /* Position it right below the header */
+        left: 0;
+        width: 100%;
+        padding: 15px 30px !important; /* Add some comfortable spacing */
+        border-top: 1px solid #e7e7e7;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05); /* Add a subtle shadow for depth */
+    }
+
+    /* --- 2. Style the links for better readability on the new background --- */
+    nav.navbar.validnavs .navbar-collapse .nav > li > a {
+        color: var(--color-heading, #00224D); /* Make links dark on the white background */
+        padding: 12px 0 !important; /* Add vertical space between links */
+        display: block; /* Ensure the link takes up the full width for easier tapping */
+    }
+
+    /* --- 3. Style the dropdown-toggle arrow if needed --- */
+    nav.navbar.validnavs .navbar-collapse .nav > li.dropdown > a.dropdown-toggle::after {
+        display: none !important; /* Hides the Bootstrap arrow on mobile for a cleaner look */
+    }
+}
