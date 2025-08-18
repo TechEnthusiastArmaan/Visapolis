@@ -2,10 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons'; // Import the angle-right icon
 
-
-const Breadcrumb = ({ title, breadcrumbText }) => {
+const InnerPageBreadcrumb = ({ title, breadcrumbText }) => {
     return (
         <div className="breadcrumb-area with-banner bg-cover text-center bg-dark text-light" style={{ backgroundImage: `url(/assets/img/banner/7.jpg)` }}>
             {/* These shapes are the key missing visual element */}
@@ -16,7 +14,7 @@ const Breadcrumb = ({ title, breadcrumbText }) => {
                 <Image src="/assets/img/shape/19.png" alt="Decorative shape" width={739} height={514} />
             </div>
 
-             <div className="container">
+            <div className="container">
                 <div className="row">
                     <div className="col-lg-8 offset-lg-2">
                         <h1>{title}</h1>
@@ -24,10 +22,6 @@ const Breadcrumb = ({ title, breadcrumbText }) => {
                             <ol className="breadcrumb">
                                 <li>
                                     <Link href="/"><FontAwesomeIcon icon={faHome} /> Home</Link>
-                                </li>
-                                {/* The separator is now a FontAwesomeIcon */}
-                                <li className="breadcrumb-separator">
-                                    <FontAwesomeIcon icon={faAngleRight} />
                                 </li>
                                 <li className="active">{breadcrumbText}</li>
                             </ol>
@@ -39,4 +33,4 @@ const Breadcrumb = ({ title, breadcrumbText }) => {
     );
 }
 
-export default Breadcrumb;
+export default InnerPageBreadcrumb;

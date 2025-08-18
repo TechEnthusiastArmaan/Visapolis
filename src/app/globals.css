@@ -33,42 +33,86 @@ a {
 .navbar .dropdown-toggle::before {
   display: none !important;
 }
-/* ========================
-   Breadcrumb Styling Fixes
-   ======================== */
+/* =========================================
+   Final Inner Page Breadcrumb Styling
+   ========================================= */
 
+/* Main container with larger padding */
 .breadcrumb-area {
-    padding: 50px 0; /* Ensures correct height */
+    position: relative;
+    padding: 50px 0;
+    overflow: hidden;
+    z-index: 1;
 }
 
-/* Center the breadcrumb links horizontally */
-.breadcrumb-area .breadcrumb {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Dark overlay effect */
+.breadcrumb-area::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    z-index: -1;
 }
+
+/* Centering the list items */
+.breadcrumb-area .breadcrumb {
+    display: flex; justify-content: center; align-items: center; gap: 10px;
+}
+.breadcrumb-area .breadcrumb li {
+    font-size: 18px; font-weight: 600; color: #fff;
+}
+.breadcrumb-area .breadcrumb li a {
+    color: #ffffff; display: flex; align-items: center; gap: 8px;
+}
+/* Style the separator list item which only contains the icon */
+.breadcrumb-separator svg {
+    font-size: 14px;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+
+/* Replace the existing ::after rule with this one */
+.breadcrumb-area .breadcrumb li:not(.active)::after {
+    content: "\f105";                     /* Correct Unicode for 'fa-angle-right' */
+    font-family: "Font Awesome 5 Free";  /* Use the correct 'Free' font family name */
+    font-weight: 900;                    /* Required for solid icons in Font Awesome 5 Free */
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #ffffff;
+}
+/* --- END OF FIX --- */
+
 
 /* Positioning for decorative shapes */
 .breadcrumb-area .shape-left,
 .breadcrumb-area .shape-right {
     position: absolute;
     top: 0;
-    z-index: -1;
     height: 100%;
+    z-index: -1;
+    opacity: 0.15;
 }
 .breadcrumb-area .shape-left {
-    left: 0;
+    left: -5%;
 }
 .breadcrumb-area .shape-right {
-    right: 0;
+    right: -5%;
 }
-
 .breadcrumb-area .shape-left img,
 .breadcrumb-area .shape-right img {
     height: 100%;
     width: auto;
     object-fit: cover;
 }
+
 
 /* Responsive adjustments to maintain the look */
 @media (max-width: 991px) {

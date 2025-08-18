@@ -9,31 +9,50 @@ import { faPhoneAlt, faClock, faEnvelope, faMapMarkerAlt, faEnvelopeOpenText } f
 export default function HomePageHeader() {
   return (
     <>
-     <div className="top-bar-area light-bg">
+      {/* Start Header Top */}
+      <div className="top-bar-area bg-dark text-light">
         <div className="container-full">
           <div className="row align-center">
-            <div className="col-xl-9 col-lg-9 info">
+
+            {/* Column 1: Address Info (Takes up ~4 cols) */}
+            <div className="col-xl-5 col-lg-4 info">
               <div className="address-info">
                 <ul className="item-flex">
-                  <li><a href="#"><FontAwesomeIcon icon={faMapMarkerAlt} /> California, TX 70240</a></li>
-                  <li><FontAwesomeIcon icon={faEnvelopeOpenText} /> Info@validtheme.com</li>
-                  <li><FontAwesomeIcon icon={faClock} /> Mon - Fri 09AM - 6PM</li>
+                  <li><FontAwesomeIcon icon={faMapMarkerAlt} className="me-2" /> California, TX 70240</li>
+                  <li><FontAwesomeIcon icon={faEnvelopeOpenText} className="me-2" /> Info@validtheme.com</li>
                 </ul>
               </div>
             </div>
-            <div className="col-xl-3 col-lg-3 text-end">
+
+            {/* Column 2: Call to Action (Takes up ~4 cols, centered) */}
+            <div className="col-xl-4 col-lg-4 text-center">
+              <div className="call">
+                <div className="icon">
+                    <Image alt="Phone" src="/assets/img/icon/phone.png" width={45} height={45} />
+                </div>
+                <div className="info">
+                    <p>Need to discuss?</p>
+                    <h5><a href="tel:+96427395">+(964)-27395</a></h5>
+                </div>
+              </div>
+            </div>
+            
+            {/* Column 3: Social Icons (Takes up ~3 cols, aligned to the right) */}
+            <div className="col-xl-3 col-lg-4 text-end">
               <div className="social">
                 <ul className="item-flex">
                   <li><a href="#"><FontAwesomeIcon icon={faFacebookF} /></a></li>
-                  <li><a href="#"><Image src="/assets/img/icon/twitter-x.png" alt="Twitter X Logo" width={16} height={16} /></a></li>
+                  <li><a href="#"><Image alt="Twitter" src="/assets/img/icon/twitter-x.png" width={16} height={16} /></a></li>
                   <li><a href="#"><FontAwesomeIcon icon={faLinkedinIn} /></a></li>
                 </ul>
               </div>
             </div>
+
           </div>
         </div>
       </div>
       {/* End Header Top */}
+
 
       {/* Header */}
       <header>
@@ -56,7 +75,7 @@ export default function HomePageHeader() {
         <i className="fa fa-bars"></i>
       </button>
       <a className="navbar-brand" href="#">
-        <Image alt="Logo" className="logo" src="/assets/img/logo.png" width={174} height={50} />
+        <Image alt="Logo" className="logo" src="/assets/img/logo.svg" width={174} height={50} />
       </a>
     </div>
 
@@ -116,31 +135,25 @@ export default function HomePageHeader() {
         </li>
 
         {/* Blog */}
-        {/* <li><a className="smooth-menu" href="#">Blog</a></li> */}
+        <li><a className="smooth-menu" href="blog/">Blog</a></li>
+        {/* Contact */}
+        <li><a className="smooth-menu" href="contact/">Contact</a></li>
+        
+
 
       </ul>
     </div>
 
-    {/* Right Side Contact + Appointment */}
     <div className="attr-right">
-      <div className="attr-nav">
-        <ul>
-          <li className="contact">
-            <div className="call">
-              <div className="icon">
-                <Image alt="Phone" src="/assets/img/icon/phone.png" width={45} height={45} />
-              </div>
-              <div className="info">
-                <p>Need to discuss?</p>
-                <h5><a href="tel:+4733378901">+(964)-27395</a></h5>
+              <div className="attr-nav">
+                <ul>
+                  <li>
+                      <Link href="/appointment" className="btn-style-one">Appointment <span></span></Link>
+                  </li>
+                </ul>
               </div>
             </div>
-          </li>
-          <li><a className="btn-style-one" href="Assessment/">Appointment <span></span></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+           </div> 
 
   {/* Overlay screen */}
   <div className="overlay-screen"></div>

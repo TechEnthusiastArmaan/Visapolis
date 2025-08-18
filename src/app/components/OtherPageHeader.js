@@ -57,13 +57,13 @@ export default function OtherPageHeader() {
                 <FontAwesomeIcon icon={faBars} />
               </button>
               <Link className="navbar-brand" href="/">
-                <Image src="/assets/img/logo-light.svg" className="logo logo-display" alt="Logo Light" width={134} height={36} />
-                <Image src="/assets/img/logo.png" className="logo logo-scrolled" alt="Logo Dark" width={175} height={50} />
+                <Image src="/assets/img/logo2.svg" className="logo logo-display" alt="Logo Light" width={134} height={36} />
+                <Image src="/assets/img/logo.svg" className="logo logo-scrolled" alt="Logo Dark" width={175} height={50} />
               </Link>
             </div>
 
             <div className="collapse navbar-collapse" id="navbar-menu">
-                <Image src="/assets/img/logo.png" alt="Mobile Menu Logo" width={134} height={36} />
+                <Image src="/assets/img/logo.svg" alt="Mobile Menu Logo" width={134} height={36} />
                  <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                     <FontAwesomeIcon icon={faTimes} />
                 </button>
