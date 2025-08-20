@@ -6,6 +6,7 @@ import nodemailer from 'nodemailer';
 
 // Helper to format array data for email
 const formatArrayForEmail = (arr) => arr && arr.length > 0 ? `<ul>${arr.map(item => `<li>${item}</li>`).join('')}</ul>` : 'Not specified';
+const formatStringForEmail = (str) => str ? str : 'Not specified';
 
 export async function bookAppointment(bookingData) {
     try {
@@ -13,7 +14,7 @@ export async function bookAppointment(bookingData) {
 
         const existingBooking = await Booking.findOne({ date: bookingData.date, time: bookingData.time });
         if (existingBooking) {
-            return { success: false, error: 'This time slot is no longer available.' };
+            return { success: false, error: 'This time slot is no longer available. Please select another time.' };
         }
 
         const booking = new Booking(bookingData);
@@ -23,7 +24,7 @@ export async function bookAppointment(bookingData) {
         const transporter = nodemailer.createTransport({
             host: process.env.EMAIL_HOST,
             port: process.env.EMAIL_PORT,
-            secure: process.env.EMAIL_PORT == 465,
+            secure: process.env.EMAIL_PORT == 465, // Note: Use == for type coercion or === with proper type
             auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
         });
 
@@ -31,10 +32,14 @@ export async function bookAppointment(bookingData) {
 
         // Email to Client
         await transporter.sendMail({
-            from: `"Your Company" <${process.env.EMAIL_USER}>`,
+            from: `"Your Company Name" <${process.env.EMAIL_USER}>`,
             to: bookingData.email,
             subject: 'Appointment Confirmation',
-            html: `<p>Hi ${bookingData.name}, your appointment for ${formattedDate} at ${bookingData.time} is confirmed.</p>`,
+            html: `
+                <p>Hi ${bookingData.name},</p>
+                <p>Thank you for booking with us. Your appointment for <strong>${formattedDate}</strong> at <strong>${bookingData.time}</strong> is confirmed.</p>
+                <p>We look forward to speaking with you.</p>
+            `,
         });
 
         // Email to Admin
@@ -53,10 +58,20 @@ export async function bookAppointment(bookingData) {
                 <p><strong>Phone:</strong> ${bookingData.phone}</p>
                 <p><strong>Age:</strong> ${bookingData.age}</p>
                 <p><strong>Citizenship:</strong> ${bookingData.citizenship}</p>
-                <p><strong>Currently in Canada:</strong> ${bookingData.inCanada}</p>
-                <p><strong>Education:</strong></p> ${formatArrayForEmail(bookingData.education)}
-                
-                <!-- Add other fields as needed -->
+                <hr>
+                <h2>Assessment Details</h2>
+                <p><strong>Currently in Canada:</strong> ${formatStringForEmail(bookingData.inCanada)}</p>
+                <p><strong>Current Status in Canada:</strong></p> ${formatArrayForEmail(bookingData.canadaStatus)}
+                <p><strong>Highest Level of Education:</strong></p> ${formatArrayForEmail(bookingData.education)}
+                <p><strong>Relatives in Canada:</strong> ${formatStringForEmail(bookingData.relativesInCanada)}</p>
+                <p><strong>Studied in Canada Before:</strong> ${formatStringForEmail(bookingData.studiedInCanada)}</p>
+                <p><strong>English Proficiency:</strong></p> ${formatArrayForEmail(bookingData.englishProficiency)}
+                <p><strong>French Proficiency:</strong></p> ${formatArrayForEmail(bookingData.frenchProficiency)}
+                <p><strong>Work Experience (Outside Canada):</strong> ${formatStringForEmail(bookingData.workExperienceOutside)}</p>
+                <p><strong>Work Experience (Inside Canada):</strong> ${formatStringForEmail(bookingData.workExperienceInside)}</p>
+                <p><strong>Valid Job Offer:</strong> ${formatStringForEmail(bookingData.jobOffer)}</p>
+                <p><strong>Applied for Refugee Status Before:</strong> ${formatStringForEmail(bookingData.refugeeStatus)}</p>
+                <p><strong>Complications (refusals, criminal records):</strong> ${formatStringForEmail(bookingData.complications)}</p>
             `,
         });
 
@@ -64,6 +79,10 @@ export async function bookAppointment(bookingData) {
 
     } catch (error) {
         console.error('Booking Error:', error);
-        return { success: false, error: 'A server error occurred.' };
+        // Handle potential unique constraint error more gracefully
+        if (error.code === 11000) {
+            return { success: false, error: 'This time slot was just booked. Please select another time.' };
+        }
+        return { success: false, error: 'A server error occurred. Please try again later.' };
     }
 }
