@@ -20,8 +20,8 @@ const BlogSection = () => {
                         <div className="blog-grid-items wow fadeInUp">
                             <div className="blog-grid-item">
                             <div className="thumb">
-                                <Image src="/assets/img/blog/3.jpg" alt="Blog Main Image" width={100} height={100}/>
-                            </div>
+    <Image src="/assets/img/blog/3.jpg" alt="Blog Main Image" width={100} height={100}/>
+</div>
                             <div className="info">
                                 <ul className="blog-meta">
                                     <li>
@@ -38,7 +38,7 @@ const BlogSection = () => {
                         {/*  Single Item  */}
                         <div className="blog-grid-item">
                             <div className="thumb">
-                                <Image src="/assets/img/blog/4.jpg" alt="Blog Main Image" width={100} height={100}/>
+    <Image src="/assets/img/blog/4.jpg" alt="Blog Main Image" width={100} height={100}/>
 </div>
 <div className="info">
 <ul className="blog-meta">
@@ -55,8 +55,8 @@ const BlogSection = () => {
                         {/*  End Single Item  */}
                          {/*  Single Item  */}
                         <div className="blog-grid-item">
-                            <div className="thumb">
-                                <Image src="/assets/img/blog/5.jpg" alt="Blog Main Image" width={100} height={100}/>
+                           <div className="thumb">
+    <Image src="/assets/img/blog/5.jpg" alt="Blog Main Image" width={100} height={100}/>
 </div>
 <div className="info">
 <ul className="blog-meta">
