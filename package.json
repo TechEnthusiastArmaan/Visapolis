@@ -2,7 +2,9 @@
   "name": "visaco-nextjs-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "seed:admin": "node --env-file=.env.local scripts/seedAdmin.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -13,7 +15,11 @@
     "@fortawesome/free-brands-svg-icons": "^7.0.0",
     "@fortawesome/free-solid-svg-icons": "^7.0.0",
     "@fortawesome/react-fontawesome": "^0.2.3",
+    "bcrypt": "^6.0.0",
+    "cookie": "^1.0.2",
     "date-fns": "^4.1.0",
+    "dotenv": "^17.2.1",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.18.0",
     "mongoose": "^8.17.2",
     "next": "15.4.6",
@@ -26,6 +32,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/bcrypt": "^6.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.4.6"
   }

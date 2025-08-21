@@ -584,7 +584,7 @@ nav.navbar.validnavs ul.nav > li.dropdown > a.dropdown-toggle > svg {
 
 /* --- 3. Keep the text hover effect separate --- */
 .top-bar-area .call .info h5 a:hover {
-    color: #E13833;
+    color: #d1a781;
     transition: color 0.3s ease;
 }
 /* ================================================================
@@ -598,7 +598,7 @@ nav.navbar.validnavs .navbar-collapse .dropdown-menu li a {
 
 /* --- This is the stronger hover effect --- */
 nav.navbar.validnavs .navbar-collapse .dropdown-menu li a:hover {
-    color: var(--color-primary, #E13833) !important;  /* Force the text color change */
+    color: var(--color-primary, #d1a781) !important;  /* Force the text color change */
     background-color: rgba(0, 0, 0, 0.04) !important; /* Add a subtle background highlight */
 }
 
@@ -720,7 +720,7 @@ nav.navbar.validnavs .navbar-collapse .dropdown-menu li a:hover {
 /* --- A) Override the button's default gradient with a highly specific selector --- */
 /* This selector targets the <a> tag within the list structure, making it stronger than the default. */
 .navbar .attr-right .attr-nav ul > li > a.btn-style-one {
-    background: linear-gradient(to left, #392757, #d2a982) !important;
+    background: linear-gradient(360deg, #e69e49 0%, #392750 100%) !important;
     border: none !important;
 }
 

@@ -1,52 +1,12 @@
 // src/app/components/blog-sections/BlogGridClient.js
 "use client";
 import { useTemplateScripts } from "@/app/hooks/useTemplateScripts";
-import Link from "next/link";
 import BlogCard from "./BlogCard";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
-// Hardcoded data for the blog posts. This can be replaced with an API fetch later.
-const blogPosts = [
-    {
-        image: "/assets/img/blog/1.jpg",
-        date: "15 July, 2025",
-        author: "Md Sohag",
-        title: "Picked up a Brussels burger Sprouts with ham"
-    },
-    {
-        image: "/assets/img/blog/2.jpg",
-        date: "25 August, 2025",
-        author: "Md Sohag",
-        title: "This prefabrice passive house is highly sustainable"
-    },
-    {
-        image: "/assets/img/blog/7.jpg",
-        date: "18 March, 2025",
-        author: "Md Sohag",
-        title: "Announcing if attachment resolution sentim."
-    },
-    {
-        image: "/assets/img/blog/10.jpg",
-        date: "15 July, 2025",
-        author: "Md Sohag",
-        title: "Picked up a Brussels burger Sprouts with ham"
-    },
-    {
-        image: "/assets/img/blog/11.jpg",
-        date: "25 August, 2025",
-        author: "Md Sohag",
-        title: "This prefabrice passive house is highly sustainable"
-    },
-    {
-        image: "/assets/img/blog/12.jpg",
-        date: "18 March, 2025",
-        author: "Md Sohag",
-        title: "Announcing if attachment resolution sentim."
-    }
-];
+// Note: Removed Link, FontAwesomeIcon, and hardcoded blogPosts data.
 
-export default function BlogGridClient() {
+// This component now accepts the real 'posts' data fetched from the server.
+export default function BlogGridClient({ posts }) {
     // Initializes WOW.js animations
     useTemplateScripts();
 
@@ -55,30 +15,43 @@ export default function BlogGridClient() {
             <div className="container">
                 <div className="blog-item-box">
                     <div className="row">
-                        {blogPosts.map((post, index) => (
-                            <BlogCard 
-                                key={index} 
-                                post={post} 
-                                delay={`${index * 100}ms`} 
-                            />
-                        ))}
+                        {/* 
+                          Check if posts exist and have data. If not, show a message.
+                          If they exist, map over them to render a BlogCard for each post.
+                        */}
+                        {posts && posts.length > 0 ? (
+                            posts.map((post, index) => (
+                                <BlogCard 
+                                    key={post._id || index} // Use post._id for a unique key
+                                    post={post} 
+                                    delay={`${index * 100}ms`} 
+                                />
+                            ))
+                        ) : (
+                            <div className="col-12 text-center">
+                                <h2>No Posts Yet</h2>
+                                <p>Come back later to read our latest articles.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
 
-                {/* Pagination */}
+                {/* 
+                  Pagination is commented out for now.
+                  Implementing dynamic pagination requires a more complex setup (e.g., fetching total post count, handling page state).
+                  We can add this back as a future enhancement.
+                */}
+                {/* 
                 <div className="row">
                     <div className="col-md-12 pagi-area text-center">
                         <nav aria-label="navigation">
                             <ul className="pagination">
-                                <li className="page-item"><Link className="page-link" href="#"><FontAwesomeIcon icon={faAngleDoubleLeft} /></Link></li>
-                                <li className="page-item active"><Link className="page-link" href="#">1</Link></li>
-                                <li className="page-item"><Link className="page-link" href="#">2</Link></li>
-                                <li className="page-item"><Link className="page-link" href="#">3</Link></li>
-                                <li className="page-item"><Link className="page-link" href="#"><FontAwesomeIcon icon={faAngleDoubleRight} /></Link></li>
+                                ...
                             </ul>
                         </nav>
                     </div>
-                </div>
+                </div> 
+                */}
             </div>
         </div>
     );

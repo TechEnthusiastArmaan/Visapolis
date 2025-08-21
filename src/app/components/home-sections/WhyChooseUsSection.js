@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const WhyChooseUsSection = () => {
     return (
-        <div className="choose-us-style-two-area default-padding-top pb-300 bg-dark text-light" style={{backgroundImage: `url(/assets/img/shape/plane-bg.png)`}}>
+        <div className="choose-us-style-two-area default-padding-top pb-300 bg-dark text-light" style={{backgroundColor: '#392757 !important',backgroundImage: `url(/assets/img/shape/plane-bg.png)`}}>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12">

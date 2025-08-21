@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const TestimonialSection = () => {
     return (
-        <div className="testimonial-style-two-area default-padding bg-dark text-light">
+        <div className="testimonial-style-two-area default-padding bg-dark text-light" style={{backgroundColor: '#392757 !important' }}>
             <div className="container">
                 <div className="row">
                     <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">

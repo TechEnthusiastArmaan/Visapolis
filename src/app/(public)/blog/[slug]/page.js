@@ -1,7 +1,7 @@
 // src/app/blog/[slug]/page.js
 
-import Breadcrumb from "../../components/about-sections/Breadcrumb";
-import BlogPostClient from "../../components/blog-sections/BlogPostClient";
+import Breadcrumb from "../../../components/about-sections/Breadcrumb";
+import BlogPostClient from "../../../components/blog-sections/BlogPostClient";
 import Link from 'next/link';
 import Image from "next/image";
 

@@ -6,7 +6,8 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const TrainingSection = () => {
     return (
-         <div id="training" className="training-style-one-area default-padding-top bg-dark text-light" style={{backgroundImage: `url(/assets/img/shape/30.png)`}}>
+         <div id="training" className="training-style-one-area default-padding-top bg-dark text-light" style={{backgroundColor: '#392757 !important', backgroundImage: `url(/assets/img/shape/30.png)`}}>
+
             <div className="container">
                <div className="row">
                   <div className="col-lg-7">
