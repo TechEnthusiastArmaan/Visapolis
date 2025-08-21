@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useTemplateScripts } from "@/app/hooks/useTemplateScripts";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone, faEnvelope, faLocationPin } from '@fortawesome/free-solid-svg-icons'; // Import the correct icon
 
 const LocationItem = ({ city, details }) => (
     <div className="location-item hover-active-item">
@@ -19,11 +21,16 @@ export default function LocationTabs() {
     return (
         <div className="contact-style-one-tabs">
             <nav>
-                <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button className="nav-link active" id="contact_tab_1" data-bs-toggle="tab" data-bs-target="#contact_tabs_1" type="button" role="tab" aria-controls="contact_tabs_1" aria-selected="true">New York</button>
-                    <button className="nav-link" id="contact_tab_2" data-bs-toggle="tab" data-bs-target="#contact_tabs_2" type="button" role="tab" aria-controls="contact_tabs_2" aria-selected="false">Paris</button>
-                    <button className="nav-link" id="contact_tab_3" data-bs-toggle="tab" data-bs-target="#contact_tabs_3" type="button" role="tab" aria-controls="contact_tabs_3" aria-selected="true">Dubai</button>
-                    <button className="nav-link" id="contact_tab_4" data-bs-toggle="tab" data-bs-target="#contact_tabs_4" type="button" role="tab" aria-controls="contact_tabs_4" aria-selected="false">China</button>
+                <div className="nav nav-tabs" id="nav-tab" >
+                    <button className="nav-link " id="contact_tab_1">
+                        <FontAwesomeIcon icon={faPhone} /> +1 123456789
+                    </button>
+                    <button className="nav-link" id="contact_tab_2">
+                        <FontAwesomeIcon icon={faEnvelope} /> abc@123gmail.com
+                    </button>
+                    <button className="nav-link" id="contact_tab_3">
+                        <FontAwesomeIcon icon={faLocationPin} /> 444, eddmonton, canda
+                    </button>
                 </div>
             </nav>
 

@@ -682,3 +682,54 @@ nav.navbar.validnavs .navbar-toggle svg {
     width: 100% !important;   /* Force image to always fill its container's width */
     height: auto !important;   /* CRUCIAL: Allows the height to adjust automatically to maintain the aspect ratio */
 }
+
+/* ================================================================
+   CUSTOM STYLING: Header Logo Color Scheme (Purple & Beige)
+   ================================================================ */
+
+/* 1. Change the top bar background to your brand's purple */
+.top-bar-area.bg-dark {
+    background-color: #392757 !important; /* Logo Purple */
+}
+
+/* 2. Change all relevant header hover effects to your brand's beige */
+
+/* A) For the circular icons in the top bar (Phone & Social) */
+.top-bar-area .call-icon-link:hover,
+.top-bar-area .social ul li a:hover {
+    background-color: #d2a982 !important; /* Logo Beige */
+    border-color: #d2a982 !important;     /* Make the border match for a solid circle */
+    color: #392757 !important;            /* Make the icon inside purple for contrast */
+}
+
+/* B) For the phone number text link in the top bar */
+.top-bar-area .call .info h5 a:hover {
+    color: #d2a982 !important; /* Logo Beige */
+}
+
+/* C) For the main navigation links (top-level and in dropdowns) */
+nav.navbar.validnavs ul.nav > li > a:hover,
+nav.navbar.validnavs .navbar-collapse .dropdown-menu li a:hover {
+    color: #d2a982 !important; /* Logo Beige */
+}
+
+/* ================================================================
+   FINAL FIX: APPOINTMENT BUTTON BRANDING
+   ================================================================ */
+
+/* --- A) Override the button's default gradient with a highly specific selector --- */
+/* This selector targets the <a> tag within the list structure, making it stronger than the default. */
+.navbar .attr-right .attr-nav ul > li > a.btn-style-one {
+    background: linear-gradient(to left, #392757, #d2a982) !important;
+    border: none !important;
+}
+
+/* --- B) Override the hover animation color with a highly specific selector --- */
+.navbar .attr-right .attr-nav ul > li > a.btn-style-one::after {
+    background-color: #392757 !important; /* Solid purple hover animation */
+}
+
+/* --- C) Ensure text color is white on hover --- */
+.navbar .attr-right .attr-nav ul > li > a.btn-style-one:hover {
+    color: #ffffff !important;
+}

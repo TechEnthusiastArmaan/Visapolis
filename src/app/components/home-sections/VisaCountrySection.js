@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const VisaCountrySection = () => {
     return (
-         <div id="country" className="visa-country-two-area default-padding bg-gray bg-cover" style={{backgroundImage: `url(/assets/img/shape/banner-1.png)`}}>
+         <div id="country" className="visa-country-two-area default-padding bg-gray bg-cover" style={{backgroundImage: `url(/assets/img/shape/banner-1.jpg)`}}>
             <div className="container">
                <div className="row">
                   <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
