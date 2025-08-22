@@ -36,6 +36,8 @@ export default async function AdminLayout({ children }) {
                         <li style={{ marginBottom: '10px' }}><Link href="/admin/dashboard">Dashboard</Link></li>
                         <li style={{ marginBottom: '10px' }}><Link href="/admin/bookings">Bookings</Link></li>
                         <li style={{ marginBottom: '10px' }}><Link href="/admin/blog">Manage Blog</Link></li>
+                            <li style={{ marginBottom: '10px' }}><Link href="/admin/content/visa-details">Edit Visa Page</Link></li>
+
                         {/* More links can be added here */}
                     </ul>
                 </nav>

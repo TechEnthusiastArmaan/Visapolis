@@ -91,7 +91,7 @@ const closeMenu = () => {
   <FontAwesomeIcon icon={faBars} />
 </button>
       <a className="navbar-brand" href="#">
-        <Image alt="Logo" className="logo" src="/assets/img/logo.svg" width={174} height={50} />
+        <Image alt="Logo" className="logo" src="/assets/img/logo2.svg" width={174} height={70} />
       </a>
     </div>
 

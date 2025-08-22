@@ -1,29 +1,91 @@
-// src/app/(admin)/blog/BlogPostForm.js
+// src/app/admin/blog/BlogPostForm.js
 'use client';
 
-// A simple form, you can enhance the 'content' field with a Rich Text Editor later
-export default function BlogPostForm({ action, post }) {
+import { useFormState, useFormStatus } from 'react-dom';
+import { useEffect } from 'react';
+
+function SubmitButton({ isEditing = false }) {
+    const { pending } = useFormStatus();
+    
     return (
-        <form action={action}>
+        <button 
+            type="submit" 
+            disabled={pending} 
+            style={{ 
+                padding: '10px 20px', 
+                backgroundColor: pending ? '#ccc' : '#392757', 
+                color: 'white', 
+                border: 'none', 
+                borderRadius: '5px', 
+                cursor: 'pointer' 
+            }}
+        >
+            {pending ? (isEditing ? 'Updating...' : 'Creating...') : (isEditing ? 'Update Post' : 'Create Post')}
+        </button>
+    );
+}
+
+// This form is used for both creating and editing a blog post
+export default function BlogPostForm({ formAction, initialData = {} }) {
+    const [state, action] = useFormState(formAction, { message: null });
+    
+    useEffect(() => {
+        if (state?.message && !state.message.includes("success")) {
+            alert(state.message);
+        }
+    }, [state]);
+
+    return (
+        <form action={action} style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '800px', marginTop: '20px' }}>
             <div>
-                <label>Title</label>
-                <input type="text" name="title" defaultValue={post?.title} required style={{ width: '100%' }}/>
+                <label htmlFor="title">Title</label>
+                <input 
+                    type="text" 
+                    id="title" 
+                    name="title" 
+                    defaultValue={initialData?.title} 
+                    required 
+                    style={{ width: '100%', padding: '8px' }} 
+                />
             </div>
+
             <div>
-                <label>Content</label>
-                <textarea name="content" defaultValue={post?.content} required style={{ width: '100%', minHeight: '300px' }}></textarea>
+                <label htmlFor="content">Content (Markdown is supported)</label>
+                <textarea 
+                    id="content" 
+                    name="content" 
+                    defaultValue={initialData?.content} 
+                    required 
+                    style={{ width: '100%', minHeight: '400px', padding: '8px' }}
+                ></textarea>
             </div>
+
             <div>
-                <label>Image URL</label>
-                <input type="text" name="imageUrl" defaultValue={post?.imageUrl} style={{ width: '100%' }}/>
+                <label htmlFor="imageUrl">Image URL</label>
+                <input 
+                    type="text" 
+                    id="imageUrl" 
+                    name="imageUrl" 
+                    defaultValue={initialData?.imageUrl} 
+                    style={{ width: '100%', padding: '8px' }} 
+                />
             </div>
+            
             <div>
                 <label>
-                    <input type="checkbox" name="isPublished" defaultChecked={post?.isPublished ?? true} />
-                    Published
+                    <input 
+                        type="checkbox" 
+                        name="isPublished" 
+                        defaultChecked={initialData?.isPublished ?? false} 
+                        style={{ marginRight: '10px' }}
+                    />
+                    Publish Post
                 </label>
             </div>
-            <button type="submit">{post ? 'Update' : 'Create'} Post</button>
+            
+            {state?.message && <p style={{ color: 'red' }}>{state.message}</p>}
+            
+            <SubmitButton isEditing={!!initialData?._id} />
         </form>
     );
 }

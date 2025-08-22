@@ -7,14 +7,14 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons'; // Import the 
 
 const Breadcrumb = ({ title, breadcrumbText }) => {
     return (
-        <div className="breadcrumb-area with-banner bg-cover text-center bg-dark text-light" style={{ backgroundImage: `url(/assets/img/banner/7.jpg)` }}>
+        <div className="breadcrumb-area with-banner bg-cover text-center bg-dark text-light" style={{ backgroundImage: `url(/assets/img/banner/11.jpeg)` }}>
             {/* These shapes are the key missing visual element */}
-            <div className="shape-left">
+            {/* <div className="shape-left">
                 <Image src="/assets/img/shape/18.png" alt="Decorative shape" width={787} height={538} />
             </div>
             <div className="shape-right">
                 <Image src="/assets/img/shape/19.png" alt="Decorative shape" width={739} height={514} />
-            </div>
+            </div> */}
 
              <div className="container">
                 <div className="row">

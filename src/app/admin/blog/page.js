@@ -1,8 +1,8 @@
-// src/app/(admin)/blog/page.js
+// src/app/admin/blog/page.js
 import Link from 'next/link';
 import dbConnect from '@/lib/dbconnect';
 import Blog from '@/models/Blog';
-import { deletePost } from './actions';
+import DeletePostButton from './DeletePostButton'; // A confirmation button
 
 async function getPosts() {
     await dbConnect();
@@ -17,29 +17,29 @@ export default async function ManageBlogPage() {
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h1>Manage Blog Posts</h1>
-                <Link href="/blog/new" style={{ padding: '10px 15px', backgroundColor: 'blue', color: 'white', textDecoration: 'none', borderRadius: '5px' }}>
-                    Create New Post
+                <Link href="/admin/blog/new" style={{ padding: '10px 15px', backgroundColor: '#392757', color: 'white', textDecoration: 'none', borderRadius: '5px' }}>
+                    + New Post
                 </Link>
             </div>
-            
+
             <table style={{ width: '100%', marginTop: '20px' }}>
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Published</th>
-                        <th>Actions</th>
+                        <th style={{ textAlign: 'left' }}>Title</th>
+                        <th style={{ textAlign: 'left' }}>Status</th>
+                        <th style={{ textAlign: 'left' }}>Created At</th>
+                        <th style={{ textAlign: 'left' }}>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {posts.map(post => (
-                        <tr key={post._id}>
-                            <td>{post.title}</td>
-                            <td>{post.isPublished ? 'Yes' : 'No'}</td>
+                        <tr key={post._id} style={{ borderBottom: '1px solid #eee' }}>
+                            <td style={{ padding: '10px 0' }}>{post.title}</td>
+                            <td>{post.isPublished ? 'Published' : 'Draft'}</td>
+                            <td>{new Date(post.createdAt).toLocaleDateString()}</td>
                             <td>
-                                <Link href={`/blog/edit/${post._id}`}>Edit</Link>
-                                <form action={deletePost.bind(null, post._id)} style={{ display: 'inline', marginLeft: '10px' }}>
-                                    <button type="submit" style={{ color: 'red', background: 'none', border: 'none', cursor: 'pointer' }}>Delete</button>
-                                </form>
+                                <Link href={`/admin/blog/edit/${post._id}`} style={{ marginRight: '10px' }}>Edit</Link>
+                                <DeletePostButton postId={post._id} />
                             </td>
                         </tr>
                     ))}

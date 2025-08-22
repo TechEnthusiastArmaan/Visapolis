@@ -1,9 +1,7 @@
 "use server";
-
-import dbConnect from '../lib/dbconnect';
-import Booking from '../models/Booking';
+import dbConnect from '../../lib/dbconnect';
+import Booking from '../../models/Booking';
 import nodemailer from 'nodemailer';
-
 // Helper to format array data for email
 const formatArrayForEmail = (arr) => arr && arr.length > 0 ? `<ul>${arr.map(item => `<li>${item}</li>`).join('')}</ul>` : 'Not specified';
 const formatStringForEmail = (str) => str ? str : 'Not specified';

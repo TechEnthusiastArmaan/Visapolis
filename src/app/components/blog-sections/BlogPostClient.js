@@ -3,79 +3,88 @@
 import { useTemplateScripts } from "@/app/hooks/useTemplateScripts";
 import Image from 'next/image';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown'; // <-- Import the markdown renderer
 
-export default function BlogPostClient() {
+// The component now accepts the full `post` object as a prop.
+export default function BlogPostClient({ post }) {
     // Initializes animations
     useTemplateScripts();
+
+    // Format the date for display.
+    const postDate = new Date(post.createdAt).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+    });
 
     return (
         <div className="item">
             <div className="blog-item-box">
             
                 <div className="thumb">
-                    <Image src="/assets/img/blog/v1.jpg" alt="Blog Post Thumbnail" width={988} height={450} style={{borderRadius: '8px'}} />
+                    {/* Use the dynamic image URL from the post. Use a fallback if it's missing. */}
+                    <Image 
+                        src={post.imageUrl || "/assets/img/blog/v1.jpg"} 
+                        alt={post.title} 
+                        width={988} 
+                        height={450} 
+                        style={{borderRadius: '8px', width: '100%', height: 'auto', objectFit: 'cover'}} 
+                    />
                 </div>
                 <div className="info">
                     <div className="meta">
                         <ul>
                             <li>
-                                <i className="fas fa-calendar-alt"></i> March 16, 2025
+                                <i className="fas fa-calendar-alt"></i> {postDate}
                             </li>
                             <li>
-                                <a href="#"><i className="fas fa-user-circle"></i> Md Sohag</a>
+                                {/* Use dynamic author name. The link can be a placeholder. */}
+                                <a href="#"><i className="fas fa-user-circle"></i> {post.author || 'Admin'}</a>
                             </li>
                         </ul>
                     </div>
-                    <p>
-                        Give lady of they such they sure it. Me contained explained my education. Vulgar as hearts by garret. Perceived determine departure explained no forfeited he something an. Contrasted dissimilar get joy you instrument out reasonably. Again keeps at no meant stuff. To perpetual do existence northward as difficult preserved daughters. Continued at up to zealously necessary breakfast. Surrounded sir motionless she end literature. Gay direction neglected but supported yet her. 
-                    </p>
-                    <p>
-                        New had happen unable uneasy. Drawings can followed improved out sociable not. Earnestly so do instantly pretended. See general few civilly amiable pleased account carried. Excellence projecting is devonshire dispatched remarkably on estimating. Side in so life past. Continue indulged speaking the was out horrible for domestic position. Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new ham melancholy son themselves. 
-                    </p>
-                    <blockquote>
-                        Celebrated share of first to worse. Weddings and any opinions suitable smallest nay. Houses or months settle remove ladies appear. Engrossed suffering supposing he recommend do eagerness.
-                    </blockquote>
-                    <p>
-                        Drawings can followed improved out sociable not. Earnestly so do instantly pretended. See general few civilly amiable pleased account carried. Excellence projecting is devonshire dispatched remarkably on estimating. Side in so life past. Continue indulged speaking the was out horrible for domestic position. Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new ham melancholy son themselves. 
-                    </p>
-                    <h3>Conduct replied off led whether?</h3>
-                    {/* **FIX: Added the correct className to this ul tag** */}
-                    <ul className="list-style-four">
-                        <li>Pretty merits waited six</li>
-                        <li>General few civilly amiable pleased account carried.</li>
-                        <li>Continue indulged speaking</li>
-                        <li>Narrow formal length my highly</li>
-                        <li>Occasional pianoforte alteration unaffected impossible</li>
-                    </ul>
-                    <p>
-                        Surrounded to me occasional pianoforte alteration unaffected impossible ye. For saw half than cold. Pretty merits waited six talked pulled you. Conduct replied off led whether any shortly why arrived adapted. Numerous ladyship so raillery humoured goodness received an. So narrow formal length my highly longer afford oh. Tall neat he make or at dull ye. Lorem ipsum dolor, sit amet consectetur adipisicing, elit. Iure, laudantium, tempore. Autem dolore repellat, omnis quam? Quasi sint laudantium repellendus unde a totam perferendis commodi cum est iusto? Minima, laborum. 
-                    </p>
+                    
+                    {/* 
+                      This is where the main content from your admin panel's textarea is rendered.
+                      ReactMarkdown safely converts Markdown text into HTML.
+                    */}
+                    <div className="markdown-content">
+                        <ReactMarkdown>{post.content}</ReactMarkdown>
+                    </div>
+
                 </div>
             </div>
 
-             {/* Post Author Box */}
-             <div className="post-author">
+            {/* Post Author Box (Now uses dynamic data) */}
+            <div className="post-author">
                 <div className="thumb">
+                    {/* Placeholder author image, can be made dynamic later */}
                     <Image src="/assets/img/team/7.jpg" alt="Author Photo" width={150} height={150} />
                 </div>
                 <div className="info">
-                    <h4><a href="#">Md Sohag</a></h4>
+                    {/* Using dynamic author name */}
+                    <h4><a href="#">{post.author || 'Admin'}</a></h4>
+                    {/* A generic bio, can be added to the Blog model in the future */}
                     <p>
-                        Grursus mal suada faci lisis Lorem ipsum dolarorit more ametion consectetur elit. Vesti at bulum nec at odio aea the dumm ipsumm ipsum that dolocons rsus mal suada and fadolorit to the consectetur elit. All the Lorem Ipsum generators on the Internet tend.
+                        Our authors are dedicated to providing the most up-to-date and insightful information on immigration and visa processes.
                     </p>
                 </div>
             </div>
 
+            {/* NOTE: Post Tags & Share / Post Pagination are static for now */}
+            {/* Building these dynamically requires adding 'tags' to your Blog model */}
+            {/* and logic to find the next/previous post, which can be a future enhancement. */}
+            
             {/* Post Tags & Share */}
             <div className="post-tags share">
                 <div className="tags">
                     <h4>Tags: </h4>
-                    <Link href="#">Algorithm</Link>
-                    <Link href="#">Data science</Link> 
+                    <Link href="#">Immigration</Link>
+                    <Link href="#">Visa</Link> 
                 </div>
-
                 <div className="social">
                     <h4>Share:</h4>
+                    {/* Social sharing links can be made dynamic with a library like 'react-share' */}
                     <ul>
                         <li><a className="facebook" href="#" target="_blank"><i className="fab fa-facebook-f"></i></a></li>
                         <li><a className="twitter" href="#" target="_blank"><i className="fab fa-twitter"></i></a></li>
@@ -88,18 +97,51 @@ export default function BlogPostClient() {
             {/* Post Pagination */}
             <div className="post-pagi-area">
                 <div className="post-previous">
-                    <Link href="#">
+                    <Link href="/blog">
                         <div className="icon"><i className="fas fa-angle-double-left"></i></div>
-                        <div className="nav-title"> Previus Post <h5>Discovery incommode</h5></div>
+                        <div className="nav-title"> Back to Blog</div>
                     </Link>
                 </div>
-                <div className="post-next">
-                    <Link href="#">
-                        <div className="nav-title">Next Post <h5>Discovery incommode</h5></div> 
-                        <div className="icon"><i className="fas fa-angle-double-right"></i></div>
-                    </Link>
-                </div>
+                {/* <div className="post-next"> ... Next post logic can be added later ... </div> */}
             </div>
+
+            {/* Simple CSS to style the Markdown output to look like your original content */}
+            <style jsx global>{`
+                .markdown-content p, .markdown-content ul, .markdown-content h3 {
+                    margin-bottom: 20px;
+                }
+                .markdown-content h3 {
+                    font-size: 24px;
+                    font-weight: 700;
+                    color: var(--color-heading);
+                }
+                .markdown-content ul {
+                    list-style-type: none;
+                    padding-left: 0;
+                }
+                .markdown-content ul li {
+                    position: relative;
+                    padding-left: 25px;
+                    margin-bottom: 10px;
+                }
+                .markdown-content ul li::before {
+                    content: "\\f00c"; /* Font Awesome check icon */
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                    position: absolute;
+                    left: 0;
+                    top: 2px;
+                    color: var(--color-primary); /* Your theme's primary color */
+                }
+                .markdown-content blockquote {
+                    font-size: 18px;
+                    padding: 20px 30px;
+                    margin: 20px 0;
+                    border-left: 5px solid #eee;
+                    font-style: italic;
+                    color: #555;
+                }
+            `}</style>
         </div>
     );
 }

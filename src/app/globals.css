@@ -76,18 +76,7 @@ a {
 }
 
 
-/* Replace the existing ::after rule with this one */
-.breadcrumb-area .breadcrumb li:not(.active)::after {
-    content: "\f105";                     /* Correct Unicode for 'fa-angle-right' */
-    font-family: "Font Awesome 5 Free";  /* Use the correct 'Free' font family name */
-    font-weight: 900;                    /* Required for solid icons in Font Awesome 5 Free */
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    color: #ffffff;
-}
+
 /* --- END OF FIX --- */
 
 
@@ -713,23 +702,4 @@ nav.navbar.validnavs .navbar-collapse .dropdown-menu li a:hover {
     color: #d2a982 !important; /* Logo Beige */
 }
 
-/* ================================================================
-   FINAL FIX: APPOINTMENT BUTTON BRANDING
-   ================================================================ */
 
-/* --- A) Override the button's default gradient with a highly specific selector --- */
-/* This selector targets the <a> tag within the list structure, making it stronger than the default. */
-.navbar .attr-right .attr-nav ul > li > a.btn-style-one {
-    background: linear-gradient(360deg, #e69e49 0%, #392750 100%) !important;
-    border: none !important;
-}
-
-/* --- B) Override the hover animation color with a highly specific selector --- */
-.navbar .attr-right .attr-nav ul > li > a.btn-style-one::after {
-    background-color: #392757 !important; /* Solid purple hover animation */
-}
-
-/* --- C) Ensure text color is white on hover --- */
-.navbar .attr-right .attr-nav ul > li > a.btn-style-one:hover {
-    color: #ffffff !important;
-}
