@@ -93,7 +93,7 @@ export default function Footer() {
                                 <ul className="contact-list-two">
                                     <li><div className="icon"><FontAwesomeIcon icon={faPhoneAlt} /></div><h5><a href="tel:96428563364">+91 9876543210</a></h5></li>
                                 <li><div className="icon"><FontAwesomeIcon icon={faClock} /></div><h5>Sun-Thu 9:00 - 7:00</h5></li>
-                                <li><div className="icon"><FontAwesomeIcon icon={faEnvelope} /></div><h5><a href="mailto:info@validtheme.com">Info@vidya.com</a></h5></li>
+                                <li><div className="icon"><FontAwesomeIcon icon={faEnvelope} /></div><h5><a href="mailto:info@validtheme.com">Info@vidyacorp.com</a></h5></li>
                             </ul>
                         </div>
                     </div>
