@@ -443,3 +443,47 @@
     }
 
 }
+/* ============================================= */
+/* Booking Form - Highlighted Date/Time          */
+/* ============================================= */
+
+.booking-form-header-flex .appointment-selection-highlight {
+    background-color:rgb(255, 255, 255); /* A light grey background */
+    color: var(--color-heading); /* Use your theme's heading color */
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    border: 1px solid #e9ecef; /* A subtle border */
+    display: inline-block; /* Allows the element to have padding and margins */
+    margin-bottom: 15px; /* Adds space between this and the form fields */
+    width: 100%; /* Make it full width for consistency */
+    text-align: center; /* Center the text inside */
+    text-shadow: 1.5px 1.5px 3px rgba(0, 0, 0, 0.1); /* Same subtle shadow as the main heading */
+
+}
+.appointment-selection-highlight{
+    background-color:rgb(255, 255, 255); /* A light grey background */
+    color: var(--color-heading); /* Use your theme's heading color */
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    border: 1px solid #e9ecef; /* A subtle border */
+    display: inline-block; /* Allows the element to have padding and margins */
+    margin-bottom: 15px; /* Adds space between this and the form fields */
+    width: 100%; /* Make it full width for consistency */
+    text-align: center; /* Center the text inside */
+    text-shadow: 1.5px 1.5px 3px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Adjust the main header to have less space at the very top */
+.booking-form-header-flex .main-header-text {
+    margin-top: 0; 
+}
+
+.booking-form-header-flex .main-header-text p {
+    /* Hide the old, unstyled paragraph */
+    display: none;
+}

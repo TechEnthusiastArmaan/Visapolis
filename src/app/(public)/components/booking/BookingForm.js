@@ -39,12 +39,14 @@ export default function BookingForm({ selectedDate, selectedTime, onSubmit, onBa
                     </button>
                  <div className="main-header-text">
                         <h2>Confirm Your Details</h2>
-                        <p>Appointment for <strong>{selectedDate?.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong></p>
+                        {/* <p>Appointment for <strong>{selectedDate?.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong></p> */}
                     </div>
 
                 </div>
             </div>
-            
+            <p className="appointment-selection-highlight">
+                Appointment for <strong>{selectedDate?.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong>
+            </p>
             <form onSubmit={handleSubmit} >
                  {/* --- SECTION 1: PERSONAL INFORMATION --- */}
                 <div className="row">
