@@ -415,3 +415,31 @@
         text-align: left;
     }
 }
+
+.booking-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px; /* Slightly more rounded corners */
+    /* A more noticeable but soft shadow */
+    box-shadow: 0 20px 50px 5px rgba(0, 0, 0, 0.1); 
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Adds a very subtle border */
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+/* ============================================= */
+/* Appointment Page - Mobile Layout Correction   */
+/* ============================================= */
+@media (max-width: 991.98px) {
+
+    .appoinment-style-one-area .row.align-center {
+        /* This reverses the column order on mobile. The booking form will now appear first (on top). */
+        flex-direction: column-reverse;
+    }
+
+    /* Target the column containing the booking container and add space below it */
+    .appoinment-style-one-area .col-xl-6.order-lg-last {
+        margin-bottom: 50px; /* Adjust this value as needed */
+    }
+
+}
