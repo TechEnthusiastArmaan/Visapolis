@@ -1,5 +1,6 @@
 // src/app/(public)/components/visa-content/ExpressEntryContent.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ExpressEntryContent() {
     return (
@@ -31,6 +32,13 @@ export default function ExpressEntryContent() {
             <p className="mt-4">
                 The highest-scoring candidates are invited to apply for permanent residence through regular draws from the pool.
             </p>
+             <div className="mt-5 text-center">
+                <h3>Considering an Express Entry Application?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
+            </div>
         </>
     );
 }

@@ -1,5 +1,6 @@
 // src/app/(public)/components/visa-content/PostGraduateWorkPermitContent.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function PostGraduateWorkPermitContent() {
     return (
@@ -27,6 +28,13 @@ export default function PostGraduateWorkPermitContent() {
                 <li>Apply for your PGWP within 180 days of receiving your final marks and confirmation of program completion.</li>
                 <li>Held a valid study permit at some point during those 180 days.</li>
             </ul>
+             <div className="mt-5 text-center">
+                <h3>Considering for Post Graduate Work Permit?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
+            </div>
         </>
     );
 }

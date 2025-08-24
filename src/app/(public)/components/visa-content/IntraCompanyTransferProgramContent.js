@@ -1,5 +1,6 @@
 // src/app/(public)/components/visa-content/IntraCompanyTransferProgramContent.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function IntraCompanyTransferProgramContent() {
     return (
@@ -35,6 +36,13 @@ export default function IntraCompanyTransferProgramContent() {
             <p className="mt-4">
                 Qualified transferees provide a significant benefit to Canada&apos;s market and are therefore exempt from the Labour Market Impact Assessment (LMIA) requirement.
             </p>
+             <div className="mt-5 text-center">
+                <h3>Considering Intra-Company Transfer Program?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
+            </div>
         </>
     );
 }

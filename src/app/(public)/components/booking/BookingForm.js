@@ -31,14 +31,21 @@ export default function BookingForm({ selectedDate, selectedTime, onSubmit, onBa
     };
 
     return (
-        <div className="appoinment-style-one-info">
-             <button type="button" onClick={onBack} className="booking-back-button">&larr; Back to Time Selection</button>
-             <div className="booking-header">
-                <h2>Confirm Your Details</h2>
-                <p>Appointment for <strong>{selectedDate.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong></p>
+        <div className="booking-container"> {/* The white box container */}
+                    <div className="booking-form-header">
+                <div className="booking-form-header-flex">
+<button type="button" onClick={onBack} className="booking-back-button">
+                        &larr; Back to Time Selection
+                    </button>
+                 <div className="main-header-text">
+                        <h2>Confirm Your Details</h2>
+                        <p>Appointment for <strong>{selectedDate?.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong></p>
+                    </div>
+
+                </div>
             </div>
             
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
                  {/* --- SECTION 1: PERSONAL INFORMATION --- */}
                 <div className="row">
                     <div className="col-lg-6">

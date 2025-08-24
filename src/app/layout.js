@@ -11,9 +11,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* These links MUST be here to load the styles */}
-        <link rel="stylesheet" href="/vendor/css/bootstrap.min.css" />
+        {/* <link rel="stylesheet" href="/vendor/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/vendor/css/all.min.css" />
-        <link rel="stylesheet" href="/vendor/css/adminlte.min.css" />
+        <link rel="stylesheet" href="/vendor/css/adminlte.min.css" /> */}
       </head>
       <body>
         {children}

@@ -12,7 +12,7 @@ const TrainingSection = () => {
                <div className="row">
                   <div className="col-lg-7">
                      <div className="site-heading">
-                        <h4 className="sub-title">Training & Certification</h4>
+                        <h4 className="sub-title">Get Work Permit</h4>
                         <h2 className="title split-text">Unlock the immigration training you need</h2>
                      </div>
                   </div>
@@ -49,7 +49,7 @@ const TrainingSection = () => {
                                             <li>Civics Test</li>
                                             <li>Study Resources</li>
                                         </ul>
-                                        <Link href="/post-graduate-work-permit" className="btn-style-one circle">Course Details <span></span></Link>
+                                        <Link href="/post-graduate-work-permit" className="btn-style-one circle">More Details <span></span></Link>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@ const TrainingSection = () => {
                                             <li>Visa Processing</li>
                                             <li>Visa Management</li>
                                         </ul>
-                                        <Link href="/coaching-details" className="btn-style-one circle">Course Details <span></span></Link>
+                                        <Link href="/coaching-details" className="btn-style-one circle">More Details <span></span></Link>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ const TrainingSection = () => {
                                             <li>Global Talent Stream Process</li>
                                             <li>Global Talent Stream Regulations</li>
                                         </ul>
-                                        <Link href="/global-talent-stream" className="btn-style-one circle">Course Details <span></span></Link>
+                                        <Link href="/global-talent-stream" className="btn-style-one circle">More Details <span></span></Link>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@ const TrainingSection = () => {
                                             <li>Visitor visa Process</li>
                                             <li>Visitor visa Regulations</li>
                                         </ul>
-                                        <Link href="/coaching-details" className="btn-style-one circle">Course Details <span></span></Link>
+                                        <Link href="/coaching-details" className="btn-style-one circle">More Details <span></span></Link>
                                     </div>
                                 </div>
                             </div>

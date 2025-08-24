@@ -1,54 +1,91 @@
+// src/app/(public)/components/contact-sections/LocationTabs.js
 "use client";
-import Image from "next/image";
-import { useTemplateScripts } from "@/app/(public)/hooks/useTemplateScripts";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faEnvelope, faLocationPin } from '@fortawesome/free-solid-svg-icons'; // Import the correct icon
+import { faEnvelope, faMapMarkerAlt, faPhoneAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 
-const LocationItem = ({ city, details }) => (
-    <div className="location-item hover-active-item">
-        <Image src="/assets/img/icon/location.png" alt={`${city} Location Pin`} width={50} height={50} />
-        <div className="location-details">
-            <h5>{city} Visa Service</h5>
-            <p>{details}</p>
-        </div>
-    </div>
-);
-
-export default function LocationTabs() {
-    // This hook initializes the hover effect on the location pins
-    useTemplateScripts();
-
+// A reusable component for each card to keep our code DRY
+const ContactInfoCard = ({ icon, bgColorClass, title, children }) => {
     return (
-        <div className="contact-style-one-tabs">
-            <nav>
-                <div className="nav nav-tabs" id="nav-tab" >
-                    <button className="nav-link " id="contact_tab_1">
-                        <FontAwesomeIcon icon={faPhone} /> +1 123456789
-                    </button>
-                    <button className="nav-link" id="contact_tab_2">
-                        <FontAwesomeIcon icon={faEnvelope} /> abc@123gmail.com
-                    </button>
-                    <button className="nav-link" id="contact_tab_3">
-                        <FontAwesomeIcon icon={faLocationPin} /> 444, eddmonton, canda
-                    </button>
-                </div>
-            </nav>
-
-            <div className="contact-one-tab-info">
-                <div className="tab-content" id="nav-tabContent">
-                    {/* New York Tab */}
-                    <div className="tab-pane fade show active" id="contact_tabs_1" role="tabpanel" aria-labelledby="contact_tab_1">
-                        <div className="global-location-items">
-                            <LocationItem city="NY" details="70240 Avenue of the Moon MF Tower, East California" />
-                            <LocationItem city="Immigration" details="70240 Avenue of the Moon MF Tower, East California" />
-                            <LocationItem city="Travel" details="70240 Avenue of the Moon MF Tower, East California" />
-                            <LocationItem city="Schengen" details="70240 Avenue of the Moon MF Tower, East California" />
-                            <Image src="/assets/img/shape/map.png" alt="World Map" width={716} height={430} />
-                        </div>
-                    </div>
-                    {/* You can duplicate the <div className="tab-pane"> for other cities if needed */}
-                </div>
+        <div className="contact-info-card">
+            <div className={`icon-wrapper ${bgColorClass}`}>
+                <FontAwesomeIcon icon={icon} />
+            </div>
+            <div className="card-content">
+                <h5>{title}</h5>
+                {children}
             </div>
         </div>
+    );
+};
+
+// The main component, which now includes a heading
+export default function LocationTabs() {
+    return (
+        // We use a React Fragment <> to wrap both the heading and the grid
+        <>
+            {/* 
+              This is the new heading section. 
+              It uses your theme's existing "site-heading" classes for consistency.
+              I've removed 'text-center' to align it to the left with the cards.
+            */}
+            <div className="site-heading">
+                <h4 className="sub-title">Contact Information</h4>
+                <h2 className="title">Get in Touch With Our Team!</h2>
+            </div>
+
+            <div className="contact-info-grid">
+                <div className="row">
+                    {/* Card 1: Email */}
+                    <div className="col-lg-6 col-md-6">
+                        <ContactInfoCard
+                            icon={faEnvelope}
+                            bgColorClass="bg-blue"
+                            title="General Inquiries"
+                        >
+                            <p>
+                                <a href="mailto:info@vidyacorp.com.com">info@vidyacorp.com</a>
+                            </p>
+                        </ContactInfoCard>
+                    </div>
+
+                    {/* Card 2: Address */}
+                    <div className="col-lg-6 col-md-6">
+                        <ContactInfoCard
+                            icon={faMapMarkerAlt}
+                            bgColorClass="bg-green"
+                            title="Our Location"
+                        >
+                            <p>Ludhiana, Punjab, India</p>
+                        </ContactInfoCard>
+                    </div>
+
+                    {/* Card 3: Phone */}
+                    <div className="col-lg-6 col-md-6">
+                        <ContactInfoCard
+                            icon={faPhoneAlt}
+                            bgColorClass="bg-purple"
+                            title="Call Us"
+                        >
+                            <p>
+                               <a href="tel:+910000000000">+91 0000000000</a>
+                            </p>
+                        </ContactInfoCard>
+                    </div>
+
+                    {/* Card 4: Hours */}
+                    <div className="col-lg-6 col-md-6">
+                        <ContactInfoCard
+                            icon={faClock}
+                            bgColorClass="bg-orange"
+                            title="Working Hours"
+                        >
+                            <p>Mon-Fri : 9:00AM-5:00PM</p>
+                        </ContactInfoCard>
+                    </div>
+
+                </div>
+            </div>
+        </>
     );
 }

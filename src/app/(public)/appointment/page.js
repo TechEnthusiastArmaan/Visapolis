@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { bookAppointment } from './actions';
 
 // Import the new components
 import Calendar from '../components/booking/Calendar';
 import TimePicker from '../components/booking/TimePicker';
 import BookingForm from '../components/booking/BookingForm';
+import AppointmentIntro from '../components/booking/AppointmentIntro'; // <-- IMPORT THE NEW COMPONENT
+
 
 // Import the specific CSS for this page
 import './booking.css';
@@ -120,11 +122,7 @@ export default function AppointmentPage() {
                            {renderStep()}
                         </div>
                         <div className="col-xl-5">
-                            <div className="appoinment-style-two-thumb">
-                                <div className="thumb-inner">
-                                    <Image src="/assets/img/illustration/11.png" alt="Illustration" width={485} height={600} />
-                                </div>
-                            </div>
+                             <AppointmentIntro />
                         </div>
                     </div>
                 </div>

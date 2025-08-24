@@ -1,5 +1,6 @@
 // src/app/(public)/components/visa-content/StudyPermitContent.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function StudyPermitContent() {
     return (
@@ -35,6 +36,13 @@ export default function StudyPermitContent() {
             <p className="mt-4">
                 Our team can help you compile these documents and build a strong application to begin your educational journey in Canada.
             </p>
+             <div className="mt-5 text-center">
+                <h3>Considering for Study Permit?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
+            </div>
         </>
     );
 }

@@ -1,5 +1,6 @@
 // src/app/(public)/components/visa-content/CanadianExperienceClassContent.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function CanadianExperienceClassContent() {
     return (
@@ -27,6 +28,13 @@ export default function CanadianExperienceClassContent() {
                 <li>Self-employment and work experience gained while you were a full-time student does not count.</li>
                 <li>You must show that you performed the main duties as listed in the National Occupational Classification (NOC).</li>
             </ul>
+             <div className="mt-5 text-center">
+                <h3>Considering a Canadian Experience Class?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
+            </div>
         </>
     );
 }

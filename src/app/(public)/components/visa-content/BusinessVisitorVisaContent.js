@@ -1,5 +1,6 @@
 // src/app/(public)/components/visa-content/BusinessVisitorVisaContent.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function BusinessVisitorVisaContent() {
     return (
@@ -27,6 +28,13 @@ export default function BusinessVisitorVisaContent() {
                 <li>Supervising the installation or dismantling of equipment purchased outside Canada.</li>
                 <li>Receiving or providing training from a Canadian parent or subsidiary company.</li>
             </ul>
+             <div className="mt-5 text-center">
+                <h3>Considering a Business Visitor Visa?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
+            </div>
         </>
     );
 }

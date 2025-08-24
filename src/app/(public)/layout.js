@@ -3,9 +3,11 @@ import './../globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Script from 'next/script';
+import FloatingButton from './components/FloatingButton';
 
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+
 config.autoAddCss = false;
 
 export const metadata = {
@@ -55,7 +57,8 @@ export default function RootLayout({ children }) {
         <Script src="/assets/js/gsap.js" strategy="afterInteractive" />
         <Script src="/assets/js/ScrollTrigger.min.js" strategy="afterInteractive" />
         <Script src="/assets/js/SplitText.min.js" strategy="afterInteractive" />
-        
+              <FloatingButton />
+
         {/*
           NOTE: validnavs.js and main.js have been REMOVED from here.
           Their core functionalities are now handled inside useTemplateScripts.js

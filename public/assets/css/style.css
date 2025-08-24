@@ -5677,8 +5677,8 @@ ul.list-style-four li::after {
 	content: "";
 	background-image: url(../img/icon/check-icon.png);
 	z-index: -1;
-	height: 16px;
-	width: 16px;
+	height: 60px;
+	width: 60px;
 	background-size: contain;
 	background-repeat: no-repeat;
 	transform: translateY(-50%);
@@ -8239,7 +8239,7 @@ ul.course-info-list li i {
 =================================================================== */
 
 .appoinment-style-one-info form {
-	background: linear-gradient(180deg, #e4eaff 0%, #f9faff 60%);
+	background: linear-gradient(180deg,rgb(244 231 254) 0%, #f9faff 60%);
 	padding: 60px;
 	position: relative;
 	margin-bottom: -60px;
@@ -11898,4 +11898,164 @@ footer .f-item.recent-project-gallery ul li a:hover::after {
 		height: 80px;
 		transform: rotate(0deg);
 	}
+}
+/* ======================================================
+   Contact Page - Info Cards Section
+========================================================= */
+.contact-info-grid .row {
+    --bs-gutter-y: 2rem; /* Adds vertical spacing between rows of cards */
+}
+
+.contact-info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px;
+    border: 1px solid #e7eaf3;
+    border-radius: 8px;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-color: transparent;
+}
+
+.contact-info-card .icon-wrapper {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+/* Background colors for the icons */
+.contact-info-card .icon-wrapper.bg-blue {
+    background-color: #e3f2fd;
+    color: #2196f3;
+}
+.contact-info-card .icon-wrapper.bg-green {
+    background-color: #e8f5e9;
+    color: #4caf50;
+}
+.contact-info-card .icon-wrapper.bg-purple {
+    background-color: #f3e5f5;
+    color: #9c27b0;
+}
+.contact-info-card .icon-wrapper.bg-orange {
+    background-color: #fff3e0;
+    color: #ff9800;
+}
+
+.contact-info-card .card-content h5 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.contact-info-card .card-content p {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.contact-info-card .card-content a {
+    color: var(--color-primary); /* Use your theme's primary color */
+    text-decoration: none;
+}
+.contact-info-card .card-content a:hover {
+    text-decoration: underline;
+}
+/* Contact Page - Heading Spacing */
+.contact-style-one-area .site-heading {
+    margin-bottom: 40px;
+}
+
+/* ======================================================
+   Floating Consultation Button
+========================================================= */
+/* ======================================================
+   Floating Consultation Button (Corrected & Improved)
+========================================================= */
+.floating-consultation-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.floating-consultation-btn .btn-text {
+    background-color: #d1a781;
+    color: #ffffff;
+    /* ADJUSTED: Increased horizontal padding and reduced vertical padding */
+    padding: 10px 15px;
+    /* ADJUSTED: Fully rounded corners for a "pill" shape */
+    border-radius: 50px; 
+    /* ADJUSTED: Slightly smaller font size */
+    font-size: 13px; 
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px #d1a781;
+}
+
+.floating-consultation-btn .btn-icon {
+    width: 55px; /* ADJUSTED: Slightly smaller circle */
+    height: 55px; /* ADJUSTED: Slightly smaller circle */
+    background-color: #d1a781;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* ADJUSTED: Reduced overlap for better spacing */
+    margin-left: 2px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    font-size: 22px; /* ADJUSTED: Smaller icon */
+    animation: breathing 2s ease-in-out infinite;
+}
+
+/* A subtle 'breathing' animation for the icon */
+@keyframes breathing {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Hover effect */
+.floating-consultation-btn:hover .btn-text {
+    background-color: #3c2b58;
+    box-shadow: 0 6px 20px #3c2b58;
+}
+
+/* --- Mobile View Adjustments --- */
+@media (max-width: 767.98px) {
+    .floating-consultation-btn {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    /* Hide the text on very small screens to save space */
+    .floating-consultation-btn .btn-text {
+        display: none;
+    }
+    
+    .floating-consultation-btn .btn-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+        margin-left: 0; /* Remove overlap when text is hidden */
+    }
 }

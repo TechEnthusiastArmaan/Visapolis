@@ -1,5 +1,6 @@
 // src/app/(public)/components/visa-content/InternationalMobilityProgramContent.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function InternationalMobilityProgramContent() {
     return (
@@ -28,6 +29,13 @@ export default function InternationalMobilityProgramContent() {
             <p className="mt-4">
                 Once the employer&apos;s part is complete, the temporary foreign worker can apply for their work permit. It&apos;s crucial for employers to comply with all conditions and responsibilities, as non-compliance can lead to significant penalties.
             </p>
+             <div className="mt-5 text-center">
+                <h3>Considering International Mobility Program?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
+            </div>
         </>
     );
 }

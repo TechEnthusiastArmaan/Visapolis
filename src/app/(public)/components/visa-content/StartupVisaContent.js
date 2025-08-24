@@ -36,6 +36,13 @@ export default function StartupVisaContent() {
                     <strong>Language Proficiency:</strong> Meet the minimum Canadian Language Benchmark (CLB 5) in either English or French.
                 </li>
             </ul>
+             <div className="mt-5 text-center">
+                <h3>Considering a Start-Up Visa?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
+            </div>
         </>
     );
 }

@@ -27,7 +27,7 @@ export default function ContactForm() {
 
     return (
         <div className="contact-form-style-one">
-            <h2>Have questions? <br /> Get in touch!</h2>
+            <h2>Fill Details</h2>
             {/* The form now calls the server action directly */}
             <form action={formAction}>
                 <div className="row">

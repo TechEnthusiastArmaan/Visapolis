@@ -1,5 +1,6 @@
 // src/app/(public)/components/visa-content/ProvincialImmigrationContent.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ProvincialImmigrationContent() {
     return (
@@ -28,6 +29,13 @@ export default function ProvincialImmigrationContent() {
                 <li>If your application is approved, the province will issue a provincial nomination certificate.</li>
                 <li>You then use this nomination to apply for permanent residence with the federal government (IRCC).</li>
             </ul>
+             <div className="mt-5 text-center">
+                <h3>Considering for Provincial Immigration?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
+            </div>
         </>
     );
 }

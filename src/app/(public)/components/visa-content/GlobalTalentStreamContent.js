@@ -1,5 +1,6 @@
 // src/app/(public)/components/visa-content/GlobalTalentStreamContent.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function GlobalTalentStreamContent() {
     return (
@@ -36,6 +37,13 @@ export default function GlobalTalentStreamContent() {
                         </ul>
                     </div>
                 </div>
+            </div>
+             <div className="mt-5 text-center">
+                <h3>Considering Global Talent Stream?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
             </div>
         </>
     );

@@ -1,5 +1,6 @@
 // src/app/(public)/components/visa-content/SpousalOpenWorkPermitContent.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function SpousalOpenWorkPermitContent() {
     return (
@@ -27,6 +28,13 @@ export default function SpousalOpenWorkPermitContent() {
                 <li>The applicant must have valid temporary resident status as a visitor, student, or worker.</li>
                 <li>Both the applicant and sponsor must meet all eligibility requirements for spousal sponsorship.</li>
             </ul>
+             <div className="mt-5 text-center">
+                <h3>Considering for Spousal Open Work Permit ?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
+            </div>
         </>
     );
 }

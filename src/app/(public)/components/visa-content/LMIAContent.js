@@ -83,8 +83,8 @@ export default function LMIAContent() {
             <div className="mt-5 text-center">
                 <h3>Ready to Start the LMIA Process?</h3>
                 <p>Navigating the LMIA and work permit applications requires careful attention to detail. Our experts are here to guide both employers and workers through every step.</p>
-                <Link className="btn-style-one circle mt-3" href="/contact">
-                    Contact Us Today <span></span>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
                 </Link>
             </div>
         </>

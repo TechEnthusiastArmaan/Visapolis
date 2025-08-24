@@ -1,5 +1,6 @@
 // src/app/(public)/components/visa-content/FamilySponsorshipContent.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function FamilySponsorshipContent() {
     return (
@@ -29,6 +30,13 @@ export default function FamilySponsorshipContent() {
                 <li>You and your sponsored family member must enter into a financial undertaking agreement, promising to provide for their basic needs.</li>
                 <li>You must not have a criminal background, be in bankruptcy, or be under a removal order.</li>
             </ul>
+             <div className="mt-5 text-center">
+                <h3>Considering a Family Sponsorship?</h3>
+                <p>Let us help you navigate the requirements to ensure your application is complete and strong, so you can spend valuable time with your family in Canada.</p>
+                <Link className="btn-style-one circle mt-3" href="/appointment">
+                    Get Assistance <span></span>
+                </Link>
+            </div>
         </>
     );
 }
