@@ -8,5 +8,6 @@
       "@/components/*": ["src/app/(public)/components/*"],
       "@/actions/*": ["src/app/(public)/actions/*"]
     }
-  }
+  },
+  "exclude": ["node_modules"]
 }

@@ -2,8 +2,8 @@
 
 import Breadcrumb from "../../../components/about-sections/Breadcrumb";
 import VisaMainContent from "../../../components/visa-details-sections/VisaMainContent";
-import dbConnect from "../../../lib/dbconnect";
-import PageContent from "../../../models/PageContent";
+import dbConnect from "@/lib/dbconnect";
+import PageContent from "@/models/PageContent";
 
 async function getContent() {
     await dbConnect();
