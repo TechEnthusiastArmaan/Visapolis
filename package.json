@@ -5,20 +5,26 @@
   "type": "module",
   "scripts": {
     "seed:admin": "node --env-file=.env.local scripts/seedAdmin.js",
+    "postinstall": "node scripts/copy-vendor-assets.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.0.0",
     "@fortawesome/fontawesome-svg-core": "^7.0.0",
     "@fortawesome/free-brands-svg-icons": "^7.0.0",
     "@fortawesome/free-solid-svg-icons": "^7.0.0",
     "@fortawesome/react-fontawesome": "^0.2.3",
+    "@tinymce/tinymce-react": "^6.3.0",
+    "admin-lte": "^4.0.0-rc4",
     "bcrypt": "^6.0.0",
+    "bootstrap": "^5.3.7",
     "cookie": "^1.0.2",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.1",
+    "jquery": "^3.7.1",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.18.0",
     "mongoose": "^8.17.2",
@@ -29,7 +35,8 @@
     "react-dom": "19.1.0",
     "react-markdown": "^10.1.0",
     "swiper": "^11.2.10",
-    "swr": "^2.3.6"
+    "swr": "^2.3.6",
+    "tinymce": "^8.0.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

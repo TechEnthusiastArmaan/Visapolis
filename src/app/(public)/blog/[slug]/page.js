@@ -1,7 +1,7 @@
 // src/app/(public)/blog/[slug]/page.js
 
-import Breadcrumb from "../../../components/about-sections/Breadcrumb";
-import BlogPostClient from "../../../components/blog-sections/BlogPostClient";
+import Breadcrumb from "../../../(public)/components/about-sections/Breadcrumb";
+import BlogPostClient from "../../../(public)/components/blog-sections/BlogPostClient";
 import dbConnect from "../../../../lib/dbconnect";
 import Blog from "../../../../models/Blog";
 import { notFound } from "next/navigation";

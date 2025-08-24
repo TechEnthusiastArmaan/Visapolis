@@ -1,28 +1,41 @@
 // middleware.js
 import { NextResponse } from 'next/server';
-import jwt from 'jsonwebtoken';
+import { cookies } from 'next/headers';
+import * as jose from 'jose';
 
-const SECRET_KEY = process.env.NEXTAUTH_SECRET;
+const SECRET_KEY = new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
 
 export async function middleware(request) {
-    const token = request.cookies.get('session_token')?.value;
+  const { pathname } = request.nextUrl;
 
-    if (!token) {
-        return NextResponse.redirect(new URL('/login', request.url));
+  // Protect all routes under /admin
+  if (pathname.startsWith('/admin')) {
+    const sessionToken = cookies().get('session_token')?.value;
+
+    if (!sessionToken) {
+      // Redirect to login if no token
+      const loginUrl = new URL('/login', request.url);
+      return NextResponse.redirect(loginUrl);
     }
 
     try {
-        // This verifies the token is valid and not expired
-        jwt.verify(token, SECRET_KEY);
-        // If it passes, allow the request to continue
-        return NextResponse.next();
+      // Verify the token
+      await jose.jwtVerify(sessionToken, SECRET_KEY);
+      // If token is valid, proceed to the requested admin page
+      return NextResponse.next();
     } catch (error) {
-        // If verification fails (invalid/expired), redirect to login
-        console.log("Token verification failed:", error.message);
-        return NextResponse.redirect(new URL('/login', request.url));
+      // If token is invalid (expired, wrong signature, etc.)
+      console.error('Middleware JWT Verification Error:', error.message);
+      const loginUrl = new URL('/login', request.url);
+      loginUrl.searchParams.set('error', 'session_expired');
+      return NextResponse.redirect(loginUrl);
     }
+  }
+
+  // Allow all other requests to pass through
+  return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*'], // Apply middleware only to admin routes
 };

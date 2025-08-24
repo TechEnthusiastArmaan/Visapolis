@@ -1,0 +1,296 @@
+/* src/app/appointment/booking.css */
+
+.booking-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 650px; /* Increased max-width for better layout */
+    margin: 0 auto;
+}
+
+.booking-container .booking-header {
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e7e7e7;
+    padding-bottom: 20px;
+}
+
+.booking-container .booking-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.booking-container .booking-header p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 0;
+}
+
+.booking-back-button {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    display: inline-block;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+.booking-back-button:hover {
+    text-decoration: underline;
+}
+
+
+/* Calendar Styles */
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-nav .month-display {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-heading);
+}
+
+.calendar-nav button {
+    background-color: #f4f4f4;
+    border: 1px solid #e7e7e7;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s;
+}
+.calendar-nav button:hover:not(:disabled) {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+}
+.calendar-nav button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    text-align: center;
+}
+
+.calendar-grid .day-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+    padding-bottom: 10px;
+}
+
+.calendar-grid button.day-cell {
+    padding: 10px 5px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-weight: 500;
+    transition: all .3s;
+}
+
+.calendar-grid button.day-cell:hover:not(:disabled) {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.calendar-grid button.day-cell:disabled {
+    color: #b0b0b0;
+    background-color: #f1f1f1;
+    cursor: not-allowed;
+}
+
+
+/* Time Picker Styles */
+.time-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.time-picker-grid .time-slot-btn {
+    padding: 15px 10px;
+    border-radius: 5px;
+    border: 1px solid #e7e7e7;
+    background-color: #ffffff;
+    color: var(--color-heading);
+    font-weight: 700;
+    text-align: center;
+    transition: all .3s ease;
+}
+
+.time-picker-grid .time-slot-btn:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Success/Error Message Styles */
+.submission-status-box {
+    text-align: center;
+}
+.submission-status-box .icon {
+    margin: 0 auto 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.submission-status-box .icon.success {
+    background-color: #e8f5e9;
+    color: #4caf50;
+}
+.submission-status-box .icon.error {
+    background-color: #ffebee;
+    color: #f44336;
+}
+.submission-status-box .icon svg {
+    width: 32px;
+    height: 32px;
+}
+.submission-status-box h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.submission-status-box p {
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+.submission-status-box .btn-style-one {
+    display: inline-block;
+}
+
+
+/* ============================================= */
+/* NEW STYLES FOR FORMS & CUSTOM CHECKS          */
+/* ============================================= */
+
+/* Group styling for questions */
+.form-question-group {
+    margin-bottom: 25px; /* Add space between question blocks */
+}
+
+.form-question-group .question-label {
+    display: block;
+    font-weight: 700;
+    color: var(--color-heading);
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Flex container for radios and checkboxes */
+.options-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line on small screens */
+    gap: 10px 20px; /* Vertical and horizontal gap */
+}
+
+/* Styling for a single checkbox or radio item */
+.check-item {
+    display: flex; /* Aligns the checkmark and text */
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 5px; /* Add a little space below each item */
+}
+
+/* Custom Checkbox & Radio Button Base Style */
+.custom-form-check {
+    display: block;
+    position: relative;
+    padding-left: 30px; /* Make space for the custom checkmark */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox/radio */
+.custom-form-check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkmark/radio button */
+.custom-form-check .checkmark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Makes it a square */
+    transition: all 0.2s ease;
+}
+
+/* Style for Radio buttons */
+.custom-form-check.is-radio .checkmark {
+    border-radius: 50%; /* Makes it a circle */
+}
+
+
+/* When the checkbox/radio is checked, change the background color */
+.custom-form-check input:checked ~ .checkmark {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.custom-form-check .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.custom-form-check input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark for CHECKBOXES */
+.custom-form-check:not(.is-radio) .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Style the indicator for RADIO BUTTONS */
+.custom-form-check.is-radio .checkmark:after {
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+}

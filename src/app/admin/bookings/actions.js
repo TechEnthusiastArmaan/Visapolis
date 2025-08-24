@@ -9,6 +9,16 @@ import Booking from '@/models/Booking';
  * Deletes a booking by its ID.
  * @param {string} bookingId - The ID of the booking to delete.
  */
+export async function getBookings() {
+  try {
+    await dbConnect();
+    const bookings = await Booking.find({}).sort({ createdAt: -1 });
+    return JSON.parse(JSON.stringify(bookings));
+  } catch (error) {
+    console.error('Failed to fetch bookings:', error);
+    return [];
+  }
+}
 export async function deleteBooking(bookingId) {
     try {
         await dbConnect();

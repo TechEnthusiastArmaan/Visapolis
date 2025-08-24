@@ -3,21 +3,36 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
 const AdminSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: [true, 'Please provide an email.'],
-        unique: true,
-    },
-    hashed_password: { // Use a clear name for the hashed password
-        type: String,
-        required: [true, 'Please provide a password.'],
-        minlength: 8
-    }
+  name: {
+    type: String,
+    required: [true, 'Please provide a name.'],
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: [true, 'Please provide an email.'],
+    unique: true,
+    match: [/.+\@.+\..+/, 'Please enter a valid email address.'],
+  },
+  password: {
+    type: String,
+    required: [true, 'Please provide a password.'],
+    select: false, // Don't return password by default on queries
+  },
+  role: {
+    type: String,
+    enum: ['admin', 'editor'], // Define possible roles
+    default: 'editor',
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-// Method to compare entered password with the stored hash
-AdminSchema.methods.comparePassword = async function (enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.hashed_password);
-};
+
+// ==========================================================
+// The failing comparePassword method has been completely REMOVED.
+// ==========================================================
 
 export default mongoose.models.Admin || mongoose.model('Admin', AdminSchema);

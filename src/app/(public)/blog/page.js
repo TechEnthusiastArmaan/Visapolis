@@ -1,7 +1,7 @@
 // src/app/blog/page.js
 
-import Breadcrumb from '../../components/about-sections/Breadcrumb';
-import BlogGridClient from "../../components/blog-sections/BlogGridClient";
+import Breadcrumb from '../../(public)/components/about-sections/Breadcrumb';
+import BlogGridClient from "../../(public)/components/blog-sections/BlogGridClient";
 import dbConnect from "@/lib/dbconnect"; // Import the database connection
 import Blog from "@/models/Blog"; // Import your new Blog model
 

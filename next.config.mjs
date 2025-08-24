@@ -1,25 +1,23 @@
-// next.config.mjs
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // === START OF THE FIX ===
-    images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'thewowstyle.com',
-                port: '',
-                pathname: '/wp-content/uploads/**',
-            },
-            // You can add more patterns here for other image sources
-            // For example, to allow images from unsplash:
-            // {
-            //     protocol: 'https',
-            //     hostname: 'images.unsplash.com',
-            // }
-        ],
+    // This is the compiler configuration I suggested to fix the Webpack error.
+    compiler: {
+      styledComponents: true,
     },
-    // === END OF THE FIX ===
-};
-
-export default nextConfig;
+  
+    // This is your existing configuration for images, which I've kept.
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'thewowstyle.com',
+          port: '',
+          pathname: '/wp-content/uploads/**',
+        },
+        // You can add more patterns here for other image sources
+      ],
+    },
+  };
+  
+  export default nextConfig;
+  
