@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react'; // Make sure useState is imported
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'; // Import the correct icon
 import { faFacebookF, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
@@ -11,10 +13,16 @@ import { faPhoneAlt, faClock, faEnvelope, faMapMarkerAlt, faEnvelopeOpenText, fa
 export default function HomePageHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+
   const toggleMenu = () => {
   setIsMenuOpen(!isMenuOpen);
 };
-
+useEffect(() => {
+    // Whenever the pathname changes (i.e., we navigate to a new page),
+    // this effect will run. We simply close the menu.
+    setIsMenuOpen(false);
+  }, [pathname]);
 const closeMenu = () => {
   setIsMenuOpen(false);
 };

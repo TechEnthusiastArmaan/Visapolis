@@ -9,7 +9,7 @@ export default function VisitorVisaContent() {
     return (
         <>
             <div className="thumb wow fadeInUp">
-                <Image src="/assets/img/banner/10.jpg" alt="Beautiful Canadian landscape for visitors" width={820} height={422} style={{ borderRadius: '10px' }} />
+                <Image src="/assets/img/banner/10.jpg" alt="Beautiful Canadian landscape for visitors" width={820} height={422} priority={true} className="responsive-visa-image" style={{ borderRadius: '10px' }} />
             </div>
             <h2 className="wow fadeInUp" data-wow-delay="300ms">Explore Canada with a Visitor Visa</h2>
             <p className="wow fadeInUp" data-wow-delay="500ms">

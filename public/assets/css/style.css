@@ -105,7 +105,7 @@ Sidebar heading:  20px 'Manrope', sans-serif
 	--fontawesome: "Font Awesome 5 Pro";
 	--black: #000000;
 	--dark: #3c2b58;
-	--dark-secondary: #002155;
+	--dark-secondary: #3c2b58;
 	--dark-optional: #3c2b58;
 	--white: #ffffff;
 	--white-secondary: #bed6dc;
@@ -5670,29 +5670,43 @@ ul.list-style-four {
 	list-style: none;
 }
 
-ul.list-style-four li::after {
-	position: absolute;
-	left: 0;
-	top: 50%;
-	content: "";
-	background-image: url(../img/icon/check-icon.png);
-	z-index: -1;
-	height: 60px;
-	width: 60px;
-	background-size: contain;
-	background-repeat: no-repeat;
-	transform: translateY(-50%);
-}
-
 ul.list-style-four li {
-	position: relative;
-	z-index: 1;
-	padding-left: 27px;
-	margin-top: 7px;
-	font-size: 16px;
-	font-weight: 500;
+    position: relative;
+    padding-left: 28px; /* Creates space for the new SVG icon */
+    margin-bottom: 12px; /* Adds a bit of space between list items */
+    font-size: 16px;
 }
 
+ul.list-style-four li::before {
+    /* We can use the ::before pseudo-element for the icon now */
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px; /* Adjust vertical alignment as needed */
+    width: 18px; /* Icon size */
+    height: 18px; /* Icon size */
+    background-color: transparent; /* No background color */
+    
+    /* 
+      THIS IS THE CRITICAL PART:
+      We are setting an SVG as a background image.
+      The fill='%23d1a781' part sets the color. '%23' is the URL-encoded version of '#'.
+    */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3e%3cpath fill='%23d1a781' d='M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z'/%3e%3c/svg%3e");
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+ul.list-style-four li::after {
+    /* 
+       We no longer need the ::after pseudo-element that used the old PNG,
+       so we'll clear it just in case.
+    */
+    display: none;
+    content: none;
+}
 .text-light ul.list-style-four li {
 	color: var(--white-secondary);
 }
@@ -12058,4 +12072,32 @@ footer .f-item.recent-project-gallery ul li a:hover::after {
         font-size: 22px;
         margin-left: 0; /* Remove overlap when text is hidden */
     }
+}
+/* ======================================================
+   Responsive Footer Adjustments
+========================================================= */
+
+/* 
+  This media query targets all screen sizes with a maximum width of 767 pixels.
+  This is a standard breakpoint for mobile devices.
+*/
+@media (max-width: 767.98px) {
+
+  /* 
+    Find the footer element with the 'bg-dark' class and set its
+    background-image property to 'none', effectively removing it.
+  */
+  .footer-style-two.bg-dark {
+    background-image: none !important;
+  }
+  
+}
+/* ======================================================
+   Responsive Image Styling for Visa Pages
+========================================================= */
+
+.responsive-visa-image {
+    max-width: 100%; /* Ensures the image never overflows its container */
+    height: auto;    /* Allows the height to scale proportionally */
+    display: block;  /* Removes any extra space below the image */
 }
