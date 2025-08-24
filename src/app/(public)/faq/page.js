@@ -1,6 +1,6 @@
 // src/app/faq/page.js
 
-import InnerPageBreadcrumb from '@/app/(public)/components/common/InnerPageBreadcrumb';
+import InnerPageBreadcrumb from '@/app/(public)/components/about-sections/Breadcrumb';
 import FaqAccordion from "../components/FaqAccordion";
 
 export const metadata = {

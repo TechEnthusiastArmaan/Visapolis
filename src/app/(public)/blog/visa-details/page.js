@@ -1,7 +1,7 @@
 // src/app/(public)/visa-details/page.js
 
-import Breadcrumb from "../../../components/about-sections/Breadcrumb";
-import VisaMainContent from "../../../components/visa-details-sections/VisaMainContent";
+import Breadcrumb from '@/app/(public)/components/about-sections/Breadcrumb';
+import VisaMainContent from '@/app/(public)/components/visa-details-sections/VisaMainContent';
 import dbConnect from "@/lib/dbconnect";
 import PageContent from "@/models/PageContent";
 
