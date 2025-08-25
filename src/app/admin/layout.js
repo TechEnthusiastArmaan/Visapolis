@@ -11,7 +11,7 @@ import Script from 'next/script';
 
 import AdminHeader from './components/AdminHeader';
 import AdminSidebar from './components/AdminSidebar';
-import AdminFooter from './components/AdminFooter';
+// import AdminFooter from './components/AdminFooter';
 import DynamicBreadcrumb from './components/DynamicBreadcrumb'; 
 //import './admin.css'; // Keep for custom overrides if needed
 
@@ -75,7 +75,7 @@ export default async function AdminLayout({ children }) {
                         </div>
                     </div>
                     
-                    <AdminFooter />
+                    {/* <AdminFooter /> */}
                 </div>
             </div>
             
