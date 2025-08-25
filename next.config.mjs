@@ -4,7 +4,11 @@ const nextConfig = {
     compiler: {
       styledComponents: true,
     },
-  
+  experimental: {
+        serverActions: {
+            bodySizeLimit: '10mb', // You can adjust this value, e.g., '5mb', '20mb'
+        },
+    },
     // This is your existing configuration for images, which I've kept.
     images: {
       remotePatterns: [

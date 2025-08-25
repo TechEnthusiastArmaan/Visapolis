@@ -41,7 +41,7 @@ export async function createPost(prevState, formData) {
 
   // WYSIWYG HTML + plain textarea
   const content = formData.get('content')?.toString() ?? '';
-  const rawContent = formData.get('rawContent')?.toString() ?? '';
+  // const rawContent = formData.get('rawContent')?.toString() ?? '';
 
   // If page sent `intent=publish`, publish even if checkbox wasn’t ticked
   const intent = formData.get('intent')?.toString();
@@ -52,7 +52,8 @@ export async function createPost(prevState, formData) {
     title,
     slug: createSlug(title),
     content,
-    rawContent,
+    // rawContent,
+
     imageUrl,
     isPublished,
   };
@@ -92,7 +93,7 @@ export async function updatePost(postId, prevState, formData) {
   const imageUrl = newImageUrl || existing.imageUrl || '';
 
   const content = formData.get('content')?.toString() ?? '';
-  const rawContent = formData.get('rawContent')?.toString() ?? '';
+  // const// rawContent = formData.get('rawContent')?.toString() ?? '';
 
   const intent = formData.get('intent')?.toString();
   const isPublished =
@@ -105,7 +106,7 @@ export async function updatePost(postId, prevState, formData) {
       title,
       slug: newSlug,
       content,
-      rawContent,
+      // rawContent,
       imageUrl,
       isPublished,
     });

@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
-import { useTemplateScripts } from "../hooks/useTemplateScripts";
+// import { useTemplateScripts } from "../hooks/useTemplateScripts";
+import { bookAppointment } from "../appointment/actions"; 
+
 
 export default function AssessmentForm() {
     // This hook ensures plugins like NiceSelect are ready.
@@ -47,19 +49,28 @@ export default function AssessmentForm() {
         }
     };
 
-    const handleSubmit = async (e) => {
+      const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('Submitting...');
-        console.log("Form Data:", formData); // Log data for debugging
         
-        // Placeholder for API submission logic
-        setTimeout(() => {
+        // This is a direct server action call, passing the entire state
+        const result = await bookAppointment(formData);
+        
+        if (result.success) {
             setStatus('Assessment submitted successfully!');
-            // To reset the form after submission, you can uncomment the next line:
-            // setFormData({ name:'', phone:'', email:'', citizenship:'', age:'', inCanada:'', canadaStatus:[], education:[], relativesInCanada:'', studiedInCanada:'', englishProficiency:[], frenchProficiency:[], workExperienceOutside:'0', jobOffer:'', workExperienceInside:'0', refugeeStatus:'', complications:'' });
-        }, 1500);
+            // Reset the form after a successful submission
+            setFormData({
+                name: '', phone: '', email: '', citizenship: '', age: '',
+                inCanada: '', canadaStatus: [], education: [], relativesInCanada: '',
+                studiedInCanada: '', englishProficiency: [], frenchProficiency: [],
+                workExperienceOutside: '0', jobOffer: '', workExperienceInside: '0',
+                refugeeStatus: '', complications: '',
+            });
+        } else {
+            // Display the specific error message from the server action
+            setStatus(`Error: ${result.error || 'An unknown error occurred.'}`);
+        }
     };
-
     return (
         <form onSubmit={handleSubmit} className="wow fadeInUp appoinment-style-one-info">
             {/* --- SECTION 1: PERSONAL INFORMATION --- */}

@@ -21,7 +21,8 @@ export async function generateMetadata({ params }) {
   const post = await getPost(params.slug);
   return {
     title: post.title,
-    description: post.content.substring(0, 160), // Use the first 160 chars for the description
+    // Use the safe, plain-text rawContent for the description
+    description: post.rawContent?.substring(0, 160) || post.title,
   };
 }
 

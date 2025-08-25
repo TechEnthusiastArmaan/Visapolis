@@ -1,130 +1,76 @@
-// src/app/components/blog-sections/BlogPostClient.js
-"use client";
-import { useTemplateScripts } from "@/app/(public)/hooks/useTemplateScripts";
+// src/app/(public)/components/blog-sections/BlogPostClient.js
+'use client'; // This is a client component
+
 import Image from 'next/image';
-import Link from 'next/link';
-import ReactMarkdown from 'react-markdown'; // <-- Import the markdown renderer
+import Link from 'next/link'; // Keep for any potential future links
 
-// The component now accepts the full `post` object as a prop.
 export default function BlogPostClient({ post }) {
-    // Initializes animations
-    useTemplateScripts();
+    // A safeguard in case the post prop is missing
+    if (!post) {
+        return (
+            <div className="text-center">
+                <h2>Post Not Found</h2>
+                <p>Sorry, we couldn&apos;t find the post you were looking for.</p>
+                <Link href="/blog">Back to Blog</Link>
+            </div>
+        );
+    }
 
-    // Format the date for display.
-    const postDate = new Date(post.createdAt).toLocaleDateString('en-US', {
+    // Format the date for a readable display
+    const formattedDate = new Date(post.createdAt).toLocaleDateString('en-US', {
+        year: 'numeric',
         month: 'long',
         day: 'numeric',
-        year: 'numeric',
     });
 
     return (
         <div className="item">
-            <div className="blog-item-box">
-            
-                <div className="thumb">
-                    {/* Use the dynamic image URL from the post. Use a fallback if it's missing. */}
+            {/* 1. Blog Post Image (Thumb) */}
+            <div className="thumb">
+                {post.imageUrl ? (
                     <Image 
-                        src={post.imageUrl || "/assets/img/blog/v1.jpg"} 
-                        alt={post.title} 
-                        width={988} 
-                        height={450} 
-                        style={{borderRadius: '8px', width: '100%', height: 'auto', objectFit: 'cover'}} 
+                        src={post.imageUrl} 
+                        alt={post.title}
+                        width={1200}
+                        height={600}
+                        style={{ width: '100%', height: 'auto', borderRadius: '5px' }} 
+                        priority // Load this image with high priority
                     />
-                </div>
-                <div className="info">
-                    <div className="meta">
-                        <ul>
-                            <li>
-                                <i className="fas fa-calendar-alt"></i> {postDate}
-                            </li>
-                            <li>
-                                {/* Use dynamic author name. The link can be a placeholder. */}
-                                <a href="#"><i className="fas fa-user-circle"></i> {post.author || 'Admin'}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    {/* 
-                      This is where the main content from your admin panel's textarea is rendered.
-                      ReactMarkdown safely converts Markdown text into HTML.
-                    */}
-                    <div className="markdown-content">
-                        <ReactMarkdown>{post.content}</ReactMarkdown>
-                    </div>
-
-                </div>
+                ) : (
+                    // Optional: Render a placeholder if no image exists
+                    <div style={{ height: '300px', backgroundColor: '#f0f0f0', borderRadius: '5px' }}></div>
+                )}
             </div>
 
-            {/* Post Author Box (Now uses dynamic data) */}
-            <div className="post-author">
-                <div className="thumb">
-                    {/* Placeholder author image, can be made dynamic later */}
-                    <Image src="/assets/img/team/7.jpg" alt="Author Photo" width={150} height={150} />
+            {/* 2. Post Information (Meta, Title, and Content) */}
+            <div className="info">
+                {/* 2a. Meta Data (Date & Author) */}
+                <div className="meta">
+                    <ul>
+                        <li>
+                            <i className="fas fa-calendar-alt"></i> {formattedDate}
+                        </li>
+                        <li>
+                            <i className="fas fa-user-circle"></i> By {post.author || 'Admin'}
+                        </li>
+                    </ul>
                 </div>
-                <div className="info">
-                    {/* Using dynamic author name */}
-                    <h4><a href="#">{post.author || 'Admin'}</a></h4>
-                    {/* A generic bio, can be added to the Blog model in the future */}
-                    <p>
-                        Our authors are dedicated to providing the most up-to-date and insightful information on immigration and visa processes.
-                    </p>
-                </div>
+                
+                {/* 2b. Blog Title */}
+                <h2 className="title mt-3">{post.title}</h2>
+                
+                {/* 
+                  2c. Content from WYSIWYG Editor.
+                  This div will render the bold text, paragraphs, lists, etc.,
+                  saved from your admin panel's rich text editor.
+                */}
+                <div
+                    className="blog-content-html mt-4" 
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                />
+
+                {/* The "Post Author" div has been completely removed as requested. */}
             </div>
-
-            {/* NOTE: Post Tags & Share / Post Pagination are static for now */}
-            {/* Building these dynamically requires adding 'tags' to your Blog model */}
-            {/* and logic to find the next/previous post, which can be a future enhancement. */}
-            
-          
-
-            {/* Post Pagination */}
-            <div className="post-pagi-area">
-                <div className="post-previous">
-                    <Link href="/blog">
-                        <div className="icon"><i className="fas fa-angle-double-left"></i></div>
-                        <div className="nav-title"> Back to Blog</div>
-                    </Link>
-                </div>
-                {/* <div className="post-next"> ... Next post logic can be added later ... </div> */}
-            </div>
-
-            {/* Simple CSS to style the Markdown output to look like your original content */}
-            <style jsx global>{`
-                .markdown-content p, .markdown-content ul, .markdown-content h3 {
-                    margin-bottom: 20px;
-                }
-                .markdown-content h3 {
-                    font-size: 24px;
-                    font-weight: 700;
-                    color: var(--color-heading);
-                }
-                .markdown-content ul {
-                    list-style-type: none;
-                    padding-left: 0;
-                }
-                .markdown-content ul li {
-                    position: relative;
-                    padding-left: 25px;
-                    margin-bottom: 10px;
-                }
-                .markdown-content ul li::before {
-                    content: "\\f00c"; /* Font Awesome check icon */
-                    font-family: "Font Awesome 5 Free";
-                    font-weight: 900;
-                    position: absolute;
-                    left: 0;
-                    top: 2px;
-                    color: var(--color-primary); /* Your theme's primary color */
-                }
-                .markdown-content blockquote {
-                    font-size: 18px;
-                    padding: 20px 30px;
-                    margin: 20px 0;
-                    border-left: 5px solid #eee;
-                    font-style: italic;
-                    color: #555;
-                }
-            `}</style>
         </div>
     );
 }

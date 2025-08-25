@@ -1,45 +1,45 @@
 // src/app/admin/contact-queries/page.js
-import { getContactSubmissions } from '../actions'; // Import the new fetching action
+import { getContactSubmissions } from '../actions';
+import { deleteContactSubmission } from './actions'; // Import the new delete action
+import QueriesTable from './QueriesTable';           // Import the new client component
 
 export default async function ContactQueriesPage() {
+    // This server component is now only responsible for fetching the initial data.
     const submissions = await getContactSubmissions();
 
     return (
-        <div className="card">
-            <div className="card-header">
-                <h3 className="card-title">Contact Form Submissions</h3>
+        <>
+            {/* The page header remains here as part of the static server-rendered layout */}
+            <div className="page-header">
+                <h3 className="page-title">
+                    <span className="page-title-icon bg-gradient-info text-white me-2">
+                        <i className="mdi mdi-email-alert"></i>
+                    </span> Contact Form Submissions
+                </h3>
             </div>
-            <div className="card-body">
-                <table className="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Received On</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {submissions.length > 0 ? (
-                            submissions.map(sub => (
-                                <tr key={sub._id}>
-                                    <td>{new Date(sub.createdAt).toLocaleString()}</td>
-                                    <td>{sub.name}</td>
-                                    <td>{sub.email}</td>
-                                    <td>{sub.phone || 'N/A'}</td>
-                                    {/* Using a pre-wrap to respect newlines in the message */}
-                                    <td style={{ whiteSpace: 'pre-wrap', maxWidth: '400px' }}>{sub.message}</td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="5" className="text-center">No submissions yet.</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+            
+            <div className="row">
+                <div className="col-lg-12 grid-margin stretch-card">
+                    <div className="card">
+                        <div className="card-body">
+                             <h4 className="card-title">All Received Queries</h4>
+                             <p className="card-description">
+                                Here are all the messages submitted through the website&apos;s contact form.
+                             </p>
+                            
+                            {/* 
+                              This is the key change: 
+                              Instead of rendering the table directly, we render the QueriesTable 
+                              client component and pass the data and server action down as props.
+                            */}
+                            <QueriesTable 
+                                initialSubmissions={submissions}
+                                deleteAction={deleteContactSubmission}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
 }

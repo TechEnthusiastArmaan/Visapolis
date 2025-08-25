@@ -1,62 +1,58 @@
 // src/app/admin/components/DynamicBreadcrumb.js
-"use client";
+'use client'; // This is essential!
 
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation'; // Hook to get the current URL path
 
-export default function DynamicBreadcrumb() {
-  const pathname = usePathname();
-  
-  // Function to get page title and breadcrumb based on pathname
-  const getPageInfo = (path) => {
-    if (path === '/admin/dashboard') {
-      return { title: 'Dashboard', breadcrumb: 'Dashboard' };
-    } else if (path === '/admin/bookings') {
-      return { title: 'Bookings', breadcrumb: 'Bookings' };
-    } else if (path === '/admin/blog') {
-      return { title: 'Blog Posts', breadcrumb: 'Blog Posts' };
-    } else if (path === '/admin/content') {
-      return { title: 'Content Management', breadcrumb: 'Content Management' };
-    } else if (path === '/admin/content/visa-details') {
-      return { title: 'Visa Details', breadcrumb: 'Content Management / Visa Details' };
-    } else if (path.startsWith('/admin/blog/edit/')) {
-      return { title: 'Edit Blog Post', breadcrumb: 'Blog Posts / Edit' };
-    } else if (path === '/admin/blog/new') {
-      return { title: 'New Blog Post', breadcrumb: 'Blog Posts / New' };
-    }
-    else if (path === '/admin/users') {
-        return { title: 'Manage Users', breadcrumb: 'Users' };
-      } else if (path === '/admin/users/new') {
-          return { title: 'Add New User', breadcrumb: 'Users / New' };
-      } else if (path.startsWith('/admin/users/edit/')) {
-          return { title: 'Edit User', breadcrumb: 'Users / Edit' }; 
-    }
-    else {
-      return { title: 'Admin Panel', breadcrumb: 'Admin' };
-    }
-  };
+const DynamicBreadcrumb = () => {
+    const pathname = usePathname();
 
-  const { title, breadcrumb } = getPageInfo(pathname);
+    // Don't render the breadcrumb on the main dashboard page
+    if (pathname === '/admin/dashboard') {
+        return null;
+    }
 
-  return (
-    <div className="content-header">
-      <div className="container-fluid">
-        <div className="row mb-2">
-          <div className="col-sm-6">
-            <h1 className="m-0">{title}</h1>
-          </div>
-          <div className="col-sm-6">
-            <ol className="breadcrumb float-sm-right">
-              <li className="breadcrumb-item">
-                <Link href="/admin/dashboard">Home</Link>
-              </li>
-              {breadcrumb !== 'Dashboard' && (
-                <li className="breadcrumb-item active">{breadcrumb}</li>
-              )}
-            </ol>
-          </div>
+    // Create breadcrumb segments from the path
+    const pathSegments = pathname.split('/').filter(segment => segment);
+
+    // Function to capitalize the first letter of a string
+    const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+    return (
+        <div className="page-header">
+            {/* We'll use this container for a title and the breadcrumb */}
+            
+            {/* Generate a dynamic title from the last path segment */}
+            <h3 className="page-title">
+                {capitalize(pathSegments[pathSegments.length - 1].replace(/-/g, ' '))}
+            </h3>
+
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item">
+                        <Link href="/admin/dashboard">Dashboard</Link>
+                    </li>
+                    {pathSegments.slice(1).map((segment, index) => {
+                        // Create the href for the current segment
+                        const href = `/admin/${pathSegments.slice(1, index + 2).join('/')}`;
+                        
+                        // Check if it's the last segment in the path
+                        const isLast = index === pathSegments.length - 2;
+
+                        return isLast ? (
+                            <li key={href} className="breadcrumb-item active" aria-current="page">
+                                {capitalize(segment.replace(/-/g, ' '))}
+                            </li>
+                        ) : (
+                            <li key={href} className="breadcrumb-item">
+                                <Link href={href}>{capitalize(segment)}</Link>
+                            </li>
+                        );
+                    })}
+                </ol>
+            </nav>
         </div>
-      </div>
-    </div>
-  );
-}
+    );
+};
+
+export default DynamicBreadcrumb;
