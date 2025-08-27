@@ -1,6 +1,8 @@
 // src/app/layout.js
+
+import { Analytics } from "@vercel/analytics/react"; // Correct import path for Analytics
+import Script from 'next/script'; // <-- STEP 1: Import the Script component
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
 
 export const metadata = {
   title: "Visapolis",
@@ -11,14 +13,28 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* These links MUST be here to load the styles */}
-        {/* <link rel="stylesheet" href="/vendor/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/vendor/css/all.min.css" />
-        <link rel="stylesheet" href="/vendor/css/adminlte.min.css" /> */}
+        {/*
+          The commented-out links for AdminLTE are no longer needed
+          because your admin layout now handles its own specific stylesheets.
+          Keeping this area clean is good practice.
+        */}
       </head>
       <body>
         {children}
-        <Analytics/>
+        <Analytics />
+
+        {/* --- STEP 2: ADD THE SWEETALERT SCRIPT TAG HERE --- */}
+        {/*
+          By placing this script in the root layout, the 'swal' function becomes
+          globally available on both your public pages (like Contact) and your
+          admin panel pages. The 'lazyOnload' strategy is efficient as it
+          loads the script after the page becomes interactive.
+        */}
+        <Script 
+          src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" 
+          strategy="lazyOnload" 
+        />
+
       </body>
     </html>
   );

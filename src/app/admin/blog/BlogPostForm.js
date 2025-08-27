@@ -49,19 +49,53 @@ export default function BlogPostForm({
 
   // Effect to show alert messages from server actions
   useEffect(() => {
-    if (state?.message && !state.message.includes('success')) {
-      alert(state.message);
+    if (state?.message) {
+      if (state.message.toLowerCase().includes('success') || state.message.toLowerCase().includes('post created')) {
+         // This is a placeholder; server actions redirect on success, so this may not even show
+      } else {
+        swal({
+            title: "Error!",
+            text: state.message,
+            icon: "error",
+        });
+      }
     }
   }, [state]);
 
-  // Handler for image selection to update the preview
-  const handleImageChange = (e) => {
+
+  // ... handleImageChange ...
+   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
     if (file) {
       setPreview(URL.createObjectURL(file));
     } else {
-      setPreview(initialData?.imageUrl || ''); // Reset to the initial image if selection is cancelled
+      // If the user cancels file selection, revert to the initial image (if any)
+      setPreview(initialData?.imageUrl || '');
     }
+  };
+  
+
+  // NEW: Client-side validation function before form submission
+  const handleClientValidation = (event) => {
+    const form = event.currentTarget;
+    const title = form.elements.title.value.trim();
+    const imageFile = form.elements.image.files[0];
+
+    // Check for title
+    if (!title) {
+        event.preventDefault(); // Stop the submission
+        swal("Validation Error", "The post title cannot be empty.", "warning");
+        return;
+    }
+    
+    // Check for an image ONLY if creating a new post
+    if (!initialData?._id && !imageFile) {
+        event.preventDefault(); // Stop the submission
+        swal("Validation Error", "A featured image is required for a new post.", "warning");
+        return;
+    }
+
+    // If all checks pass, the form submits to the server action
   };
 
   return (
@@ -96,7 +130,7 @@ export default function BlogPostForm({
           name="image"
           type="file"
           accept="image/*"
-          onChange={handleImageChange}
+          onChange={handleImageChange} // This now correctly points to the function above
           className="form-control"
         />
         {preview && (

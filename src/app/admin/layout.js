@@ -40,6 +40,8 @@ export default async function AdminLayout({ children }) {
     }
 
     return (
+         <html lang="en"> 
+            <body>
         <div className="container-scroller">
             
             {/* CSS & Stylesheets for Purple Theme */}
@@ -86,7 +88,10 @@ export default async function AdminLayout({ children }) {
             <Script src="/admin-purple/js/off-canvas.js" strategy="lazyOnload" />
             <Script src="/admin-purple/js/hoverable-collapse.js" strategy="lazyOnload" />
             <Script src="/admin-purple/js/misc.js" strategy="lazyOnload" />
+                    <Script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" strategy="lazyOnload" />
 
         </div>
+        </body>
+        </html>
     );
 }

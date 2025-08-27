@@ -69,6 +69,16 @@ export default function AppointmentPage() {
       setSubmissionStatus(null);
       setErrorMessage('');
     }
+     // New handlers to receive success/error from the form component
+    const handleSuccess = (bookingData) => {
+        // We still have access to the selectedDate and Time here for the success message
+        setSubmissionStatus('success');
+    };
+
+    const handleError = (errorMsg) => {
+        setSubmissionStatus('error');
+        setErrorMessage(errorMsg);
+    };
 
     const renderConfirmation = () => (
         <div className="booking-container submission-status-box">
@@ -98,7 +108,7 @@ export default function AppointmentPage() {
 
     const renderStep = () => {
         if (submissionStatus === 'success') return renderConfirmation();
-        if (submissionStatus === 'error' && step === 3) return renderError(); // Show error only on form step
+        if (submissionStatus === 'error') return renderError(); // Error now uses state from handleError
 
         switch (step) {
             case 1:
@@ -106,7 +116,15 @@ export default function AppointmentPage() {
             case 2:
                 return <TimePicker selectedDate={selectedDate} onTimeSelect={handleTimeSelect} onBack={() => setStep(1)} />;
             case 3:
-                return <BookingForm selectedDate={selectedDate} selectedTime={selectedTime} onSubmit={handleFormSubmit} onBack={() => setStep(2)} isSubmitting={isSubmitting} />;
+                return (
+                    <BookingForm 
+                        selectedDate={selectedDate} 
+                        selectedTime={selectedTime} 
+                        onBack={() => setStep(2)} 
+                        onSuccess={handleSuccess}
+                        onError={handleError}
+                    />
+                );
             default:
                 return <Calendar onDateSelect={handleDateSelect} />;
         }

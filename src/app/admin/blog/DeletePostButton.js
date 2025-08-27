@@ -1,11 +1,10 @@
 // src/app/admin/blog/DeletePostButton.js
 'use client';
 
-import { deletePost } from './actions';
 import { useFormStatus } from 'react-dom';
+import { deletePost } from './actions'; // Your server action for deleting a post
 
-import React from 'react';
-
+// SubmitButton sub-component remains the same
 function SubmitButton() {
     const { pending } = useFormStatus();
     return (
@@ -15,25 +14,41 @@ function SubmitButton() {
     );
 }
 
-
 export default function DeletePostButton({ postId }) {
-    // --- THIS IS THE MISSING LINE ---
-    // You must bind the postId to the deletePost server action to create the action handler.
     const deletePostWithId = deletePost.bind(null, postId);
 
-    const handleFormSubmit = (event) => {
-        if (!confirm('Are you sure you want to delete this post? This is irreversible.')) {
-            // If the user clicks "Cancel", stop the form from submitting
-            event.preventDefault();
+    // This is the new SweetAlert-powered handler
+    const handleSubmit = async (event) => {
+        event.preventDefault(); // Stop the form's default submission
+
+        // Use the global 'swal' function from the script in your layout
+        const willDelete = await window.swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this blog post!",
+            icon: "warning",
+            buttons: ["Cancel", "Yes, delete it!"],
+            dangerMode: true,
+        });
+
+        // 'willDelete' will be true if the user clicks "Yes, delete it!"
+        if (willDelete) {
+            // Manually call the server action
+            const result = await deletePostWithId();
+            
+            // The revalidatePath in the server action handles the UI refresh.
+            // We can optionally show a success message.
+            if (result.success) {
+                await window.swal("Deleted!", "The blog post has been removed.", "success");
+            } else {
+                window.swal("Error!", result.message || "Failed to delete the post.", "error");
+            }
         }
     };
 
     return (
-         <form 
-            action={deletePostWithId} 
-            onSubmit={handleFormSubmit} 
-            style={{ display: 'inline' }}
-        >
+        // We use the new `handleSubmit` function
+        // The `action` prop is not strictly necessary anymore but is harmless
+        <form onSubmit={handleSubmit} style={{ display: 'inline' }}>
             <SubmitButton />
         </form>
     );

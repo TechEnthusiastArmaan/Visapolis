@@ -1,9 +1,17 @@
 "use client";
 import { useState } from "react";
 import { useTemplateScripts } from "../../hooks/useTemplateScripts";
+import { bookAppointment } from "@/app/(public)/appointment/actions";
 
-export default function BookingForm({ selectedDate, selectedTime, onSubmit, onBack, isSubmitting }) {
-    useTemplateScripts(); // Ensures JS plugins like nice-select work
+
+export default function BookingForm({ 
+    selectedDate, 
+    selectedTime, 
+    onBack, 
+    // New props for handling the final result
+    onSuccess, 
+    onError 
+}){    useTemplateScripts(); // Ensures JS plugins like nice-select work
 
     const [formData, setFormData] = useState({
         name: '', phone: '', email: '', citizenship: '', age: '',
@@ -12,6 +20,7 @@ export default function BookingForm({ selectedDate, selectedTime, onSubmit, onBa
         workExperienceOutside: '0', jobOffer: '', workExperienceInside: '0',
         refugeeStatus: '', complications: '',
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -25,9 +34,46 @@ export default function BookingForm({ selectedDate, selectedTime, onSubmit, onBa
         }
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit(formData);
+     const handleSubmit = async (event) => {
+        event.preventDefault();
+        
+        // --- CLIENT-SIDE VALIDATION ---
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!formData.name || !formData.phone || !formData.email || !formData.citizenship || !formData.age) {
+            window.swal("Incomplete Form", "Please fill out all required fields marked with an asterisk (*).", "warning");
+            return;
+        }
+        if (!emailRegex.test(formData.email)) {
+            window.swal("Invalid Email", "Please enter a valid email address.", "warning");
+            return;
+        }
+         // 1. Convert the age from a string to a number
+        const age = parseInt(formData.age, 10);
+        
+        // 2. Check if it's a valid number and within the desired range
+        if (isNaN(age) || age < 6 || age > 129) {
+            window.swal("Invalid Age", "Please enter a valid age between 6 and 129.", "warning");
+            return; // Stop the submission
+        }
+        // --- END OF AGE VALIDATION ---
+        // --- END VALIDATION ---
+
+        setIsSubmitting(true);
+        
+        const bookingData = {
+            date: selectedDate.toISOString().split('T')[0],
+            time: selectedTime,
+            ...formData
+        };
+
+        const result = await bookAppointment(bookingData);
+        setIsSubmitting(false);
+
+        if (result.success) {
+            onSuccess(bookingData); // Notify parent page of success
+        } else {
+            onError(result.error || 'An unknown error occurred.'); // Notify parent of failure
+        }
     };
 
     return (
@@ -47,7 +93,7 @@ export default function BookingForm({ selectedDate, selectedTime, onSubmit, onBa
             <p className="appointment-selection-highlight">
                 Appointment for <strong>{selectedDate?.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong>
             </p>
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit} noValidate>
                  {/* --- SECTION 1: PERSONAL INFORMATION --- */}
                 <div className="row">
                     <div className="col-lg-6">
@@ -89,10 +135,10 @@ export default function BookingForm({ selectedDate, selectedTime, onSubmit, onBa
                 <div className="row"><div className="col-lg-12"><div className="form-group"><label className="fw-bold mb-3 d-block">Any Complications?</label><div className="d-flex" style={{gap: '2rem'}}><label className="custom-form-check is-radio">Yes<input type="radio" name="complications" value="Yes" onChange={handleChange} /><span className="checkmark"></span></label><label className="custom-form-check is-radio">No<input type="radio" name="complications" value="No" onChange={handleChange} /><span className="checkmark"></span></label></div></div></div></div>
                 
                 {/* --- SUBMIT BUTTON --- */}
-                <div className="row">
+                 <div className="row mt-4">
                     <div className="col-lg-12">
-                        <button type="submit" disabled={isSubmitting} className="btn-style-one circle mt-30">
-                            {isSubmitting ? 'Scheduling...' : 'Schedule Appointment'} <span></span>
+                        <button className="btn-style-one circle" type="submit" disabled={isSubmitting}>
+                            {isSubmitting ? 'Confirming...' : 'Confirm Booking'} <span></span>
                         </button>
                     </div>
                 </div>
