@@ -135,6 +135,17 @@ export default function AppointmentPage() {
             <Breadcrumb title="Book an Appointment" breadcrumbText="Appointment" />
             <div className="appoinment-style-one-area default-padding">
                 <div className="container">
+                     {step === 3 || submissionStatus ? (
+                        // LAYOUT FOR STEP 3 (FORM) & CONFIRMATION/ERROR SCREENS
+                        <div className="row justify-content-center"> 
+                          {/* `justify-content-center` is a Bootstrap class to center the column */}
+                            <div className="col-lg-8"> 
+                              {/* Using a wider column for the form */}
+                                {renderStep()}
+                            </div>
+                        </div>
+
+                    ) : (
                     <div className="row align-center">
                         <div className="col-xl-6 offset-xl-1 order-lg-last">
                            {renderStep()}
@@ -143,6 +154,7 @@ export default function AppointmentPage() {
                              <AppointmentIntro />
                         </div>
                     </div>
+                      )}
                 </div>
             </div>
         </>
