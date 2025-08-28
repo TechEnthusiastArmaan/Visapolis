@@ -11,6 +11,8 @@ import Booking from "@/models/Booking";
 import ContactSubmission from "@/models/ContactSubmission";
 import Blog from "@/models/Blog";
 import Admin from "@/models/Admin";
+import AvailabilityToggle from './components/AvailabilityToggle';
+import { getAppointmentStatus } from '../actions/settingsActions';
 
 const SECRET_KEY = process.env.NEXTAUTH_SECRET;
 
@@ -41,6 +43,8 @@ async function getStats() {
 export default async function DashboardPage() {
     const user = await getUser();
     const stats = await getStats();
+        const appointmentStatus = await getAppointmentStatus(); // Fetch the status
+
 
     return (
         <>
@@ -136,7 +140,11 @@ export default async function DashboardPage() {
                 </div>
               </div>
             </div>  */}
-
+ <div className="row">
+                <div className="col-12 grid-margin stretch-card">
+                    <AvailabilityToggle initialStatus={appointmentStatus} />
+                </div>
+            </div>
             {/* 4. Welcome Message Card */}
              <div className="row">
                 <div className="col-12 grid-margin">
