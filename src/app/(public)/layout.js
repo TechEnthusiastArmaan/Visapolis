@@ -12,10 +12,10 @@ config.autoAddCss = false;
 
 export const metadata = {
   title: {
-    template: '%s | Visaco',
-    default: 'Visaco - Immigration and Visa Consulting Template',
+    template: '%s  ',
+    default: 'Visapolis - Immigration and Visa Consulting Template',
   },
-  description: 'Visaco - Immigration and Visa Consulting Template',
+  description: 'Visapolis - Immigration and Visa Consulting Template',
   icons: {
     icon: '/assets/img/favicon.png',
   },
