@@ -10,12 +10,12 @@ const AboutIntroSection = () => {
                         <div className="col-xl-6 col-lg-6">
                             <div className="about-style-three-info">
                                 <div className="experience-style-one mb-50">
-                                    <h2 style={{ backgroundImage: `url(/assets/img/about/5.jpg)` }}>30</h2>
+                                    <h2 style={{ backgroundImage: `url(/assets/img/about/5.jpg)` }}>06</h2>
                                     <h4>Years of Visa <br /> Guidance & Support</h4>
                                 </div>
                                 <h4 className="sub-title">About our company</h4>
                                 <h2 className="title split-text">Thrusted visa & immigration solutions</h2>
-                                <p className="wow fadeInUp">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. If you are going to use a passage of.</p>
+                                <p className="wow fadeInUp">Visapolis Immigration is a registered firm located in Edmonton, Alberta, Canda and provides comprehensive immigration services. It was founded by Ramandeep Singh, a CICC licensed Regulated Canadian immigration consultant (RCIC). </p>
                                 <ul className="list-card wow fadeInUp" data-wow-delay="100ms">
                                     <li>
                                         <div className="top">
