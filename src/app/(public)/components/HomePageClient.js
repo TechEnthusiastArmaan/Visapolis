@@ -10,12 +10,12 @@ import { useTemplateScripts } from '../hooks/useTemplateScripts';
 import BannerSection from './home-sections/BannerSection';
 import AboutSection from './home-sections/AboutSection';
 import VisaCategorySection from './home-sections/VisaCategorySection';
-import TrainingSection from './home-sections/TrainingSection';
+// import TrainingSection from './home-sections/TrainingSection';
 import ProcessSection from './home-sections/ProcessSection';
-import VisaCountrySection from './home-sections/VisaCountrySection';
-import TeamSection from './home-sections/TeamSection';
-import WhyChooseUsSection from './home-sections/WhyChooseUsSection';
-import TestimonialSection from './home-sections/TestimonialSection';
+// import VisaCountrySection from './home-sections/VisaCountrySection';
+// import TeamSection from './home-sections/TeamSection';
+// import WhyChooseUsSection from './home-sections/WhyChooseUsSection';
+// import TestimonialSection from './home-sections/TestimonialSection';
 import BlogSection from './home-sections/BlogSection';
 
 export default function HomePageClient({ blogs }) {
@@ -51,12 +51,12 @@ export default function HomePageClient({ blogs }) {
             <BannerSection />
             <AboutSection />
             <VisaCategorySection />
-            <TrainingSection />
+            {/* <TrainingSection /> */}
             <ProcessSection />
-            <VisaCountrySection />
-            <TeamSection />
-            <WhyChooseUsSection />
-            <TestimonialSection />
+            {/* <VisaCountrySection /> */}
+            {/* <TeamSection /> */}
+            {/* <WhyChooseUsSection /> */}
+            {/* <TestimonialSection /> */}
             <BlogSection blogs={blogs} />
         </>
     );

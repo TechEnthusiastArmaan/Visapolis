@@ -1,8 +1,10 @@
 // src/app/(public)/components/contact-sections/LocationTabs.js
-"use client";
+// "use client";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faPhoneAlt, faClock } from '@fortawesome/free-solid-svg-icons';
+import { getCachedSiteSettings } from '@/lib/data';
+
 
 // A reusable component for each card to keep our code DRY
 const ContactInfoCard = ({ icon, bgColorClass, title, children }) => {
@@ -20,8 +22,9 @@ const ContactInfoCard = ({ icon, bgColorClass, title, children }) => {
 };
 
 // The main component, which now includes a heading
-export default function LocationTabs() {
-    return (
+export default async function LocationTabs() {
+    const settings = await getCachedSiteSettings();
+        return (
         // We use a React Fragment <> to wrap both the heading and the grid
         <>
             {/* 
@@ -43,8 +46,8 @@ export default function LocationTabs() {
                             bgColorClass="bg-blue"
                             title="General Inquiries"
                         >
-                            <p>
-                                <a href="mailto:info@vidyacorp.com.com">info@vidyacorp.com</a>
+                            <p style={{ wordBreak: 'break-all' }}> 
+<a href={`mailto:${settings.email}`}>{settings.email}</a>
                             </p>
                         </ContactInfoCard>
                     </div>
@@ -56,7 +59,7 @@ export default function LocationTabs() {
                             bgColorClass="bg-green"
                             title="Our Location"
                         >
-                            <p>Ludhiana, Punjab, India</p>
+                            <p>{settings.address}</p>
                         </ContactInfoCard>
                     </div>
 
@@ -68,8 +71,7 @@ export default function LocationTabs() {
                             title="Call Us"
                         >
                             <p>
-                               <a href="tel:+910000000000">+91 0000000000</a>
-                            </p>
+<a href={`tel:${settings.phoneNumber}`}>{settings.phoneNumber}</a>                            </p>
                         </ContactInfoCard>
                     </div>
 
@@ -80,7 +82,7 @@ export default function LocationTabs() {
                             bgColorClass="bg-orange"
                             title="Working Hours"
                         >
-                            <p>Mon-Fri : 9:00AM-5:00PM</p>
+                            <p>{settings.workingHours}</p>
                         </ContactInfoCard>
                     </div>
 

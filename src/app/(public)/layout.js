@@ -1,6 +1,6 @@
 // src/app/layout.js
 import './../globals.css';
-import Header from './components/Header';
+import Header from './components/Header.js';
 import Footer from './components/Footer';
 import Script from 'next/script';
 import FloatingButton from './components/FloatingButton';

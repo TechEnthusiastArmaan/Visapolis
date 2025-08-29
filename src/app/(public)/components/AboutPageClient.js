@@ -9,9 +9,9 @@ import { useTemplateScripts } from '../hooks/useTemplateScripts';
 import Breadcrumb from './about-sections/Breadcrumb';
 import AboutIntroSection from './about-sections/AboutIntroSection';
 import FunFactSection from './about-sections/FunFactSection';
-import AboutTestimonialSection from './about-sections/AboutTestimonialSection';
+// import AboutTestimonialSection from './about-sections/AboutTestimonialSection';
 import ProcessSection from './home-sections/ProcessSection'; // Re-using from home page
-import TeamSection from './home-sections/TeamSection'; // Re-using from home page
+// import TeamSection from './home-sections/TeamSection'; // Re-using from home page
 
 export default function AboutPageClient() {
     // This custom hook handles all the necessary script initializations (WOW.js, Swiper, etc.)
@@ -37,11 +37,11 @@ export default function AboutPageClient() {
             {/* End Process Section */}
 
             {/* Start Testimonial Section */}
-            <AboutTestimonialSection />
+            {/* <AboutTestimonialSection /> */}
             {/* End Testimonial Section */}
             
             {/* Start Team Section (Re-used from Homepage) */}
-            <TeamSection />
+            {/* <TeamSection /> */}
             {/* End Team Section */}
         </>
     );

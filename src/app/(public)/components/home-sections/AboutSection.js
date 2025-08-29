@@ -14,7 +14,7 @@ const AboutSection = () => {
                             <h4 className="sub-title">About our agency</h4>
                             <h2 className="title split-text">Expert visa solutions for your global journey</h2>
                             <p className="wow fadeInUp" data-wow-delay="100ms">
-                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. If you are going to use a passage of.
+                                Visapolis Immigration is a registered firm located in Edmonton, Alberta, Canda and provides comprehensive immigration services. It was founded by Ramandeep Singh, a CICC licensed Regulated Canadian immigration consultant (RCIC). 
                             </p>
                             <div className="d-flex wow fadeInUp" data-wow-delay="250ms">
                                 <div className="provider-cards">

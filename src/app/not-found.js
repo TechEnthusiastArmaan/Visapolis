@@ -1,6 +1,6 @@
 // src/app/not-found.js
 
-import Header from './(public)/components/Header';
+import Header from './(public)/components/HeaderClient.js';
 import Footer from './(public)/components/Footer';
 import FloatingButton from './(public)/components/FloatingButton';
 import NotFoundClient from "./(public)/components/NotFoundClient";

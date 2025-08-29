@@ -703,3 +703,53 @@ nav.navbar.validnavs .navbar-collapse .dropdown-menu li a:hover {
 }
 
 
+/* src/app/globals.css */
+
+/* --- Optional: Adjust spacing for 5-step process on homepage --- */
+.process-style-one-items {
+    display: flex;
+    justify-content: center; /* Center the items within their container */
+    align-items: flex-start;
+    position: relative;
+    gap: 40px; /* The space between items in a row */
+}
+
+/* 2. Style for the top row (3 items) */
+.process-style-one-items.top-row {
+    margin-bottom: 50px; /* Space between the two rows */
+}
+
+/* 3. Give each item a consistent width */
+.process-style-one-item {
+    flex-basis: 30%; /* Each item takes up roughly a third of the space */
+    max-width: 300px; /* Prevent items from getting too wide on large screens */
+    position: relative;
+}
+
+/* 4. Style the connecting arrows */
+.process-style-one-item::after {
+    content: "\e605"; /* Arrow icon from your theme's font */
+    font-family: "visaco-icons";
+    position: absolute;
+    right: -35px; /* Adjust position to sit between items */
+    top: 90px;
+    font-size: 20px;
+    color: #e7e7e7;
+}
+
+/* 5. Hide arrows where they are not needed */
+.process-style-one-items.top-row .process-style-one-item:last-child::after,
+.process-style-one-items.bottom-row .process-style-one-item:last-child::after {
+    display: none !important;
+}
+
+/* --- Responsive styles for mobile --- */
+@media (max-width: 991.98px) {
+    .process-style-one-items {
+        flex-direction: column; /* Stack items vertically on mobile */
+        gap: 30px;
+    }
+    .process-style-one-items::after {
+        display: none !important; /* Hide all arrows on mobile */
+    }
+}
