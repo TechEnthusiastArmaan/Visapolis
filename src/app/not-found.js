@@ -1,7 +1,7 @@
 // src/app/not-found.js
 
-import Header from './(public)/components/HeaderClient.js';
-import Footer from './(public)/components/Footer';
+import Header from './(public)/components/Header'; // CORRECT PATH: Should point to Header.js
+import Footer from './(public)/components/Footer'; 
 import FloatingButton from './(public)/components/FloatingButton';
 import NotFoundClient from "./(public)/components/NotFoundClient";
 import Breadcrumb from "./(public)/components/about-sections/Breadcrumb";
