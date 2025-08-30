@@ -56,7 +56,7 @@ const AboutSection = () => {
                                     <div className="icon"><FontAwesomeIcon icon={faPhone} /></div>
                                     <div className="info">
                                         <p>Instant Call</p>
-                                        <h4><a href="tel:+11256865896">+112(568)65896</a></h4>
+                                        <h4><a href="tel:+1 780-566-9900">+1 780-566-9900</a></h4>
                                     </div>
                                 </div>
                             </div>

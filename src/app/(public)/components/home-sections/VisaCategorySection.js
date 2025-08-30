@@ -68,7 +68,7 @@ const VisaCategorySection = () => {
                            </div>
                         </div>
                         <div className="text-center mt-60">
-                           <p>Don’t Hesitate, Contact us for Better Help and Services. <Link href="/visa">Explore all Visa Categories.</Link></p>
+                           <p>Don’t Hesitate, Contact us for Better Help and Services. <Link href="/contact">Contact Us Now.</Link></p>
                         </div>
                      </div>
                   </div>
