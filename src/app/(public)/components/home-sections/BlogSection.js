@@ -34,7 +34,7 @@ const BlogSection = ({ blogs }) => {
     };
 
     return (
-        <div id="blog" className="blog-style-two-area default-padding" style={{backgroundImage: `url(/assets/img/shape/banner-1.jpg)`}}>
+        <div id="blog" className="blog-style-two-area default-padding">
             <div className="container">
                 <div className="row">
                     <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">

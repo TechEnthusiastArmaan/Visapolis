@@ -16,6 +16,7 @@ const AboutIntroSection = () => {
                                 <h4 className="sub-title">About our company</h4>
                                 <h2 className="title split-text">Thrusted visa & immigration solutions</h2>
                                 <p className="wow fadeInUp">Visapolis Immigration is a registered firm located in Edmonton, Alberta, Canda and provides comprehensive immigration services. It was founded by Ramandeep Singh, a CICC licensed Regulated Canadian immigration consultant (RCIC). </p>
+                                <p>With more than six years of administrative experience in a government role in India, combined with an educational qualification in Immigration Law from Queen’s University and a brief stint working at immigration firms in Canada, he is well qualified to handle complex matters. He understands the unique needs of clients and provides strategic advice to help them achieve their dream of becoming Permanent Residents and Canadian citizens. What sets Visapolis Immigration Inc. apart is its commitment to presenting each client’s file in the best possible way.</p>
                                 <ul className="list-card wow fadeInUp" data-wow-delay="100ms">
                                     <li>
                                         <div className="top">

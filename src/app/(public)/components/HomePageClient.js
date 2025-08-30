@@ -10,7 +10,7 @@ import { useTemplateScripts } from '../hooks/useTemplateScripts';
 import BannerSection from './home-sections/BannerSection';
 import AboutSection from './home-sections/AboutSection';
 import VisaCategorySection from './home-sections/VisaCategorySection';
-// import TrainingSection from './home-sections/TrainingSection';
+import TrainingSection from './home-sections/TrainingSection';
 import ProcessSection from './home-sections/ProcessSection';
 // import VisaCountrySection from './home-sections/VisaCountrySection';
 // import TeamSection from './home-sections/TeamSection';
@@ -51,8 +51,8 @@ export default function HomePageClient({ blogs }) {
             <BannerSection />
             <AboutSection />
             <VisaCategorySection />
-            {/* <TrainingSection /> */}
             <ProcessSection />
+            <TrainingSection />
             {/* <VisaCountrySection /> */}
             {/* <TeamSection /> */}
             {/* <WhyChooseUsSection /> */}

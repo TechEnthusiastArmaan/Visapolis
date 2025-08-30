@@ -40,7 +40,7 @@ const AboutSection = () => {
                                 <div className="curve-text">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" version="1.1">
         <path id="textPath" d="M 0,75 a 75,75 0 1,1 0,1 z"></path>
-        <text><textPath href="#textPath">Award Winning Agency</textPath></text>
+        <text><textPath href="#textPath">Book  an  Appointment</textPath></text>
     </svg>
     
     <Link href="/about" className="spin-inner-link">
