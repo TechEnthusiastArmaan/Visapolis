@@ -163,7 +163,7 @@ const ProcessSection = () => {
                                 </div>
                                 <span>04</span>
                                 <h4>File Submission and Review</h4>
-                                <p>After a thorough review of your documents and payment of all fees, your completed application is officially submitted to the immigration authorities.</p>
+                                <p>Upon final review and payment, your application is submitted to the immigration authorities.</p>
                             </div>
                         </div>
                         {/* End Step 4 */}
