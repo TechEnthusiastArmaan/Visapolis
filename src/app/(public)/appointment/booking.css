@@ -6,7 +6,7 @@
     border-radius: 8px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     width: 100%;
-    max-width: 650px; /* Increased max-width for better layout */
+    max-width: 850px; /* Increased max-width for better layout */
     margin: 0 auto;
 }
 
@@ -424,7 +424,7 @@
     box-shadow: 0 20px 50px 5px rgba(0, 0, 0, 0.1); 
     border: 1px solid rgba(0, 0, 0, 0.05); /* Adds a very subtle border */
     width: 100%;
-    max-width: 650px;
+    max-width: 850px;
     margin: 0 auto;
 }
 /* ============================================= */
