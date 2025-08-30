@@ -6015,7 +6015,7 @@ ul.list-style-four li::after {
 =================================================================== */
 .process-style-one-items {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(4, 1fr);
 	gap: 80px;
 	position: relative;
 	overflow: hidden;

@@ -162,17 +162,17 @@ const ProcessSection = () => {
                                     <Image src="/assets/img/shape/41.png" alt="Decorative Shape" width={220} height={200} style={{ width: 'auto', height: 'auto' }}/>
                                 </div>
                                 <span>04</span>
-                                <h4>Review of documents and fees</h4>
-                                <p>We thoroughly review your documents and you complete the necessary fee payments.</p>
+                                <h4>File Submission and Review</h4>
+                                <p>After a thorough review of your documents and payment of all fees, your completed application is officially submitted to the immigration authorities.</p>
                             </div>
                         </div>
                         {/* End Step 4 */}
 
                         {/* --- NEW STEP 5: File Submission --- */}
-                        <div className="process-style-one-item hover-active-item">
-                            <div className="icon">
+                        {/* <div className="process-style-one-item hover-active-item">
+                            <div className="icon"> */}
                                 {/* Use another new or existing icon */}
-                                <Image src="/assets/img/icon/13.png" alt="Submission Icon" width={80} height={80}/>
+                                {/* <Image src="/assets/img/icon/13.png" alt="Submission Icon" width={80} height={80}/>
                             </div>
                             <div className="info">
                                 <div className="shape">
@@ -182,7 +182,7 @@ const ProcessSection = () => {
                                 <h4>File submission</h4>
                                 <p>Your completed application is officially submitted to the appropriate immigration authorities.</p>
                             </div>
-                        </div>
+                        </div> */}
                         {/* End Step 5 */}
 
                     </div>
