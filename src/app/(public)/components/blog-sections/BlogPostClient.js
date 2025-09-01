@@ -26,14 +26,14 @@ export default function BlogPostClient({ post }) {
     return (
         <div className="item">
             {/* 1. Blog Post Image (Thumb) */}
-            <div className="thumb">
+            <div className="thumb" style={{ textAlign: 'center', marginBottom: '20px' }}>
                 {post.imageUrl ? (
                     <Image 
                         src={post.imageUrl} 
                         alt={post.title}
                         width={1200}
                         height={600}
-                        style={{ width: '100%', height: 'auto', borderRadius: '5px' }} 
+                        style={{ width: 'auto', height: '500px', borderRadius: '5px' }} 
                         priority // Load this image with high priority
                     />
                 ) : (

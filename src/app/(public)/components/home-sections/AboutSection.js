@@ -43,7 +43,7 @@ const AboutSection = () => {
         <text><textPath href="#textPath">Book  an  Appointment</textPath></text>
     </svg>
     
-    <Link href="/about" className="spin-inner-link">
+    <Link href="/appointment" className="spin-inner-link">
         <FontAwesomeIcon icon={faArrowRight} />
     </Link>
     
