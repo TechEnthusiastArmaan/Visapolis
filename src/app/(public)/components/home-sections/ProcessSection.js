@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const ProcessSection = () => {
   return (
-    <div className="process-style-one-area text-center default-padding">
+    <div className="process-style-one-area text-center pt-0 pb-120">
         <div className="container">
             <div className="row">
                 <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">

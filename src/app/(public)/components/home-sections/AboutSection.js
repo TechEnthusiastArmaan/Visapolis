@@ -6,7 +6,7 @@ import { faAngleDoubleLeft, faAngleDoubleRight, faArrowRight } from '@fortawesom
 
 const AboutSection = () => {
     return (
-        <div id="about" className="about-style-six-area default-padding">
+        <div id="about" className="about-style-six-area pt-70 pb-60">
             <div className="container">
                 <div className="row align-center">
                     <div className="col-xl-6">
@@ -56,10 +56,10 @@ Click the link below to verify the status of Ramandeep Singh (RCIC) with the Col
     </Link>
     
 </div>
-                                <Image src="/assets/img/about/9.jpg" alt="About thumbnail" width={279} height={317}/>
+                                <Image src="/assets/img/about/10.jpeg" alt="About thumbnail" width={279} height={317}/>
                             </div>
                             <div className="right-info wow fadeInUp" data-wow-delay="250ms">
-                                <Image src="/assets/img/about/8.jpg" alt="About thumbnail" width={279} height={373} />
+                                <Image src="/assets/img/about/11.jpeg" alt="About thumbnail" width={279} height={373} />
                                 <div className="call-card-two">
                                     <div className="icon"><FontAwesomeIcon icon={faPhone} /></div>
                                     <div className="info">

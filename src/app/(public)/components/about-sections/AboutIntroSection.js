@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const AboutIntroSection = () => {
     return (
-        <div className="about-us-area default-padding">
+        <div className="about-us-area pt-70 pb-50">
             <div className="container">
                     <div className="row">
                         <div className="col-xl-6 col-lg-6">
