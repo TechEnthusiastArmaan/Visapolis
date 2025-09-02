@@ -27,12 +27,12 @@ const AboutSection = () => {
                                 </div>
                                 <h4>Approved Student <br /> Visa Applications.</h4>
                             </div>
-                            {/* <ul className="list-style-four wow fadeInUp" data-wow-delay="250ms">
+                            <ul className="list-style-four wow fadeInUp" data-wow-delay="250ms">
                                 <li>Worldwide Visa Assistance</li>
                                 <li>Immigration Beyond Borders</li>
                                 <li>Emergency Travel Document</li>
                                 <li>Re-entry Permit</li>
-                            </ul> */}
+                            </ul>
                         </div>
                     </div>
                     <div className="col-xl-6 pl-60 pl-md-15 pl-xs-15">

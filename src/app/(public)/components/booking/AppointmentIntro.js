@@ -12,6 +12,26 @@ export default function AppointmentIntro() {
       <p className="description">
         Visapolis Immigration Inc. is a Regulated Canadian Immigration Consulting firm. We are committed to delivering premium, client-focused services for both temporary and permanent residency pathways.
       </p>
+<div 
+        className="fee-notice"
+        style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.1)', // Use a semi-transparent background for this section
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '8px',
+            padding: '15px 20px',
+            textAlign: 'center',
+            marginTop: '30px' // Add some space above the notice
+        }}
+    >
+        <p style={{ margin: 0, fontWeight: '700', color: 'var(--color-heading)' }}>
+            Professional Fee: <span style={{ color: 'var(--color-primary)' }}>$50</span> for 30 minute consultation
+        </p>
+    </div>
+    {/* --- END OF NEW SECTION --- */}
+
+
+      {/* The feature list is commented out as in your file */}
+      {/* <div className="features-list"> ... </div> */}
 
       {/* <div className="features-list">
         <div className="feature-item">

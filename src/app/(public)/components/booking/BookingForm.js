@@ -149,6 +149,26 @@ export default function BookingForm({
                         </div>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-lg-12">
+                        <div 
+                            className="fee-notice"
+                            style={{
+                                backgroundColor: '#f8f9fa', // A very light grey background
+                                border: '1px solid #e9ecef',
+                                borderRadius: '8px',
+                                padding: '15px 20px',
+                                textAlign: 'center',
+                                margin: '20px 0',
+                                fontSize: '16px'
+                            }}
+                        >
+                            <p style={{ margin: 0, fontWeight: '700', color: 'var(--color-heading)' }}>
+                                Professional Fee: <span style={{ color: 'var(--color-primary)' }}>$50</span> for 30 minute consultation
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 {/* --- SUBMIT BUTTON --- */}
                  <div className="row mt-4">
                     <div className="col-lg-12">

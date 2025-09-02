@@ -3,7 +3,7 @@ import { useCurrentYear } from '../../hooks/useCurrentYear';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faInstagram, faLinkedinIn,faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faPhoneAlt, faClock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 export default function FooterClient({ settings }) {
@@ -56,6 +56,7 @@ export default function FooterClient({ settings }) {
                                     {displaySettings.facebookUrl && <li><a href={displaySettings.facebookUrl}><FontAwesomeIcon icon={faFacebookF} /></a></li>}
                                     {displaySettings.twitterUrl && <li><a href={displaySettings.twitterUrl}><Image src="/assets/img/icon/twitter-x.png" alt="Twitter X Logo" width={16} height={16} /></a></li>}
                                     {displaySettings.instagramUrl && <li><a href={displaySettings.instagramUrl}><FontAwesomeIcon icon={faInstagram} /></a></li>}
+                                    <li><a href={displaySettings.tiktokUrl}><FontAwesomeIcon icon={faTiktok} /></a></li>
                                     {displaySettings.linkedinUrl && <li><a href={displaySettings.linkedinUrl}><FontAwesomeIcon icon={faLinkedinIn} /></a></li>}
                                 </ul>
                             </div>
@@ -97,6 +98,7 @@ export default function FooterClient({ settings }) {
                                     <li><div className="icon"><FontAwesomeIcon icon={faPhoneAlt} /></div><h5><a href={`tel:${displaySettings.phoneNumber}`}>{displaySettings.phoneNumber || '+91 9876543210'}</a></h5></li>
                                 <li><div className="icon"><FontAwesomeIcon icon={faClock} /></div><h5>{displaySettings.workingHours || 'Sun-Thu 9:00 - 7:00'}</h5></li>
                                 <li><div className="icon"><FontAwesomeIcon icon={faEnvelope} /></div><h5><a href={`mailto:${displaySettings.email}`}>{displaySettings.email || 'Info@vidyacorp.com'}</a></h5></li>
+
                             </ul>
                         </div>
                     </div>

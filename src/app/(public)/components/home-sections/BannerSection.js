@@ -16,9 +16,9 @@ const BannerSection = () => {
                                 <div className="row align-items-center">
                                     <div className="col-xl-8 offset-xl-2">
                                         <div className="content">
-                                            <h4>Solutions for all type of visa</h4>
-                                            <h2>Immigration & visa consutants</h2>
-                                            <p>Welcome to Visapolis Immigration, a firm that provides comprehensive immigration services.</p>
+                                            {/* <h4>Solutions for all type of visa</h4> */}
+                                            {/* <h2>Immigration & visa consutants</h2> */}
+                                            <h3>Welcome to Visapolis Immigration, a firm that provides comprehensive immigration services.</h3>
                                             <div className="button"><Link href="/about" className="btn-style-one circle">Discover More <span></span></Link></div>
                                         </div>
                                     </div>
@@ -37,9 +37,9 @@ const BannerSection = () => {
                               <div className="row align-items-center">
                                  <div className="col-xl-8 offset-xl-2">
                                     <div className="content">
-                                       <h4>Welcome to visa service</h4>
-                                       <h2>Best solution in al immigration</h2>
-                                       <p>FOCUS of the FIRM: Client Satisfaction, Strategic Advice, Ethical Services</p>
+                                       {/* <h4>Welcome to visa service</h4> */}
+                                       <h3>FOCUS of the FIRM: Client Satisfaction, Strategic Advice, Ethical Services</h3>
+                                       {/* <p>Best solution in al immigration</p> */}
                                        <div className="button"><Link href="/about" className="btn-style-one circle">Discover More <span></span></Link></div>
                                     </div>
                                  </div>
