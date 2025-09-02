@@ -38,7 +38,7 @@ const BannerSection = () => {
                                  <div className="col-xl-8 offset-xl-2">
                                     <div className="content">
                                        {/* <h4>Welcome to visa service</h4> */}
-                                       <h3>FOCUS of the FIRM - Client Satisfaction, Strategic Advice, Ethical Services</h3>
+                                       <h3>FOCUS of the FIRM: Client Satisfaction, Strategic Advice, Ethical Services</h3>
                                        {/* <p>Best solution in al immigration</p> */}
                                        <div className="button"><Link href="/about" className="btn-style-one circle">Discover More <span></span></Link></div>
                                     </div>
