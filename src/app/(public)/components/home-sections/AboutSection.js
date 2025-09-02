@@ -18,8 +18,8 @@ const AboutSection = () => {
                             </p>
                             <p className="wow fadeInUp" data-wow-delay="100ms">With more than six years of administrative experience in a government role in India, combined with an educational qualification in Immigration Law from Queen’s University and a brief stint working at immigration firms in Canada, he is well qualified to handle complex matters. He understands the unique needs of clients and provides strategic advice to help them achieve their dream of becoming Permanent Residents and Canadian citizens. What sets Visapolis Immigration Inc. apart is its commitment to presenting each client’s file in the best possible way.</p>
                             <p className="wow fadeInUp" data-wow-delay="100ms"><strong>REGULATED CANADIAN IMMIGRATION CONSULTANTS (RCICs)</strong><br/>
-The College of Immigration and Citizenship Consultants (the College) licenses and regulates Canadian immigration and citizenship consultants in the public interest. Regulated Canadian Immigration Consultants (RCICs) are authorized representatives under Section 91 of the Immigration and Refugee Protection Act (IRPA).
-It is a legal offence to provide Canadian immigration services for a fee or other consideration without being regulated by the College, a Canadian law society, or the Chambre des notaires du Québec.
+The College of Immigration and Citizenship Consultants (the College) licenses and regulates Canadian immigration and citizenship consultants in the public interest. <strong>Regulated Canadian Immigration Consultants (RCICs)</strong> are authorized representatives under Section 91 of the <strong> Immigration and Refugee Protection Act (IRPA).</strong>
+It is a legal offence to provide Canadian immigration services for a fee or other consideration without being regulated by the College, a Canadian law society, or the <strong>Chambre des notaires du Québec.</strong>
 Click the link below to verify the status of Ramandeep Singh (RCIC) with the College.
 <br/>
 <a href='https://register.college-ic.ca/'>register.college-ic.ca</a>
