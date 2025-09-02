@@ -25,7 +25,7 @@ export default function SuperVisaContent() {
             <ul className="list-style-four mt-3 mb-4">
                 <li>A signed letter of invitation from your child or grandchild in Canada.</li>
                 <li>Proof of the family relationship to your inviter.</li>
-                <li>Proof of private medical insurance from a Canadian insurance company valid for at least one year.</li>
+                {/* <li>Proof of private medical insurance from a Canadian insurance company valid for at least one year.</li> */}
                 <li>Demonstration of meeting the Low Income Cut-Off (LICO) requirements to show you will be financially supported.</li>
             </ul>
             <p>

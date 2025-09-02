@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { updateAppointmentStatus } from '../../actions/settingsActions';
 
+
 export default function AvailabilityToggle({ initialStatus }) {
     const [isAvailable, setIsAvailable] = useState(initialStatus);
     const [isLoading, setIsLoading] = useState(false);

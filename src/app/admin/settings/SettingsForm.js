@@ -38,7 +38,8 @@ export default function SettingsForm({ initialData }) {
             <FormField label="Facebook URL" name="facebookUrl" placeholder="https://facebook.com/your-page" defaultValue={initialData?.facebookUrl} />
             <FormField label="Twitter/X URL" name="twitterUrl" placeholder="https://twitter.com/your-handle" defaultValue={initialData?.twitterUrl} />
             <FormField label="LinkedIn URL" name="linkedinUrl" placeholder="https://linkedin.com/in/your-profile" defaultValue={initialData?.linkedinUrl} />
-            
+            <FormField label="Instagram URL" name="instagramUrl" placeholder="https://instagram.com/..." defaultValue={initialData?.instagramUrl} />
+            <FormField label="TikTok URL" name="tiktokUrl" placeholder="https://tiktok.com/..." defaultValue={initialData?.tiktokUrl} />
             <SubmitButton />
         </form>
     );

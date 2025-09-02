@@ -79,11 +79,11 @@ export default function FooterClient({ settings }) {
                             <div className="f-item link">
                                 <h4 className="widget-title">Our Services</h4>
                                 <ul>
-                                    <li><Link href="/services/assistance">Application Assistance</Link></li>
-                                    <li><Link href="/services/guidance">Visa Type Guidance</Link></li>
-                                    <li><Link href="/services/support">Documentation Support</Link></li>
-                                    <li><Link href="/services/assistance">Business Assistance</Link></li>
-                                    <li><Link href="/services/assistance">Legal Assistance</Link></li>
+                                    <li><Link href="/work-permit/post-graduate-work-permit">Post Graduate Work Permit</Link></li>
+                                    <li><Link href="/work-permit/lmia">LMIA</Link></li>
+                                    <li><Link href="/work-permit/international-mobility-program">International Mobility Program</Link></li>
+                                    <li><Link href="/work-permit/global-talent-stream">Global Talent Stream</Link></li>
+                                    <li><Link href="/work-permit/spousal-open-work-permit">Spousal Open Work Permit</Link></li>
 
 
                                 </ul>

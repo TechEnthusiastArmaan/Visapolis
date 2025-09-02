@@ -50,14 +50,14 @@ export default function HomePageClient({ blogs }) {
             {/* Render all the sections for the home page */}
             <BannerSection />
             <AboutSection />
-            <VisaCategorySection />
+            {/* <VisaCategorySection /> */}
             <ProcessSection />
-            <TrainingSection />
+            {/* <TrainingSection /> */}
             {/* <VisaCountrySection /> */}
             {/* <TeamSection /> */}
             {/* <WhyChooseUsSection /> */}
             {/* <TestimonialSection /> */}
-            <BlogSection blogs={blogs} />
+            {/* <BlogSection blogs={blogs} /> */}
         </>
     );
 }

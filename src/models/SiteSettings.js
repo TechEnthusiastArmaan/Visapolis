@@ -19,6 +19,8 @@ const SiteSettingsSchema = new mongoose.Schema({
     facebookUrl: { type: String, trim: true },
     twitterUrl: { type: String, trim: true },
     linkedinUrl: { type: String, trim: true },
+    instagramUrl: { type: String, trim: true },
+    tiktokUrl: { type: String, trim: true },
 }, { timestamps: true });
 
 export default mongoose.models.SiteSettings || mongoose.model('SiteSettings', SiteSettingsSchema);

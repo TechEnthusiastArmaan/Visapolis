@@ -18,7 +18,7 @@ export default function SpousalOpenWorkPermitContent() {
                 The Spousal Open Work Permit (SOWP) allows the spouse or common-law partner of a Canadian citizen, permanent resident, skilled worker, or student to live and work in Canada. This permit is often used while a spousal sponsorship application for permanent residence is in process, but it is also available to partners of temporary residents under certain conditions.
             </p>
             
-            <h3>Eligibility Criteria for Sponsorship Category</h3>
+            <h3>Eligibility Criteria for Spousal Open Work Permit</h3>
             <p>
                 When applying under the spousal sponsorship category, applicants must meet the following criteria:
             </p>

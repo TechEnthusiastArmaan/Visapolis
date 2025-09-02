@@ -18,7 +18,7 @@ export default function BookingForm({
         inCanada: '', canadaStatus: [], education: [], relativesInCanada: '',
         studiedInCanada: '', englishProficiency: [], frenchProficiency: [],
         workExperienceOutside: '0', jobOffer: '', workExperienceInside: '0',
-        refugeeStatus: '', complications: '',
+        refugeeStatus: '', complications: '', additionalDetails: ''
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -133,7 +133,22 @@ export default function BookingForm({
                 <div className="row"><div className="col-lg-6"><div className="form-group"><label htmlFor="workExperienceOutside">Work Experience Outside Canada</label><select className="form-select" id="workExperienceOutside" name="workExperienceOutside" onChange={handleChange} value={formData.workExperienceOutside}><option value="0">0 years</option><option value="1">1 year</option><option value="2">2 years</option><option value="3+">3+ years</option></select></div></div><div className="col-lg-6"><div className="form-group"><label htmlFor="workExperienceInside">Work Experience in Canada</label><select className="form-select" id="workExperienceInside" name="workExperienceInside" onChange={handleChange} value={formData.workExperienceInside}><option value="0">0 years</option><option value="1">1 year</option><option value="2">2 years</option><option value="3+">3+ years</option></select></div></div></div>
                 <div className="row"><div className="col-lg-6"><div className="form-group"><label className="fw-bold mb-3 d-block">Valid Job Offer?</label><div className="d-flex" style={{gap: '2rem'}}><label className="custom-form-check is-radio">Yes<input type="radio" name="jobOffer" value="Yes" onChange={handleChange} /><span className="checkmark"></span></label><label className="custom-form-check is-radio">No<input type="radio" name="jobOffer" value="No" onChange={handleChange} /><span className="checkmark"></span></label></div></div></div><div className="col-lg-6"><div className="form-group"><label className="fw-bold mb-3 d-block">Applied for Refugee Status?</label><div className="d-flex" style={{gap: '2rem'}}><label className="custom-form-check is-radio">Yes<input type="radio" name="refugeeStatus" value="Yes" onChange={handleChange} /><span className="checkmark"></span></label><label className="custom-form-check is-radio">No<input type="radio" name="refugeeStatus" value="No" onChange={handleChange} /><span className="checkmark"></span></label></div></div></div></div>
                 <div className="row"><div className="col-lg-12"><div className="form-group"><label className="fw-bold mb-3 d-block">Any Complications?</label><div className="d-flex" style={{gap: '2rem'}}><label className="custom-form-check is-radio">Yes<input type="radio" name="complications" value="Yes" onChange={handleChange} /><span className="checkmark"></span></label><label className="custom-form-check is-radio">No<input type="radio" name="complications" value="No" onChange={handleChange} /><span className="checkmark"></span></label></div></div></div></div>
-                
+                <div className="row">
+                    <div className="col-lg-12">
+                        <div className="form-group">
+                            <label htmlFor="additionalDetails">Additional Details</label>
+                            <textarea
+                                className="form-control"
+                                name="additionalDetails"
+                                id="additionalDetails"
+                                rows="5"
+                                placeholder="Please provide any other information you think is relevant to your case."
+                                onChange={handleChange}
+                                value={formData.additionalDetails}
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
                 {/* --- SUBMIT BUTTON --- */}
                  <div className="row mt-4">
                     <div className="col-lg-12">

@@ -30,6 +30,8 @@ workingHours: formData.get('workingHours'),
 facebookUrl: formData.get('facebookUrl'),
 twitterUrl: formData.get('twitterUrl'),
 linkedinUrl: formData.get('linkedinUrl'),
+instagramUrl: formData.get('instagramUrl'),
+tiktokUrl: formData.get('tiktokUrl'),
 };
 try {
     await dbConnect();

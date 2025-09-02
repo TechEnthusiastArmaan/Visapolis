@@ -28,6 +28,8 @@ const BookingSchema = new mongoose.Schema({
     workExperienceOutside: { type: String },
     workExperienceInside: { type: String },
     
+    additionalDetails: { type: String, trim: true },
+
 }, { timestamps: true });
 
 BookingSchema.index({ date: 1, time: 1 }, { unique: true });

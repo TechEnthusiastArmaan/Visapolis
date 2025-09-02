@@ -592,6 +592,52 @@ nav.navbar.validnavs .navbar-collapse .dropdown-menu li a:hover {
 }
 
 /* ================================================================
+   STYLE: Unified Top Bar Icons (Phone & Social)
+   ================================================================ */
+
+/* --- 1. Shared styles for the circular icon LINKS (the <a> tag) --- */
+.top-bar-area .call-icon-link,
+.top-bar-area .social ul li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- 2. THIS IS THE FIX: Specifically target the SVG icon INSIDE the link --- */
+.top-bar-area .call-icon-link svg,
+.top-bar-area .social ul li a svg {
+    font-size: 16px;
+    color: #ffffff; /* Directly set the icon's color to white */
+    transition: color 0.3s ease-in-out; /* Also transition the icon color */
+}
+
+/* --- 3. Shared hover effect for the LINKS --- */
+.top-bar-area .call-icon-link:hover,
+.top-bar-area .social ul li a:hover {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+/* --- 4. Shared hover effect for the ICONS --- */
+.top-bar-area .call-icon-link:hover svg,
+.top-bar-area .social ul li a:hover svg {
+    /* When the link is hovered, change the icon color to the theme's heading color */
+    color: var(--color-heading, #00224D); 
+}
+
+/* --- 5. Keep the text hover effect separate --- */
+.top-bar-area .call .info h5 a:hover {
+    color: #d1a781;
+    transition: color 0.3s ease;
+}
+
+/* ================================================================
    FIX: Mobile Hamburger Menu Visibility & Clickability
    ================================================================ */
 

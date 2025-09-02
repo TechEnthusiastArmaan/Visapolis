@@ -26,7 +26,7 @@ export default function BusinessVisitorVisaContent() {
                 <li>Attending conferences, conventions, fairs, or board of directors meetings.</li>
                 <li>Handling after-sales services as part of a warranty or sales agreement.</li>
                 <li>Supervising the installation or dismantling of equipment purchased outside Canada.</li>
-                <li>Receiving or providing training from a Canadian parent or subsidiary company.</li>
+                <li>Receiving training from a Canadian parent company for work outside Canada.</li>
             </ul>
              <div className="mt-5 text-center">
                 <h3>Considering a Business Visitor Visa?</h3>

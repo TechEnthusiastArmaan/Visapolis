@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'; // Import the correct icon
-import { faFacebookF, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faInstagram, faLinkedinIn, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faPhoneAlt, faClock, faEnvelope, faMapMarkerAlt, faEnvelopeOpenText, faBars } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -75,9 +75,11 @@ const closeMenu = () => {
                 <div className="social">
                   <ul className="item-flex">
                     {/* Render links only if they exist in the settings */}
-                    {settings.facebookUrl && <li><a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebookF} /></a></li>}
-                    {settings.twitterUrl && <li><a href={settings.twitterUrl} target="_blank" rel="noopener noreferrer"><Image alt="Twitter" src="/assets/img/icon/twitter-x.png" width={16} height={16} /></a></li>}
-                    {settings.linkedinUrl && <li><a href={settings.linkedinUrl} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedinIn} /></a></li>}
+                    <li><a href={displaySettings.facebookUrl} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebookF} /></a></li>
+                    <li><a href={displaySettings.twitterUrl} target="_blank" rel="noopener noreferrer"><Image alt="Twitter" src="/assets/img/icon/twitter-x.png" width={16} height={16} /></a></li>
+                    <li><a href={displaySettings.instagramUrl} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} /></a></li>
+                    <li><a href={displaySettings.tiktokUrl} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTiktok} /></a></li>
+                    <li><a href={displaySettings.linkedinUrl} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedinIn} /></a></li>
                   </ul>
                 </div>
               </div>

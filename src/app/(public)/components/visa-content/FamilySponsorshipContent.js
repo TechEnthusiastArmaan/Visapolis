@@ -27,7 +27,7 @@ export default function FamilySponsorshipContent() {
                 <li>You must be a Canadian citizen, a permanent resident, or a person registered in Canada as an Indian under the Canadian Indian Act.</li>
                 <li>You must not be receiving social assistance for reasons other than a disability.</li>
                 <li>You may need to meet Low Income Cut-Off (LICO) standards, especially for sponsoring parents or grandparents.</li>
-                <li>You and your sponsored family member must enter into a financial undertaking agreement, promising to provide for their basic needs.</li>
+                <li>You and your sponsored family member must enter into a financial undertaking agreement, with the Canadian government, promising to provide for their basic needs.</li>
                 <li>You must not have a criminal background, be in bankruptcy, or be under a removal order.</li>
             </ul>
              <div className="mt-5 text-center">

@@ -11,11 +11,12 @@ const AboutSection = () => {
                 <div className="row align-center">
                     <div className="col-xl-6">
                         <div className="about-style-six-info">
-                            <h4 className="sub-title">About our agency</h4>
-                            <h2 className="title split-text">Expert visa solutions for your global journey</h2>
+                            <h4 className="sub-title">About our immigration firm</h4>
+                            {/* <h2 className="title split-text">Expert visa solutions for your global journey</h2> */}
                             <p className="wow fadeInUp" data-wow-delay="100ms">
                                 Visapolis Immigration is a registered firm located in Edmonton, Alberta, Canda and provides comprehensive immigration services. It was founded by Ramandeep Singh, a CICC licensed Regulated Canadian immigration consultant (RCIC). 
                             </p>
+                            <p className="wow fadeInUp" data-wow-delay="100ms">With more than six years of administrative experience in a government role in India, combined with an educational qualification in Immigration Law from Queen’s University and a brief stint working at immigration firms in Canada, he is well qualified to handle complex matters. He understands the unique needs of clients and provides strategic advice to help them achieve their dream of becoming Permanent Residents and Canadian citizens. What sets Visapolis Immigration Inc. apart is its commitment to presenting each client’s file in the best possible way.</p>
                             <div className="d-flex wow fadeInUp" data-wow-delay="250ms">
                                 <div className="provider-cards">
                                     <Image src="/assets/img/team/7.jpg" alt="Client 1" width={50} height={50} />
@@ -26,12 +27,12 @@ const AboutSection = () => {
                                 </div>
                                 <h4>Approved Student <br /> Visa Applications.</h4>
                             </div>
-                            <ul className="list-style-four wow fadeInUp" data-wow-delay="250ms">
+                            {/* <ul className="list-style-four wow fadeInUp" data-wow-delay="250ms">
                                 <li>Worldwide Visa Assistance</li>
                                 <li>Immigration Beyond Borders</li>
                                 <li>Emergency Travel Document</li>
                                 <li>Re-entry Permit</li>
-                            </ul>
+                            </ul> */}
                         </div>
                     </div>
                     <div className="col-xl-6 pl-60 pl-md-15 pl-xs-15">

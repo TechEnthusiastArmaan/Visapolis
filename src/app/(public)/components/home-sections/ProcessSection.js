@@ -83,7 +83,7 @@ const ProcessSection = () => {
                                     <Image src="/assets/img/shape/41.png" alt="Decorative Shape" width={220} height={200} style={{ width: 'auto', height: 'auto' }}/>
                                 </div>
                                 <span>04</span>
-                                <h4>File Submission and Review</h4>
+                                <h4>Document review and final submission</h4>
                                 <p>Upon final review and payment, your application is submitted to the immigration authorities.</p>
                             </div>
                         </div>

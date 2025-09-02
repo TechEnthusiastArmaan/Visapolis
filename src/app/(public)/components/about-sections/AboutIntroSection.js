@@ -33,7 +33,7 @@ const AboutIntroSection = () => {
                                         <p>Regular do am or limits hearts. Resolve parties but why she shewing.</p>
                                     </li>
                                 </ul>
-                                <Link href="/about" className="btn-style-one circle mt-30 wow fadeInUp" data-wow-delay="200ms">Discover More <span></span></Link>
+                                {/* <Link href="/about" className="btn-style-one circle mt-30 wow fadeInUp" data-wow-delay="200ms">Discover More <span></span></Link> */}
                             </div>
                         </div>
                         <div className="col-xl-5 offset-xl-1 col-lg-6">

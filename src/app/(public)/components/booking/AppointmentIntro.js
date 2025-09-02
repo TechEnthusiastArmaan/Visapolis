@@ -13,7 +13,7 @@ export default function AppointmentIntro() {
         Visapolis Immigration Inc. is a Regulated Canadian Immigration Consulting firm. We are committed to delivering premium, client-focused services for both temporary and permanent residency pathways.
       </p>
 
-      <div className="features-list">
+      {/* <div className="features-list">
         <div className="feature-item">
           <div className="icon">
             <FontAwesomeIcon icon={faGlobe} />
@@ -32,7 +32,7 @@ export default function AppointmentIntro() {
             <p>Specializing in solutions for temporary visits, extensions, and re-entry.</p>
           </div>
         </div>
-      </div>
+      </div> */}
 
     </div>
   );

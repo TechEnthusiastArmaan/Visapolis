@@ -18,6 +18,8 @@ export default function RootLayout({ children }) {
           because your admin layout now handles its own specific stylesheets.
           Keeping this area clean is good practice.
         */}
+        <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
+
       </head>
       <body>
         {children}
