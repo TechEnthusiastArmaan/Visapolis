@@ -7,7 +7,7 @@ const BannerSection = () => {
             <div className="banner-fade swiper">
                 <div className="swiper-wrapper">
                     <div className="swiper-slide banner-style-six">
-                        <div className="item bg-cover shadow dark" style={{ backgroundImage: `url(/assets/img/banner/4.jpg)` }}>
+                        <div className="item bg-cover shadow dark" style={{ backgroundImage: `url(/assets/img/banner/6.jpeg)` }}>
                             <div className="banner-syle-six-shape">
                                 <Image src="/assets/img/shape/11.png" alt="Shape" width={1368} height={699} />
                                 {/* <Image src="/assets/img/shape/10.png" alt="Shape" width={205} height={230} /> */}
@@ -27,7 +27,7 @@ const BannerSection = () => {
                         </div>
                     </div>
                     <div className="swiper-slide banner-style-six">
-                        <div className="item bg-cover shadow dark" style={{ backgroundImage: `url(/assets/img/banner/6.jpg)` }}>
+                        <div className="item bg-cover shadow dark" style={{ backgroundImage: `url(/assets/img/banner/4.jpeg)` }}>
                            <div className="banner-syle-six-shape">
                                 <Image src="/assets/img/shape/11.png" alt="Shape" width={1368} height={699} />
                                 {/* <Image src="/assets/img/shape/10.png" alt="Shape" width={205} height={230} /> */}
