@@ -29,7 +29,7 @@ export default function AboutPageClient() {
             {/* End About Section */}
 
             {/* Start Fun Fact Section */}
-            <FunFactSection />
+            {/* <FunFactSection /> */}
             {/* End Fun Fact Section */}
 
             {/* Start Process Section (Re-used from Homepage) */}
