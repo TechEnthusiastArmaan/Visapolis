@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const BannerSection = () => {
     return (
-        <div className="banner-area banner-style-six text-center navigation-circle overflow-hidden text-light auto-height">
+        <div className="banner-area banner-style-six text-center navigation-circle overflow-hidden text-light auto-height" style={{ position: 'relative', zIndex: 1 }}>
             <div className="banner-fade swiper">
                 <div className="swiper-wrapper">
                     <div className="swiper-slide banner-style-six">
@@ -18,7 +18,8 @@ const BannerSection = () => {
                                         <div className="content">
                                             {/* <h4>Solutions for all type of visa</h4> */}
                                             {/* <h2>Immigration & visa consutants</h2> */}
-                                            <h3>Welcome to Visapolis Immigration, a firm that provides comprehensive immigration services.</h3>
+                                            <h2>Welcome to Visapolis Immigration,</h2> 
+                                            <p>a firm that provides comprehensive immigration services.</p>
                                             <div className="button"><Link href="/about" className="btn-style-one circle">Discover More <span></span></Link></div>
                                         </div>
                                     </div>
@@ -27,7 +28,7 @@ const BannerSection = () => {
                         </div>
                     </div>
                     <div className="swiper-slide banner-style-six">
-                        <div className="item bg-cover shadow dark" style={{ backgroundImage: `url(/assets/img/banner/4.jpeg)` }}>
+                        <div className="item bg-cover shadow dark" style={{ backgroundImage: `url(/assets/img/banner/10.jpg)` }}>
                            <div className="banner-syle-six-shape">
                                 <Image src="/assets/img/shape/11.png" alt="Shape" width={1368} height={699} />
                                 {/* <Image src="/assets/img/shape/10.png" alt="Shape" width={205} height={230} /> */}
@@ -38,7 +39,8 @@ const BannerSection = () => {
                                  <div className="col-xl-8 offset-xl-2">
                                     <div className="content">
                                        {/* <h4>Welcome to visa service</h4> */}
-                                       <h3>FOCUS of the FIRM: Client Satisfaction, Strategic Advice, Ethical Services</h3>
+                                       <h2>FOCUS of the FIRM</h2> 
+                                       <p>Client Satisfaction, Strategic Advice, Ethical Services</p>
                                        {/* <p>Best solution in al immigration</p> */}
                                        <div className="button"><Link href="/about" className="btn-style-one circle">Discover More <span></span></Link></div>
                                     </div>

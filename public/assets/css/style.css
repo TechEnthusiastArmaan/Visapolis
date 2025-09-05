@@ -2355,6 +2355,7 @@ p {
 .banner-area.text-center p {
 	padding-left: 13%;
 	padding-right: 13%;
+	font-size: 21px;
 }
 
 @media (max-width: 1023px) {
@@ -3341,6 +3342,7 @@ p {
 	margin: auto;
 	border-radius: 30px;
 	overflow: hidden;
+
 }
 
 .banner-syle-six-shape {
@@ -3400,7 +3402,7 @@ p {
 
 .banner-style-six .content h2 {
 	text-transform: uppercase;
-	font-size: 80px;
+	font-size: 60px;
 	line-height: 1.1;
 	margin-bottom: 20px;
 }
@@ -4181,7 +4183,9 @@ ul.list-card p {
 	align-items: center;
 	gap: 15px;
 }
-
+.about-style-six-info p{
+	text-align: justify;
+}
 .about-style-six-info .d-flex > h4 {
 	margin: 0;
 	font-size: 18px;

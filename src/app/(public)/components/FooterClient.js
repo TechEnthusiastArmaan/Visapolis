@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faLinkedinIn,faTiktok } from '@fortawesome/free-brands-svg-icons';
-import { faPhoneAlt, faClock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faClock, faEnvelope, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 export default function FooterClient({ settings }) {
     const currentYear = useCurrentYear();
@@ -76,17 +76,48 @@ export default function FooterClient({ settings }) {
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-6 footer-item">
+                         <div className="col-lg-3 col-md-6 footer-item">
                             <div className="f-item link">
                                 <h4 className="widget-title">Our Services</h4>
                                 <ul>
-                                    <li><Link href="/work-permit/post-graduate-work-permit">Post Graduate Work Permit</Link></li>
-                                    <li><Link href="/work-permit/lmia">LMIA</Link></li>
-                                    <li><Link href="/work-permit/international-mobility-program">International Mobility Program</Link></li>
-                                    <li><Link href="/work-permit/global-talent-stream">Global Talent Stream</Link></li>
-                                    <li><Link href="/work-permit/spousal-open-work-permit">Spousal Open Work Permit</Link></li>
-
-
+                                    <li className="dropdown">
+                                        <a href="#">Visit <FontAwesomeIcon icon={faAngleDown} /></a>
+                                        <ul className="dropdown-menu">
+                                            <li><Link href="/visa/visitor-visa">Visitor Visa</Link></li>
+                                            <li><Link href="/visa/super-visa">Super Visa</Link></li>
+                                        </ul>
+                                    </li>
+                                    <li><Link href="/study-permit">Study Permit</Link></li>
+                                    <li className="dropdown">
+                                        <a href="#">Work Permit <FontAwesomeIcon icon={faAngleDown} /></a>
+                                        <ul className="dropdown-menu">
+                                            <li><Link href="/work-permit/post-graduate-work-permit">Post Graduate Work Permit</Link></li>
+                                            <li><Link href="/work-permit/lmia">LMIA</Link></li>
+                                            <li><Link href="/work-permit/international-mobility-program">International Mobility Program</Link></li>
+                                            <li><Link href="/work-permit/global-talent-stream">Global Talent Stream</Link></li>
+                                            <li><Link href="/work-permit/spousal-open-work-permit">Spousal Open Work Permit</Link></li>
+                                        </ul>
+                                    </li>
+                                    <li className="dropdown">
+                                        <a href="#">Permanent Residence <FontAwesomeIcon icon={faAngleDown} /></a>
+                                        <ul className="dropdown-menu">
+                                            <li><Link href="/permanent-residence/express-entry">Express Entry</Link></li>
+                                            <li><Link href="/permanent-residence/canadian-experience-class">Canadian Experience Class</Link></li>
+                                            <li><Link href="/permanent-residence/federal-skilled-trades">Federal Skilled Trades</Link></li>
+                                            <li><Link href="/permanent-residence/federal-skilled-worker">Federal Skilled Worker</Link></li>
+                                            <li><Link href="/permanent-residence/family-sponsorship">Family Sponsorship</Link></li>
+                                            <li><Link href="/permanent-residence/provincial-immigration">Provincial Immigration</Link></li>
+                                        </ul>
+                                    </li>
+                                    <li className="dropdown">
+                                        <a href="#">Business <FontAwesomeIcon icon={faAngleDown} /></a>
+                                        <ul className="dropdown-menu">
+                                            <li><Link href="/business/business-visitor-visa">Business Visitor Visa</Link></li>
+                                            <li><Link href="/business/startup-visa">Start-up Visa</Link></li>
+                                            <li><Link href="/business/intra-company-transfer-program">Intra-Company Transfer Program</Link></li>
+                                            <li><Link href="/business/provincial-entrepreneur-program">Provincial Entrepreneur Program</Link></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

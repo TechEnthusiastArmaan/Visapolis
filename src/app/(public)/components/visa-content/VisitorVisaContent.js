@@ -13,8 +13,7 @@ export default function VisitorVisaContent() {
             </div>
             <h2 className="wow fadeInUp" data-wow-delay="300ms">Explore Canada with a Visitor Visa</h2>
             <p className="wow fadeInUp" data-wow-delay="500ms">
-                A visitor visa (also called a temporary resident visa) is an official document we stick in your passport. It shows that you meet the requirements needed to enter Canada. Most travellers need a visitor visa to travel to Canada. You may also need one if you’re transiting through a Canadian airport on your way to your final destination.
-            </p>
+The Visitor Visa program was enacted to encourage tourism, to visit family or friends etc. It is a document that allows foreign nationals to enter Canada for a temporary stay.            </p>
             {/* You can add more specific sections, features, lists, etc. here */}
             <h3>Who can apply</h3>
             <p>

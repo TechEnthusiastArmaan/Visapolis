@@ -9,7 +9,7 @@ const ProcessSection = () => {
                 <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
                     <div className="site-heading text-center">
                         <h4 className="sub-title">Our Visa Process</h4>
-                        <h2 className="title split-text">Follow our streamlined path to <br /> your visa approval</h2>
+                        <h2 className="title split-text">Follow our streamlined path for  <br /> your visa process</h2>
                     </div>
                 </div>
             </div>
