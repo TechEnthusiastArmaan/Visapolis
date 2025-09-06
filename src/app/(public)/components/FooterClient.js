@@ -100,7 +100,7 @@ export default function FooterClient({ settings }) {
                                     </li>
                                     <li className="dropdown">
                                         <a href="#">Permanent Residence <FontAwesomeIcon icon={faAngleDown} /></a>
-                                        <ul className="dropdown-menu">
+                                        <ul className="dropdown-menu" style={'margin-top: -10px;'}>
                                             <li><Link href="/permanent-residence/express-entry">Express Entry</Link></li>
                                             <li><Link href="/permanent-residence/canadian-experience-class">Canadian Experience Class</Link></li>
                                             <li><Link href="/permanent-residence/federal-skilled-trades">Federal Skilled Trades</Link></li>
