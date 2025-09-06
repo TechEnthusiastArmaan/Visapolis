@@ -100,7 +100,7 @@ export default function FooterClient({ settings }) {
                                     </li>
                                     <li className="dropdown">
                                         <a href="#">Permanent Residence <FontAwesomeIcon icon={faAngleDown} /></a>
-                                        <ul className="dropdown-menu" style={'margin-top: -10px;'}>
+                                        <ul className="dropdown-menu" style={{ marginTop: '-10px' }}>
                                             <li><Link href="/permanent-residence/express-entry">Express Entry</Link></li>
                                             <li><Link href="/permanent-residence/canadian-experience-class">Canadian Experience Class</Link></li>
                                             <li><Link href="/permanent-residence/federal-skilled-trades">Federal Skilled Trades</Link></li>
@@ -141,7 +141,7 @@ export default function FooterClient({ settings }) {
                     <div className='row'>
                         <div className='col-lg-12'>
                             <p>© Copyright {currentYear}. All Rights Reserved by Visapolis Immigration Inc.</p>
-                            <p>Website by <a href='https://vidyacorp.com/'>Vidya Corporation</a></p>
+                            <p>Website by <a href='https://vidyacorp.com/' target="_blank">Vidya Corporation</a></p>
                         </div>
                     </div>
                 </div>
