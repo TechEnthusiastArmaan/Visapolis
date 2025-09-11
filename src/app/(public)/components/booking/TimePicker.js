@@ -3,18 +3,15 @@
 import { useMemo } from 'react';
 import { format } from 'date-fns';
 
-// Helper function is now outside the component and accepts settings
 const generateTimeSlots = (startTimeStr, endTimeStr, duration, dayStatus) => {
-    if (!startTimeStr || !endTimeStr || !duration) {
-        return []; // Return empty if settings are missing
-    }
+    // This helper function can stay the same, but let's make it more robust with defaults.
     const start = startTimeStr || '09:00';
     const end = endTimeStr || '15:00';
     const interval = duration || 30;
-
+    
     const slots = [];
-    const [startHour, startMinute] = startTimeStr.split(':').map(Number);
-    const [endHour, endMinute] = endTimeStr.split(':').map(Number);
+    const [startHour, startMinute] = start.split(':').map(Number);
+    const [endHour, endMinute] = end.split(':').map(Number);
 
     const today = new Date();
     let currentTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), startHour, startMinute);
@@ -24,7 +21,6 @@ const generateTimeSlots = (startTimeStr, endTimeStr, duration, dayStatus) => {
         const timeString = format(currentTime, 'HH:mm');
         let isValidSlot = true;
 
-        // Filter slots based on the day's availability status
         if (dayStatus === 'morning' && currentTime.getHours() >= 12) {
             isValidSlot = false;
         }
@@ -36,29 +32,21 @@ const generateTimeSlots = (startTimeStr, endTimeStr, duration, dayStatus) => {
             slots.push(timeString);
         }
         
-        currentTime.setMinutes(currentTime.getMinutes() + duration);
+        currentTime.setMinutes(currentTime.getMinutes() + interval);
     }
     
     return slots;
 };
 
 export default function TimePicker({ selectedDate, onTimeSelect, onBack, settings }) {
-    if (!selectedDate || !settings.slotStartTime) {
-        return (
-            <div className="booking-container">
-                <button onClick={onBack} className="booking-back-button">&larr; Back</button>
-                <div className="booking-header">
-                    <h2>Loading Times...</h2>
-                    <p>Please wait a moment.</p>
-                </div>
-            </div>
-        );
-    }
-    // Get the availability status for the SPECIFIC selected date
-     const timeSlots = useMemo(() => {
-        // If the necessary data isn't here yet, return an empty array.
-        // The time slots will be calculated on the next render when the props are ready.
-        if (!selectedDate || !settings) {
+    
+    // --- THIS IS THE FINAL, CORRECTED LOGIC ---
+
+    // 1. All Hooks are called UNCONDITIONALLY at the top of the component.
+    const timeSlots = useMemo(() => {
+        // We move the check for missing/incomplete data INSIDE the hook.
+        // If data isn't ready, we generate an empty array, which is a valid result.
+        if (!selectedDate || !settings?.slotStartTime) {
             return [];
         }
 
@@ -72,11 +60,12 @@ export default function TimePicker({ selectedDate, onTimeSelect, onBack, setting
             dayStatus
         );
         
-    // Depend on the props themselves. React will handle the object comparison.
+    // The dependency array now correctly lists all external variables used inside.
     }, [selectedDate, settings]);
 
 
-    // 2. NOW, perform the early return if props are missing.
+    // 2. The early return now happens AFTER all hooks have been called.
+    // This is the single source of truth for the loading state.
     if (!selectedDate || !settings) {
         return (
             <div className="booking-container">
@@ -88,6 +77,8 @@ export default function TimePicker({ selectedDate, onTimeSelect, onBack, setting
             </div>
         );
     }
+    
+    // --- END CORRECTION ---
 
     return (
         <div className="booking-container">
@@ -107,7 +98,7 @@ export default function TimePicker({ selectedDate, onTimeSelect, onBack, setting
                 </div>
             ) : (
                 <div className="text-center" style={{ padding: '30px 0'}}>
-                    <p>No available time slots for this day. Please select another date.</p>
+                    <p>Sorry, no available time slots were found for this day. Please select another date.</p>
                 </div>
             )}
         </div>
