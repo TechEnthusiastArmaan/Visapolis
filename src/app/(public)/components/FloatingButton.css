@@ -29,13 +29,16 @@
     animation: revolve 15s linear infinite;
     /* background-color: #d1a781; */
     border-radius: 50%;
+         /* background: var(--bg-gradient);  */
+
 }
 
 /* Style the text that revolves */
 .revolving-text text {
     font-size: 19px;
     font-weight: 700;
-    fill: #d1a781; /* <--- THIS IS THE LINE TO CHANGE */
+    fill: #d1a781; 
+    /* fill: white; */
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -50,6 +53,8 @@
     height: 90px;
     /* --- FIX: Make the center slightly darker for contrast --- */
  background-color: #d1a781;
+     background: var(--bg-gradient);
+
      border-radius: 50%;
     display: flex;
     align-items: center;
