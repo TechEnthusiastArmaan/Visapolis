@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
-import { useTemplateScripts } from "../../hooks/useTemplateScripts";
-import { bookAppointment } from "@/app/(public)/appointment/actions";
+import { useTemplateScripts } from "@/app/(public)/hooks/useTemplateScripts";
+
+import { bookAppointment } from "@/app/(public)/appointment/actions"; 
 
 
 export default function BookingForm({ 

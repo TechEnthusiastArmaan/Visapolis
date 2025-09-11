@@ -162,52 +162,90 @@
 // }
 
 // src/app/(public)/appointment/page.js
-import Link from 'next/link';
-// Import the server action to fetch the status
-import { getAppointmentStatus } from '@/app/admin/actions/settingsActions'; 
-// Import your new client component
-import BookingClient from './BookingClient'; 
-// Import the shared Breadcrumb
-import Breadcrumb from '../components/about-sections/Breadcrumb';
+// import Link from 'next/link';
+// // Import the server action to fetch the status
+// import { getAppointmentStatus } from '@/app/admin/actions/settingsActions'; 
+// // Import your new client component
+// import BookingClient from './BookingClient'; 
+// // Import the shared Breadcrumb
+// import Breadcrumb from '../components/about-sections/Breadcrumb';
 
-// A small, self-contained component for the "unavailable" message
+// // A small, self-contained component for the "unavailable" message
+// const UnavailableNotice = () => (
+//     <div className="booking-container text-center" style={{padding: '50px'}}>
+//         <div className="booking-header">
+//             <h2>Bookings Currently Closed</h2>
+//             <p className="card-description">
+//                 We are not available to take new appointments at the moment. Please check back later or contact us directly for inquiries.
+//             </p>
+//         </div>
+//         <Link href="/contact" className="btn-style-one circle mt-4">
+//             Contact Us
+//         </Link>
+//     </div>
+// );
+
+// // This is now a Server Component (no 'use client' directive)
+// export default async function AppointmentPage() {
+//     // 1. Fetch the availability status directly on the server
+//     const isAvailable = await getAppointmentStatus();
+
+//     // 2. Conditionally render the correct component based on the status
+//     if (!isAvailable) {
+//         return (
+//             <>
+//                 <Breadcrumb title="Book an Appointment" breadcrumbText="Appointment" />
+//                 <div className="appoinment-style-one-area default-padding">
+//                     <div className="container">
+//                         <div className="row justify-content-center">
+//                             <div className="col-lg-8">
+//                                 <UnavailableNotice />
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </>
+//         );
+//     }
+
+//     // 3. If bookings are open, render the full, interactive client component
+//     return <BookingClient />;
+// }
+
+import Link from 'next/link';
+import { getSiteSettings } from '@/app/admin/settings/actions';
+import BookingClient from './BookingClient';
+import Breadcrumb from '@/app/(public)/components/about-sections/Breadcrumb';
+// import PageHeader from '@/app/(public)/components/PageHeader';
+
 const UnavailableNotice = () => (
     <div className="booking-container text-center" style={{padding: '50px'}}>
         <div className="booking-header">
             <h2>Bookings Currently Closed</h2>
             <p className="card-description">
-                We are not available to take new appointments at the moment. Please check back later or contact us directly for inquiries.
+                We are not available to take new appointments at this time. Please check back later or contact us directly.
             </p>
         </div>
-        <Link href="/contact" className="btn-style-one circle mt-4">
-            Contact Us
-        </Link>
+        <Link href="/contact" className="btn-style-one circle mt-4">Contact Us</Link>
     </div>
 );
 
-// This is now a Server Component (no 'use client' directive)
 export default async function AppointmentPage() {
-    // 1. Fetch the availability status directly on the server
-    const isAvailable = await getAppointmentStatus();
+    const settings = await getSiteSettings();
+    const isAvailable = settings?.isAvailableForAppointments ?? true;
 
-    // 2. Conditionally render the correct component based on the status
     if (!isAvailable) {
         return (
             <>
                 <Breadcrumb title="Book an Appointment" breadcrumbText="Appointment" />
                 <div className="appoinment-style-one-area default-padding">
                     <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-lg-8">
-                                <UnavailableNotice />
-                            </div>
-                        </div>
+                        <div className="row justify-content-center"><div className="col-lg-8"><UnavailableNotice /></div></div>
                     </div>
                 </div>
             </>
         );
     }
-
-    // 3. If bookings are open, render the full, interactive client component
-    return <BookingClient />;
+    // Pass ALL settings to the client component
+    return <BookingClient settings={settings} />;
 }

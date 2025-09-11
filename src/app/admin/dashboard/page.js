@@ -13,6 +13,8 @@ import Blog from "@/models/Blog";
 import Admin from "@/models/Admin";
 import AvailabilityToggle from './components/AvailabilityToggle';
 import { getAppointmentStatus } from '../actions/settingsActions';
+import { getSiteSettings } from '../actions/settingsActions'; // Use the function that exists
+
 
 const SECRET_KEY = process.env.NEXTAUTH_SECRET;
 
@@ -43,8 +45,8 @@ async function getStats() {
 export default async function DashboardPage() {
     const user = await getUser();
     const stats = await getStats();
-        const appointmentStatus = await getAppointmentStatus(); // Fetch the status
-
+const settings = await getSiteSettings(); // Fetch the full settings object
+    const appointmentStatus = settings?.isAvailableForAppointments ?? true;
 
     return (
         <>

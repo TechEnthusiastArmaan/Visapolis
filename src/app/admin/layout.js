@@ -7,33 +7,41 @@ import AdminHeader from './components/AdminHeader';
 import AdminSidebar from './components/AdminSidebar';
 import DynamicBreadcrumb from './components/DynamicBreadcrumb';
 
+// --- THIS IS THE CORRECTED getUser FUNCTION ---
 async function getUser() {
-    const cookieStore = cookies(); 
-    const token = cookieStore.get('session_token')?.value;
+    const cookieStore = cookies();
     
-    if (!token) return null;
+    // 1. Get the entire cookie object first.
+    const tokenCookie = cookieStore.get('session_token');
+
+    // 2. Check if the cookie object exists. If not, the user is not logged in.
+    if (!tokenCookie) {
+        return null;
+    }
+    
+    // 3. If the cookie exists, now you can safely access its value.
     try {
-        return jwt.verify(token, process.env.NEXTAUTH_SECRET);
+        return jwt.verify(tokenCookie.value, process.env.NEXTAUTH_SECRET);
     } catch (error) {
+        // This will catch invalid or expired tokens
         return null;
     }
 }
+// ------------------------------------------
 
 export default async function AdminLayout({ children }) {
+    // This part remains the same, but it will now receive a reliable value from getUser()
     const user = await getUser();
     if (!user) {
         redirect('/login');
     }
 
-    // --- The JSX now has a complete html > head + body structure ---
     return (
         <html lang="en"> 
             <head>
-                {/* All <link> tags should be placed inside the <head> */}
                 <link rel="stylesheet" href="/admin-purple/vendors/mdi/css/materialdesignicons.min.css" />
                 <link rel="stylesheet" href="/admin-purple/vendors/css/vendor.bundle.base.css" />
                 <link rel="stylesheet" href="/admin-purple/css/style.css" />
-                {/* Also good to add a title and favicon specific to the admin panel */}
                 <title>Admin Panel | Visapolis</title>
                 <link rel="shortcut icon" href="/admin-purple/images/favicon.ico" />
             </head>
@@ -49,12 +57,10 @@ export default async function AdminLayout({ children }) {
                                     {children}
                                 </div>
                             </div>
-                            {/* The AdminFooter is usually placed here, inside the main-panel but after content-wrapper */}
                         </div>
                     </div>
                 </div>
                 
-                {/* All <Script> tags should be placed at the end of the <body> */}
                 <Script src="/admin-purple/vendors/js/vendor.bundle.base.js" strategy="beforeInteractive" />
                 <Script src="/admin-purple/js/off-canvas.js" strategy="lazyOnload" />
                 <Script src="/admin-purple/js/hoverable-collapse.js" strategy="lazyOnload" />
