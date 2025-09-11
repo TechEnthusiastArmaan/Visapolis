@@ -8,7 +8,10 @@ const generateTimeSlots = (startTimeStr, endTimeStr, duration, dayStatus) => {
     if (!startTimeStr || !endTimeStr || !duration) {
         return []; // Return empty if settings are missing
     }
-    
+    const start = startTimeStr || '09:00';
+    const end = endTimeStr || '15:00';
+    const interval = duration || 30;
+
     const slots = [];
     const [startHour, startMinute] = startTimeStr.split(':').map(Number);
     const [endHour, endMinute] = endTimeStr.split(':').map(Number);
@@ -52,15 +55,33 @@ export default function TimePicker({ selectedDate, onTimeSelect, onBack, setting
         );
     }
     // Get the availability status for the SPECIFIC selected date
-    const dateString = format(selectedDate, 'yyyy-MM-dd');
+    const dateString = selectedDate ? format(selectedDate, 'yyyy-MM-dd') : null;
     const dayStatus = settings?.dayAvailability?.find(d => d.date === dateString)?.status || 'full_day';
 
-    const timeSlots = useMemo(() => generateTimeSlots(
-        settings.slotStartTime,
-        settings.slotEndTime,
-        settings.slotDuration,
-        dayStatus
-    ), [settings.slotStartTime, settings.slotEndTime, settings.slotDuration, dayStatus]); // Recalculate if settings or dayStatus change
+    const timeSlots = useMemo(() => {
+        // We move the check for missing settings *inside* the useMemo hook.
+        if (!settings) return [];
+        return generateTimeSlots(
+            settings.slotStartTime,
+            settings.slotEndTime,
+            settings.slotDuration,
+            dayStatus
+        );
+    }, [settings, dayStatus]);
+
+    // 2. The early return now happens *after* all hooks have been called.
+    if (!selectedDate || !settings) {
+        // You can make this loading state look nicer
+        return (
+            <div className="booking-container">
+                <button onClick={onBack} className="booking-back-button">&larr; Back to Date Selection</button>
+                <div className="booking-header">
+                    <h2>Loading Times...</h2>
+                    <p>Please wait a moment.</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="booking-container">
