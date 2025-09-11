@@ -55,29 +55,35 @@ export default function TimePicker({ selectedDate, onTimeSelect, onBack, setting
         );
     }
     // Get the availability status for the SPECIFIC selected date
-    const dateString = selectedDate ? format(selectedDate, 'yyyy-MM-dd') : null;
-    const dayStatus = settings?.dayAvailability?.find(d => d.date === dateString)?.status || 'full_day';
+     const timeSlots = useMemo(() => {
+        // If the necessary data isn't here yet, return an empty array.
+        // The time slots will be calculated on the next render when the props are ready.
+        if (!selectedDate || !settings) {
+            return [];
+        }
 
-    const timeSlots = useMemo(() => {
-        // We move the check for missing settings *inside* the useMemo hook.
-        if (!settings) return [];
+        const dateString = format(selectedDate, 'yyyy-MM-dd');
+        const dayStatus = settings.dayAvailability?.find(d => d.date === dateString)?.status || 'full_day';
+
         return generateTimeSlots(
             settings.slotStartTime,
             settings.slotEndTime,
             settings.slotDuration,
             dayStatus
         );
-    }, [settings, dayStatus]);
+        
+    // Depend on the props themselves. React will handle the object comparison.
+    }, [selectedDate, settings]);
 
-    // 2. The early return now happens *after* all hooks have been called.
+
+    // 2. NOW, perform the early return if props are missing.
     if (!selectedDate || !settings) {
-        // You can make this loading state look nicer
         return (
             <div className="booking-container">
-                <button onClick={onBack} className="booking-back-button">&larr; Back to Date Selection</button>
+                <button onClick={onBack} className="booking-back-button">&larr; Back to Date</button>
                 <div className="booking-header">
                     <h2>Loading Times...</h2>
-                    <p>Please wait a moment.</p>
+                    <p>Please wait.</p>
                 </div>
             </div>
         );
