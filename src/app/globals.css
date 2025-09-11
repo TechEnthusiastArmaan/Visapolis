@@ -817,3 +817,44 @@ nav.navbar.validnavs .navbar-collapse .dropdown-menu li a:hover {
 .banner-area .swiper-slide {
     background-color: #000;
 }
+
+
+/* 1. DESKTOP: "Drop-right" menu style (for screens > 991px) */
+@media (min-width: 992px) {
+    /* Style the main links that have dropdowns */
+    .footer-dropdown-nav li.dropdown > a {
+        cursor: default; /* Change the cursor to show it's not a standard link */
+    }
+
+    /* This hides the dropdown menu by default */
+    .footer-dropdown-nav li .dropdown-menu {
+        position: absolute;
+        left: 100%;
+        top: -10px;
+        min-width: 240px;
+        padding: 15px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        
+        /* --- Key properties for the hide/show transition --- */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* --- THIS IS THE CRUCIAL HOVER EFFECT --- */
+    /* When you hover over the PARENT <li>, the CHILD .dropdown-menu becomes visible */
+    .footer-dropdown-nav li.dropdown:hover > .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    /* Hide the mobile toggle icon on desktop */
+    .mobile-toggle {
+        display: none !important;
+    }
+}

@@ -764,3 +764,33 @@
 	
 })(jQuery); // End jQuery
 
+/* ===== Footer Dropdown Accordion for Mobile ===== */
+(function() {
+    const footerDropdowns = document.querySelectorAll('.footer-dropdown-nav .dropdown > a');
+
+    footerDropdowns.forEach(dropdownToggle => {
+        dropdownToggle.addEventListener('click', function(event) {
+            // Check if the screen is mobile-sized
+            if (window.innerWidth <= 991) {
+                event.preventDefault(); // Prevent the link from navigating
+
+                const parentLi = this.parentElement;
+                const dropdownMenu = this.nextElementSibling;
+                const toggleIcon = this.querySelector('.mobile-toggle');
+
+                if (dropdownMenu) {
+                    // Simple slide toggle effect
+                    if (dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                        toggleIcon.style.transform = 'rotate(0deg)';
+                        parentLi.classList.remove('active');
+                    } else {
+                        dropdownMenu.style.display = 'block';
+                        toggleIcon.style.transform = 'rotate(90deg)';
+                        parentLi.classList.add('active');
+                    }
+                }
+            }
+        });
+    });
+})();

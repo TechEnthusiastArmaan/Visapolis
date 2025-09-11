@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faLinkedinIn,faTiktok } from '@fortawesome/free-brands-svg-icons';
-import { faPhoneAlt, faClock, faEnvelope, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faClock, faEnvelope, faAngleDown, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function FooterClient({ settings }) {
     const currentYear = useCurrentYear();
@@ -77,11 +77,11 @@ export default function FooterClient({ settings }) {
                             </div>
                         </div>
                          <div className="col-lg-3 col-md-6 footer-item">
-                            <div className="f-item link">
+                             <div className="f-item link footer-dropdown-nav">
                                 <h4 className="widget-title">Our Services</h4>
                                 <ul>
                                     <li className="dropdown">
-                                        <a href="#">Visit <FontAwesomeIcon icon={faAngleDown} /></a>
+                                        <span>Visit <FontAwesomeIcon icon={faAngleRight} /></span>
                                         <ul className="dropdown-menu">
                                             <li><Link href="/visa/visitor-visa">Visitor Visa</Link></li>
                                             <li><Link href="/visa/super-visa">Super Visa</Link></li>
@@ -89,7 +89,7 @@ export default function FooterClient({ settings }) {
                                     </li>
                                     <li><Link href="/study-permit">Study Permit</Link></li>
                                     <li className="dropdown">
-                                        <a href="#">Work Permit <FontAwesomeIcon icon={faAngleDown} /></a>
+                            <span>Work Permit <FontAwesomeIcon icon={faAngleRight} /></span>
                                         <ul className="dropdown-menu">
                                             <li><Link href="/work-permit/post-graduate-work-permit">Post Graduate Work Permit</Link></li>
                                             <li><Link href="/work-permit/lmia">LMIA</Link></li>
@@ -99,7 +99,7 @@ export default function FooterClient({ settings }) {
                                         </ul>
                                     </li>
                                     <li className="dropdown">
-                                        <a href="#">Permanent Residence <FontAwesomeIcon icon={faAngleDown} /></a>
+                            <span>Permanent Residence <FontAwesomeIcon icon={faAngleRight} /></span>
                                         <ul className="dropdown-menu" style={{ marginTop: '-10px' }}>
                                             <li><Link href="/permanent-residence/express-entry">Express Entry</Link></li>
                                             <li><Link href="/permanent-residence/canadian-experience-class">Canadian Experience Class</Link></li>
@@ -110,7 +110,7 @@ export default function FooterClient({ settings }) {
                                         </ul>
                                     </li>
                                     <li className="dropdown">
-                                        <a href="#">Business <FontAwesomeIcon icon={faAngleDown} /></a>
+                            <span>Business <FontAwesomeIcon icon={faAngleRight} /></span>
                                         <ul className="dropdown-menu">
                                             <li><Link href="/business/business-visitor-visa">Business Visitor Visa</Link></li>
                                             <li><Link href="/business/startup-visa">Start-up Visa</Link></li>
