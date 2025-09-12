@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const BookingSchema = new mongoose.Schema({
     // Appointment Details
-    date: { type: String, required: true },
+    date: { type: Date, required: true }, // Changed from String to Date
     time: { type: String, required: true },
 
     // Personal Information

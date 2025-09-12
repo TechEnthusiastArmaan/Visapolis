@@ -23,13 +23,21 @@ let settings = await SiteSettings.findOne({ singleton: settingsKey });
 export async function updateSiteSettings(prevState, formData) {
 
     // 1. Process the array of day availability settings
-    const dayAvailability = [];
+   const dayAvailability = [];
     for (let i = 0; i < 7; i++) {
         const date = formData.get(`day_date_${i}`);
         const status = formData.get(`day_status_${i}`);
-        // Ensure both date and status exist before adding to the array
+
         if (date && status) {
-            dayAvailability.push({ date, status });
+            const dayData = { date, status }; // Start with the base object
+
+            // If the status is 'custom', we MUST also get and add the times
+            if (status === 'custom') {
+                dayData.fromTime = formData.get(`day_from_time_${i}`);
+                dayData.toTime = formData.get(`day_to_time_${i}`);
+            }
+
+            dayAvailability.push(dayData);
         }
     }
 
@@ -46,6 +54,8 @@ export async function updateSiteSettings(prevState, formData) {
         linkedinUrl: formData.get('linkedinUrl'),
         instagramUrl: formData.get('instagramUrl'),
         tiktokUrl: formData.get('tiktokUrl'),
+        youtubeUrl: formData.get('youtubeUrl'),
+
 
         // Appointment Schedule Fields
         slotStartTime: formData.get('slotStartTime'),

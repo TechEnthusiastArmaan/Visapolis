@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { getSiteSettings } from './actions';
 import SettingsForm from './SettingsForm';
-import ScheduleManager from './ScheduleManager';
+import ScheduleManager from '../schedule/ScheduleManager';
 
 export default async function SettingsPage() {
     const settings = await getSiteSettings();
@@ -25,13 +25,7 @@ export default async function SettingsPage() {
                             </p>
                             <SettingsForm initialData={settings} />
                             
-                            <hr className="my-4" />
                             
-                            <h4 className="card-title">Manage Appointment Schedule</h4>
-                            <p className="card-description">
-                                Set your availability for client bookings.
-                            </p>
-                            <ScheduleManager initialData={settings} />
                         </div>
                     </div>
                 </div>

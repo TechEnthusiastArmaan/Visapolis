@@ -1,84 +1,108 @@
 "use client";
 
-import { useMemo } from 'react';
-import { format } from 'date-fns';
+import { useMemo, useState, useEffect } from 'react'; // Import useState and useEffect
+import { format, isToday } from 'date-fns';
+import { getBookedSlotsForDate } from '@/app/(public)/appointment/actions'; // Import the server action
 
-const generateTimeSlots = (startTimeStr, endTimeStr, duration, dayStatus) => {
-    // This helper function can stay the same, but let's make it more robust with defaults.
-    const start = startTimeStr || '09:00';
-    const end = endTimeStr || '15:00';
-    const interval = duration || 30;
-    
-    const slots = [];
-    const [startHour, startMinute] = start.split(':').map(Number);
-    const [endHour, endMinute] = end.split(':').map(Number);
-
-    const today = new Date();
-    let currentTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), startHour, startMinute);
-    const endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), endHour, endMinute);
-
-    while (currentTime < endTime) {
-        const timeString = format(currentTime, 'HH:mm');
-        let isValidSlot = true;
-
-        if (dayStatus === 'morning' && currentTime.getHours() >= 12) {
-            isValidSlot = false;
-        }
-        if (dayStatus === 'afternoon' && currentTime.getHours() < 12) {
-            isValidSlot = false;
-        }
-
-        if (isValidSlot) {
-            slots.push(timeString);
-        }
-        
-        currentTime.setMinutes(currentTime.getMinutes() + interval);
+// Helper function to generate all possible time slots for a day
+const generateTimeSlots = (startTimeStr, endTimeStr, duration) => {
+    if (!startTimeStr || !endTimeStr || !duration) {
+        return [];
     }
     
+    const slots = [];
+    const interval = duration; // Duration in minutes
+
+    const today = new Date(); // Use a base date for time calculations
+    
+    // Create start and end time Date objects
+    const [startHour, startMinute] = startTimeStr.split(':').map(Number);
+    const startTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), startHour, startMinute);
+
+    const [endHour, endMinute] = endTimeStr.split(':').map(Number);
+    const endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), endHour, endMinute);
+
+    let currentTime = new Date(startTime);
+
+    // Loop while the START of a potential slot is less than the final end time
+    while (currentTime < endTime) {
+        // This check ensures a full slot can fit before the end time.
+        // For example, if end time is 17:00 and duration is 40 mins,
+        // the last valid slot to generate is 16:20 (ends at 17:00).
+        // The 16:40 slot will not be generated as it would end at 17:20.
+        const slotEndTime = new Date(currentTime.getTime() + interval * 60000);
+        if (slotEndTime <= endTime) {
+            slots.push(format(currentTime, 'HH:mm'));
+        }
+        currentTime.setMinutes(currentTime.getMinutes() + interval);
+    }
     return slots;
 };
 
-export default function TimePicker({ selectedDate, onTimeSelect, onBack, settings }) {
-    
-    // --- THIS IS THE FINAL, CORRECTED LOGIC ---
 
-    // 1. All Hooks are called UNCONDITIONALLY at the top of the component.
-    const timeSlots = useMemo(() => {
-        // We move the check for missing/incomplete data INSIDE the hook.
-        // If data isn't ready, we generate an empty array, which is a valid result.
-        if (!selectedDate || !settings?.slotStartTime) {
-            return [];
+export default function TimePicker({ selectedDate, onTimeSelect, onBack, settings }) {
+        console.log('--- DEBUGGING TIME PICKER PROPS ---', { settings, selectedDate });
+
+    const [bookedSlots, setBookedSlots] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // ... this useEffect is correct and remains unchanged ...
+        if (selectedDate) {
+            setIsLoading(true);
+            getBookedSlotsForDate(selectedDate)
+                .then(slots => setBookedSlots(slots))
+                .catch(err => console.error("Failed to fetch booked slots:", err))
+                .finally(() => setIsLoading(false));
         }
+    }, [selectedDate]);
+
+    // --- CHANGE 2: A more explicit and clear useMemo hook ---
+    const timeSlots = useMemo(() => {
+        if (!selectedDate || !settings) return [];
 
         const dateString = format(selectedDate, 'yyyy-MM-dd');
-        const dayStatus = settings.dayAvailability?.find(d => d.date === dateString)?.status || 'full_day';
+        const daySetting = settings.dayAvailability?.find(d => d.date === dateString);
 
-        return generateTimeSlots(
-            settings.slotStartTime,
-            settings.slotEndTime,
-            settings.slotDuration,
-            dayStatus
-        );
+        // 1. Establish the default working hours first
+        let startTime = settings.slotStartTime;
+        let endTime = settings.slotEndTime;
+        let dayStatus = 'full_day';
+
+        // 2. Check for a specific setting for the selected day and override defaults
+        if (daySetting) {
+            dayStatus = daySetting.status || 'full_day';
+
+            if (dayStatus === 'unavailable') {
+                return []; // If unavailable, stop here and return no slots.
+            }
+
+            // This is the key part: if status is custom and times are provided, USE THEM.
+            if (dayStatus === 'custom' && daySetting.fromTime && daySetting.toTime) {
+                startTime = daySetting.fromTime;
+                endTime = daySetting.toTime;
+            }
+        }
+
+        // 3. Final check for valid data before generating slots
+        if (!startTime || !endTime || !settings.slotDuration) {
+            console.error("Cannot generate slots: Missing start time, end time, or duration.");
+            return [];
+        }
         
-    // The dependency array now correctly lists all external variables used inside.
+        // Pass the definitively chosen times to the generator function
+        return generateTimeSlots(startTime, endTime, settings.slotDuration);
+
     }, [selectedDate, settings]);
 
-
-    // 2. The early return now happens AFTER all hooks have been called.
-    // This is the single source of truth for the loading state.
+    // Early return for initial loading state
     if (!selectedDate || !settings) {
-        return (
-            <div className="booking-container">
-                <button onClick={onBack} className="booking-back-button">&larr; Back to Date</button>
-                <div className="booking-header">
-                    <h2>Loading Times...</h2>
-                    <p>Please wait.</p>
-                </div>
-            </div>
-        );
+        // ... this part is unchanged
     }
     
-    // --- END CORRECTION ---
+    // --- CHANGE 2: Define current time and date check here for efficiency ---
+    const now = new Date();
+    const isSelectedDateToday = selectedDate ? isToday(selectedDate) : false;
 
     return (
         <div className="booking-container">
@@ -88,17 +112,47 @@ export default function TimePicker({ selectedDate, onTimeSelect, onBack, setting
                  <p>{selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
             </div>
 
-            {timeSlots.length > 0 ? (
+            {isLoading ? (
+                <div className="text-center" style={{ padding: '30px 0'}}>
+                    <p>Checking available slots...</p>
+                </div>
+            ) : timeSlots.length > 0 ? (
                 <div className="time-picker-grid">
-                    {timeSlots.map(time => (
-                        <button key={time} onClick={() => onTimeSelect(time)} className="time-slot-btn">
-                            {time}
-                        </button>
-                    ))}
+                    {timeSlots.map(time => {
+                        const isBooked = bookedSlots.includes(time);
+
+                        // --- CHANGE 3: The new logic to disable past time slots ---
+                        let isPast = false;
+                        if (isSelectedDateToday) {
+                            const [hour, minute] = time.split(':').map(Number);
+                            const slotDateTime = new Date(selectedDate);
+                            slotDateTime.setHours(hour, minute, 0, 0); // Set slot time on the selected date
+
+                            // Check if the slot's time is before the current time
+                            if (slotDateTime < now) {
+                                isPast = true;
+                            }
+                        }
+
+                        const isDisabled = isBooked || isPast;
+
+                        return (
+                            <button 
+                                key={time} 
+                                onClick={() => onTimeSelect(time)} 
+                                className="time-slot-btn"
+                                disabled={isDisabled}
+                                // Update style logic to account for any disabled reason
+                                style={isDisabled ? { backgroundColor: '#f0f0f0', color: '#ccc', cursor: 'not-allowed', textDecoration: 'line-through' } : {}}
+                            >
+                                {time}
+                            </button>
+                        );
+                    })}
                 </div>
             ) : (
                 <div className="text-center" style={{ padding: '30px 0'}}>
-                    <p>Sorry, no available time slots were found for this day. Please select another date.</p>
+                    <p>Sorry, no available time slots were found for this day.</p>
                 </div>
             )}
         </div>

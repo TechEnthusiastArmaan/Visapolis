@@ -3,7 +3,7 @@ import { useCurrentYear } from '../../hooks/useCurrentYear';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faInstagram, faLinkedinIn,faTiktok } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faInstagram, faLinkedinIn,faTiktok,faYoutube  } from '@fortawesome/free-brands-svg-icons';
 import { faPhoneAlt, faClock, faEnvelope, faAngleDown, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function FooterClient({ settings }) {
@@ -11,7 +11,11 @@ export default function FooterClient({ settings }) {
     
     // Safeguard: If settings aren't loaded, don't crash the page
     const displaySettings = settings || {};
-
+const handleDropdownClick = (e) => {
+        if (window.innerWidth <= 991) {
+            e.preventDefault();
+        }
+    };
     return (
         <footer className="footer-style-two bg-dark overflow-hidden text-light" style={{ backgroundImage: `url(/assets/img/shape/globe.png)` }}>
             {/* <div className="container">
@@ -58,6 +62,8 @@ export default function FooterClient({ settings }) {
                                     {displaySettings.instagramUrl && <li><a href={displaySettings.instagramUrl}><FontAwesomeIcon icon={faInstagram} /></a></li>}
                                     <li><a href={displaySettings.tiktokUrl}><FontAwesomeIcon icon={faTiktok} /></a></li>
                                     {displaySettings.linkedinUrl && <li><a href={displaySettings.linkedinUrl}><FontAwesomeIcon icon={faLinkedinIn} /></a></li>}
+                                    <li><a href={displaySettings.youtubeUrl}><FontAwesomeIcon icon={faYoutube} /></a></li>
+
                                 </ul>
                             </div>
 
@@ -81,15 +87,21 @@ export default function FooterClient({ settings }) {
                                 <h4 className="widget-title">Our Services</h4>
                                 <ul>
                                     <li className="dropdown">
-                                        <span>Visit <FontAwesomeIcon icon={faAngleRight} /></span>
-                                        <ul className="dropdown-menu">
-                                            <li><Link href="/visa/visitor-visa">Visitor Visa</Link></li>
-                                            <li><Link href="/visa/super-visa">Super Visa</Link></li>
-                                        </ul>
-                                    </li>
-                                    <li><Link href="/study-permit">Study Permit</Link></li>
-                                    <li className="dropdown">
-                            <span>Work Permit <FontAwesomeIcon icon={faAngleRight} /></span>
+                             <a className="dropdown-toggle-link">
+                                Visit <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li><Link href="/visa/visitor-visa">Visitor Visa</Link></li>
+                                <li><Link href="/visa/super-visa">Super Visa</Link></li>
+                            </ul>
+                        </li>
+                        
+                        <li><Link href="/study-permit">Study Permit</Link></li>
+
+                        <li className="dropdown">
+                            <a className="dropdown-toggle-link">
+                                Work Permit <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
+                             </a>
                                         <ul className="dropdown-menu">
                                             <li><Link href="/work-permit/post-graduate-work-permit">Post Graduate Work Permit</Link></li>
                                             <li><Link href="/work-permit/lmia">LMIA</Link></li>
@@ -99,7 +111,9 @@ export default function FooterClient({ settings }) {
                                         </ul>
                                     </li>
                                     <li className="dropdown">
-                            <span>Permanent Residence <FontAwesomeIcon icon={faAngleRight} /></span>
+                             <a className="dropdown-toggle-link">
+                                Permanent Residence <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
+                            </a>
                                         <ul className="dropdown-menu" style={{ marginTop: '-10px' }}>
                                             <li><Link href="/permanent-residence/express-entry">Express Entry</Link></li>
                                             <li><Link href="/permanent-residence/canadian-experience-class">Canadian Experience Class</Link></li>
@@ -110,7 +124,9 @@ export default function FooterClient({ settings }) {
                                         </ul>
                                     </li>
                                     <li className="dropdown">
-                            <span>Business <FontAwesomeIcon icon={faAngleRight} /></span>
+                            <a className="dropdown-toggle-link">
+                                Business <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
+                            </a>
                                         <ul className="dropdown-menu">
                                             <li><Link href="/business/business-visitor-visa">Business Visitor Visa</Link></li>
                                             <li><Link href="/business/startup-visa">Start-up Visa</Link></li>

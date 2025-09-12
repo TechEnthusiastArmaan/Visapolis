@@ -66,6 +66,13 @@ export default function AdminSidebar({ user }) {
             <i className="mdi mdi-email-alert menu-icon"></i>
           </Link>
         </li>
+        <li className={`nav-item ${isActive('/admin/schedule') ? 'active' : ''}`}>
+          <Link className="nav-link" href="/admin/schedule">
+            <span className="menu-title">Schedule</span>
+            <i className="mdi mdi-calendar-clock menu-icon"></i>
+          </Link>
+        </li>
+        
          <li className={`nav-item ${isActive('/admin/settings') ? 'active' : ''}`}>
           <Link className="nav-link" href="/admin/settings">
             <span className="menu-title">Site Settings</span>

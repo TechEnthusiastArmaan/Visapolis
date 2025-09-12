@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'; // Import the correct icon
-import { faFacebookF, faInstagram, faLinkedinIn, faTiktok } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faInstagram, faLinkedinIn, faTiktok,faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faPhoneAlt, faClock, faEnvelope, faMapMarkerAlt, faEnvelopeOpenText, faBars } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -15,6 +15,8 @@ const defaultSettings = {
     address: 'Default Address, City',
     email: 'info@default.com',
     phoneNumber: '+1 000 000 0000',
+        youtubeUrl: '#', 
+
     // ... add other defaults
 };
 
@@ -80,6 +82,7 @@ const closeMenu = () => {
                     <li><a href={displaySettings.instagramUrl} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} /></a></li>
                     <li><a href={displaySettings.tiktokUrl} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTiktok} /></a></li>
                     <li><a href={displaySettings.linkedinUrl} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedinIn} /></a></li>
+                    <li><a href={displaySettings.youtubeUrl} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faYoutube} /></a></li>
                   </ul>
                 </div>
               </div>

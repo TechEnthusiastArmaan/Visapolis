@@ -1,7 +1,10 @@
+// src/app/(public)/appointment/actions.js
+
 "use server";
 import dbConnect from '@/lib/dbconnect';   // <-- BEST PRACTICE
 import Booking from '@/models/Booking';     // <-- BEST PRACTICE
 import nodemailer from 'nodemailer';
+import { startOfDay } from 'date-fns';
 // Helper to format array data for email
 const formatArrayForEmail = (arr) => arr && arr.length > 0 ? `<ul>${arr.map(item => `<li>${item}</li>`).join('')}</ul>` : 'Not specified';
 const formatStringForEmail = (str) => str ? str : 'Not specified';
@@ -9,8 +12,12 @@ const formatStringForEmail = (str) => str ? str : 'Not specified';
 export async function bookAppointment(bookingData) {
     try {
         await dbConnect();
+        const appointmentDate = startOfDay(new Date(bookingData.date));
 
-        const existingBooking = await Booking.findOne({ date: bookingData.date, time: bookingData.time });
+        const existingBooking = await Booking.findOne({ 
+            date: appointmentDate, // Query with the corrected date object
+            time: bookingData.time 
+        });
         if (existingBooking) {
             return { success: false, error: 'This time slot is no longer available. Please select another time.' };
         }
@@ -82,5 +89,35 @@ export async function bookAppointment(bookingData) {
             return { success: false, error: 'This time slot was just booked. Please select another time.' };
         }
         return { success: false, error: 'A server error occurred. Please try again later.' };
+    }
+}
+export async function getBookedSlotsForDate(date) {
+    if (!date) {
+        return [];
+    }
+
+    try {
+        await dbConnect();
+        
+        // Ensure we are querying for the entire day, from start to end
+        const selectedDate = new Date(date);
+        const startOfSelectedDay = startOfDay(selectedDate);
+        const endOfSelectedDay = new Date(selectedDate);
+        endOfSelectedDay.setHours(23, 59, 59, 999);
+        
+        // Find all bookings that fall on that specific day
+        const bookingsOnDay = await Booking.find({
+            date: {
+                $gte: startOfSelectedDay,
+                $lte: endOfSelectedDay
+            }
+        }).select('time').lean(); // Only select the 'time' field for efficiency
+
+        // Return just an array of the time strings, e.g., ["09:30", "11:00"]
+        return bookingsOnDay.map(booking => booking.time);
+        
+    } catch (error) {
+        console.error("Error fetching booked slots:", error);
+        return []; // Return empty on error to prevent crashes
     }
 }

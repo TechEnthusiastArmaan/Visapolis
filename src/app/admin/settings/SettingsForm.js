@@ -40,6 +40,7 @@ export default function SettingsForm({ initialData }) {
             <FormField label="LinkedIn URL" name="linkedinUrl" placeholder="https://linkedin.com/in/your-profile" defaultValue={initialData?.linkedinUrl} />
             <FormField label="Instagram URL" name="instagramUrl" placeholder="https://instagram.com/..." defaultValue={initialData?.instagramUrl} />
             <FormField label="TikTok URL" name="tiktokUrl" placeholder="https://tiktok.com/..." defaultValue={initialData?.tiktokUrl} />
+            <FormField label="YouTube URL" name="youtubeUrl" placeholder="https://youtube.com/your-channel" defaultValue={initialData?.youtubeUrl} />
             <SubmitButton />
         </form>
     );

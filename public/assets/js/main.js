@@ -764,30 +764,39 @@
 	
 })(jQuery); // End jQuery
 
+
+
 /* ===== Footer Dropdown Accordion for Mobile ===== */
 (function() {
-    const footerDropdowns = document.querySelectorAll('.footer-dropdown-nav .dropdown > a');
+    // --- FIX: Target the new '.dropdown-toggle-link' class ---
+    const footerDropdownToggles = document.querySelectorAll('.footer-dropdown-nav .dropdown-toggle-link');
 
-    footerDropdowns.forEach(dropdownToggle => {
-        dropdownToggle.addEventListener('click', function(event) {
-            // Check if the screen is mobile-sized
+    footerDropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(event) {
+            // Only run the accordion logic on mobile screens
             if (window.innerWidth <= 991) {
-                event.preventDefault(); // Prevent the link from navigating
+                event.preventDefault(); // Good practice to keep this
 
                 const parentLi = this.parentElement;
                 const dropdownMenu = this.nextElementSibling;
-                const toggleIcon = this.querySelector('.mobile-toggle');
+                const toggleIcon = this.querySelector('.dropdown-indicator');
+                
+                // Check if the menu we just clicked is already open
+                const isAlreadyOpen = dropdownMenu.style.display === 'block';
 
-                if (dropdownMenu) {
-                    // Simple slide toggle effect
-                    if (dropdownMenu.style.display === 'block') {
-                        dropdownMenu.style.display = 'none';
-                        toggleIcon.style.transform = 'rotate(0deg)';
-                        parentLi.classList.remove('active');
-                    } else {
-                        dropdownMenu.style.display = 'block';
+                // First, close all other open dropdowns
+                document.querySelectorAll('.footer-dropdown-nav .dropdown-menu').forEach(menu => {
+                    menu.style.display = 'none';
+                });
+                document.querySelectorAll('.footer-dropdown-nav .dropdown-indicator').forEach(icon => {
+                    icon.style.transform = 'rotate(0deg)';
+                });
+
+                // If the clicked menu was NOT already open, open it.
+                if (dropdownMenu && !isAlreadyOpen) {
+                    dropdownMenu.style.display = 'block';
+                    if (toggleIcon) {
                         toggleIcon.style.transform = 'rotate(90deg)';
-                        parentLi.classList.add('active');
                     }
                 }
             }

@@ -18,7 +18,7 @@ const BannerSection = () => {
                                         <div className="content">
                                             {/* <h4>Solutions for all type of visa</h4> */}
                                             {/* <h2>Immigration & visa consutants</h2> */}
-                                            <h2>Welcome to Visapolis Immigration,</h2> 
+                                            <h2>Welcome to Visapolis Immigration</h2> 
                                             <p>a firm that provides comprehensive immigration services.</p>
                                             <div className="button"><Link href="/about" className="btn-style-one circle">Discover More <span></span></Link></div>
                                         </div>
