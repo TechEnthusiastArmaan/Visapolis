@@ -11,7 +11,17 @@ export async function updateScheduleSettings(prevState, formData) {
         const date = formData.get(`day_date_${i}`);
         const status = formData.get(`day_status_${i}`);
         if (date && status) {
-            dayAvailability.push({ date, status });
+            // Create a base object with the required fields
+            const dayData = { date, status };
+
+            // If the status for this day is 'custom', ALSO get the from and to times
+            if (status === 'custom') {
+                dayData.fromTime = formData.get(`day_from_time_${i}`);
+                dayData.toTime = formData.get(`day_to_time_${i}`);
+            }
+            
+            // Push the complete object to the array
+            dayAvailability.push(dayData);
         }
     }
     

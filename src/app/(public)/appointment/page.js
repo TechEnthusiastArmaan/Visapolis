@@ -233,7 +233,9 @@ const UnavailableNotice = () => (
 export default async function AppointmentPage() {
     const settings = await getSiteSettings();
     const isAvailable = settings?.isAvailableForAppointments ?? true;
-
+ console.log("--- SETTINGS FETCHED ON SERVER ---");
+    console.log(JSON.stringify(settings, null, 2));
+    console.log("---------------------------------");
     if (!isAvailable) {
         return (
             <>
