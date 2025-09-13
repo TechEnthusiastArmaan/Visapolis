@@ -809,50 +809,43 @@ nav.navbar.validnavs .navbar-collapse .dropdown-menu li a:hover {
 }
 
 /* Rotate the arrow when the menu is hovered/active */
-.footer-dropdown-nav li.dropdown:hover .dropdown-indicator {
+.footer-dropdown-nav li.dropdown:hover .dropdown-indicator,
+.footer-dropdown-nav li.dropdown.active .dropdown-indicator {
     transform: rotate(180deg);
 }
 
-
 /* --- Mobile View: Keep the Accordion --- */
 @media (max-width: 991px) {
-    /* On mobile, reset the dropdown to behave like a stacked list */
+    /* 1. Reset the dropdown menu to be a simple stacked list */
     .footer-dropdown-nav li .dropdown-menu {
         position: static;
-        display: none; /* Hide for the JS toggle */
+        display: none; /* Critically, it must be hidden by default for the JS toggle */
+        width: 100%;
         box-shadow: none;
         border: none;
         background-color: transparent;
-        padding-left: 20px;
-        min-width: 100%;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        transition: none;
-            cursor: pointer; /* Makes it look clickable */
-
+        padding-left: 20px; /* Indent the submenu items */
+        margin-top: 5px;
+        transition: none; /* No transitions needed for a simple toggle */
     }
 
-    .footer-dropdown-nav li > a {
-        display: flex;
-            cursor: pointer; /* Makes it look clickable */
-
-        justify-content: space-between;
-        align-items: center;
-    }
-    .footer-dropdown-nav .dropdown-toggle-link {
-    cursor: pointer; /* Makes it look clickable */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0; /* Add some padding like a normal link */
-    transition: color 0.3s;
-}
-
-/* Add a hover effect for desktop */
-@media (min-width: 992px) {
-    .footer-dropdown-nav .dropdown-toggle-link:hover {
-        color: var(--color-primary);
+    /* 2. Style the arrow for mobile */
+    .footer-dropdown-nav .dropdown-indicator {
+        display: inline-block;
+        font-size: 14px;
+        transition: transform 0.3s ease;
     }
 }
+
+/* Universal styles for links inside the dropdown */
+.footer-dropdown-nav .dropdown-menu li a {
+    color: #fff !important; /* White text on the dark background */
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+.footer-dropdown-nav .dropdown-menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+.footer-dropdown-nav li.dropdown.active > .dropdown-menu {
+    display: block !important;
 }

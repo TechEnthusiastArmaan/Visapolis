@@ -1,4 +1,6 @@
 "use client";
+import { useState } from 'react'; 
+
 import { useCurrentYear } from '../../hooks/useCurrentYear';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,12 +10,20 @@ import { faPhoneAlt, faClock, faEnvelope, faAngleDown, faAngleRight } from '@for
 
 export default function FooterClient({ settings }) {
     const currentYear = useCurrentYear();
-    
+        const [openDropdown, setOpenDropdown] = useState(null);
+
     // Safeguard: If settings aren't loaded, don't crash the page
     const displaySettings = settings || {};
-const handleDropdownClick = (e) => {
+// const handleDropdownClick = (e) => {
+//         if (window.innerWidth <= 991) {
+//             e.preventDefault();
+//         }
+//     };
+    const handleDropdownToggle = (dropdownName) => {
+        // This logic only runs on mobile/tablet screen sizes
         if (window.innerWidth <= 991) {
-            e.preventDefault();
+            // If the clicked dropdown is already open, close it. Otherwise, open it.
+            setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
         }
     };
     return (
@@ -86,22 +96,22 @@ const handleDropdownClick = (e) => {
                              <div className="f-item link footer-dropdown-nav">
                                 <h4 className="widget-title">Our Services</h4>
                                 <ul>
-                                    <li className="dropdown">
-                             <a className="dropdown-toggle-link">
-                                Visit <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
-                            </a>
-                            <ul className="dropdown-menu">
-                                <li><Link href="/visa/visitor-visa">Visitor Visa</Link></li>
-                                <li><Link href="/visa/super-visa">Super Visa</Link></li>
-                            </ul>
-                        </li>
+                                 <li className={`dropdown ${openDropdown === 'visit' ? 'active' : ''}`}>
+                                        <a className="dropdown-toggle-link" onClick={() => handleDropdownToggle('visit')}>
+                                            Visit <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
+                                        </a>
+                                        <ul className="dropdown-menu">
+                                            <li><Link href="/visa/visitor-visa">Visitor Visa</Link></li>
+                                            <li><Link href="/visa/super-visa">Super Visa</Link></li>
+                                        </ul>
+                                    </li>
                         
-                        <li><Link href="/study-permit">Study Permit</Link></li>
+                                    <li><Link href="/study-permit">Study Permit</Link></li>
 
-                        <li className="dropdown">
-                            <a className="dropdown-toggle-link">
-                                Work Permit <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
-                             </a>
+                                    <li className={`dropdown ${openDropdown === 'work' ? 'active' : ''}`}>
+                                        <a className="dropdown-toggle-link" onClick={() => handleDropdownToggle('work')}>
+                                            Work Permit <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
+                                        </a>
                                         <ul className="dropdown-menu">
                                             <li><Link href="/work-permit/post-graduate-work-permit">Post Graduate Work Permit</Link></li>
                                             <li><Link href="/work-permit/lmia">LMIA</Link></li>
@@ -110,10 +120,10 @@ const handleDropdownClick = (e) => {
                                             <li><Link href="/work-permit/spousal-open-work-permit">Spousal Open Work Permit</Link></li>
                                         </ul>
                                     </li>
-                                    <li className="dropdown">
-                             <a className="dropdown-toggle-link">
-                                Permanent Residence <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
-                            </a>
+                                    <li className={`dropdown ${openDropdown === 'residence' ? 'active' : ''}`}>
+                                        <a className="dropdown-toggle-link" onClick={() => handleDropdownToggle('residence')}>
+                                            Permanent Residence <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
+                                        </a>
                                         <ul className="dropdown-menu" style={{ marginTop: '-10px' }}>
                                             <li><Link href="/permanent-residence/express-entry">Express Entry</Link></li>
                                             <li><Link href="/permanent-residence/canadian-experience-class">Canadian Experience Class</Link></li>
@@ -123,10 +133,10 @@ const handleDropdownClick = (e) => {
                                             <li><Link href="/permanent-residence/provincial-immigration">Provincial Immigration</Link></li>
                                         </ul>
                                     </li>
-                                    <li className="dropdown">
-                            <a className="dropdown-toggle-link">
-                                Business <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
-                            </a>
+                                    <li className={`dropdown ${openDropdown === 'business' ? 'active' : ''}`}>
+                                        <a className="dropdown-toggle-link" onClick={() => handleDropdownToggle('business')}>
+                                            Business <FontAwesomeIcon icon={faAngleDown} className="dropdown-indicator" />
+                                        </a>
                                         <ul className="dropdown-menu">
                                             <li><Link href="/business/business-visitor-visa">Business Visitor Visa</Link></li>
                                             <li><Link href="/business/startup-visa">Start-up Visa</Link></li>
