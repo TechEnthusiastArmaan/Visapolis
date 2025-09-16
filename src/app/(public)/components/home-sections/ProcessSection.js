@@ -24,19 +24,7 @@ const ProcessSection = () => {
                     <div className="process-style-one-items wow fadeInUp" data-wow-delay="100ms">
 
                         {/* Step 1: Complete Online Form */}
-                        <div className="process-style-one-item hover-active-item">
-                            <div className="icon">
-                                <Image src="/assets/img/icon/9.png" alt="Online Form Icon" width={80} height={80} />
-                            </div>
-                            <div className="info">
-                                <div className="shape">
-                                    <Image src="/assets/img/shape/41.png" alt="Decorative Shape" width={220} height={200} style={{ width: 'auto', height: 'auto' }}/>
-                                </div>
-                                <span>01</span>
-                                <h4>Complete the online form</h4>
-                                <p>Start by filling out our detailed online assessment form with your information.</p>
-                            </div>
-                        </div>
+                        
                         {/* End Step 1 */}
 
                         {/* Step 2: Book Consultation */}
@@ -48,13 +36,25 @@ const ProcessSection = () => {
                                 <div className="shape">
                                     <Image src="/assets/img/shape/41.png" alt="Decorative Shape" width={220} height={200} style={{ width: 'auto', height: 'auto' }}/>
                                 </div>
-                                <span>02</span>
+                                <span>01</span>
                                 <h4>Book a consultation</h4>
                                 <p>Schedule and pay for a one-on-one consultation with our Regulated Canadian Immigration Consultant (RCIC).</p>
                             </div>
                         </div>
                         {/* End Step 2 */}
-
+<div className="process-style-one-item hover-active-item">
+                            <div className="icon">
+                                <Image src="/assets/img/icon/9.png" alt="Online Form Icon" width={80} height={80} />
+                            </div>
+                            <div className="info">
+                                <div className="shape">
+                                    <Image src="/assets/img/shape/41.png" alt="Decorative Shape" width={220} height={200} style={{ width: 'auto', height: 'auto' }}/>
+                                </div>
+                                <span>02</span>
+                                <h4>Complete the assessment form</h4>
+                                <p>Start by filling out our detailed online assessment form with your information.</p>
+                            </div>
+                        </div>
                         {/* --- NEW STEP 3: Sign Agreement --- */}
                         <div className="process-style-one-item hover-active-item">
                             <div className="icon">
