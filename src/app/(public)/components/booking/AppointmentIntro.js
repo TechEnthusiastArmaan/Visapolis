@@ -24,7 +24,7 @@ export default function AppointmentIntro() {
         }}
     >
         <p style={{ margin: 0, fontWeight: '700', color: 'var(--color-heading)' }}>
-            Professional Fee: <span style={{ color: 'var(--color-primary)' }}>$50</span> for 30 minute consultation
+            Professional Fee: <span style={{ color: 'var(--color-primary)' }}>$50</span> plus tax for 30 minute consultation
         </p>
     </div>
     {/* --- END OF NEW SECTION --- */}

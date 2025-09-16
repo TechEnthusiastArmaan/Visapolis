@@ -61,23 +61,7 @@ export async function bookAppointment(bookingData) {
                 <p><strong>Name:</strong> ${bookingData.name}</p>
                 <p><strong>Email:</strong> ${bookingData.email}</p>
                 <p><strong>Phone:</strong> ${bookingData.phone}</p>
-                <p><strong>Age:</strong> ${bookingData.age}</p>
-                <p><strong>Citizenship:</strong> ${bookingData.citizenship}</p>
-                <hr>
-                <h2>Assessment Details</h2>
-                <p><strong>Currently in Canada:</strong> ${formatStringForEmail(bookingData.inCanada)}</p>
-                <p><strong>Current Status in Canada:</strong></p> ${formatArrayForEmail(bookingData.canadaStatus)}
-                <p><strong>Highest Level of Education:</strong></p> ${formatArrayForEmail(bookingData.education)}
-                <p><strong>Relatives in Canada:</strong> ${formatStringForEmail(bookingData.relativesInCanada)}</p>
-                <p><strong>Studied in Canada Before:</strong> ${formatStringForEmail(bookingData.studiedInCanada)}</p>
-                <p><strong>English Proficiency:</strong></p> ${formatArrayForEmail(bookingData.englishProficiency)}
-                <p><strong>French Proficiency:</strong></p> ${formatArrayForEmail(bookingData.frenchProficiency)}
-                <p><strong>Work Experience (Outside Canada):</strong> ${formatStringForEmail(bookingData.workExperienceOutside)}</p>
-                <p><strong>Work Experience (Inside Canada):</strong> ${formatStringForEmail(bookingData.workExperienceInside)}</p>
-                <p><strong>Valid Job Offer:</strong> ${formatStringForEmail(bookingData.jobOffer)}</p>
-                <p><strong>Applied for Refugee Status Before:</strong> ${formatStringForEmail(bookingData.refugeeStatus)}</p>
-                <p><strong>Complications (refusals, criminal records):</strong> ${formatStringForEmail(bookingData.complications)}</p>
-            `,
+                `,
         });
 
         return { success: true, data: JSON.parse(JSON.stringify(booking)) };
