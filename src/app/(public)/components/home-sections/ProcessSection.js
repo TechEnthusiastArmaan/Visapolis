@@ -52,7 +52,7 @@ const ProcessSection = () => {
                                 </div>
                                 <span>02</span>
                                 <h4>Complete the assessment form</h4>
-                                <p>Start by filling out our detailed online assessment form with your information.</p>
+                                <p>Start by filling out our detailed assessment form with your information.</p>
                             </div>
                         </div>
                         {/* --- NEW STEP 3: Sign Agreement --- */}
