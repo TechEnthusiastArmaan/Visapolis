@@ -27,31 +27,20 @@ const getNextSevenDays = () => {
 // --- NEW SUB-COMPONENT FOR EACH DAY ---
 // This component manages its own state for showing/hiding the custom time fields.
 const DayAvailabilityInput = ({ day, index, initialStatus, initialFromTime, initialToTime }) => {
-    // State for all three properties, making the component fully controlled.
+    // 1. State for all three properties makes the component fully controlled.
     const [status, setStatus] = useState(initialStatus);
     const [fromTime, setFromTime] = useState(initialFromTime || '09:00');
     const [toTime, setToTime] = useState(initialToTime || '17:00');
 
-    // NEW: This effect syncs the component's state with new props from the parent.
-    // This is crucial for reflecting saved changes after a re-render.
+    // 2. A useEffect to sync state if props change (important for after-save updates)
     useEffect(() => {
         setStatus(initialStatus);
         setFromTime(initialFromTime || '09:00');
         setToTime(initialToTime || '17:00');
     }, [initialStatus, initialFromTime, initialToTime]);
 
-
-    const handleStatusChange = (newStatus) => {
-        setStatus(newStatus);
-    };
-    
     const getDisplayText = () => {
-        switch(status) {
-            case 'full_day': return 'Full Day';
-            case 'custom': return 'Custom Hours';
-            case 'unavailable': return 'Unavailable';
-            default: return 'Full Day';
-        }
+        // ... (This function is correct, no changes)
     };
 
     return (
@@ -59,43 +48,33 @@ const DayAvailabilityInput = ({ day, index, initialStatus, initialFromTime, init
             <label>{format(day, 'eeee, MMM d')}</label>
             <input type="hidden" name={`day_date_${index}`} value={format(day, 'yyyy-MM-dd')} />
             
-            <div className="dropdown">
-                <button 
-                    className="btn btn-light dropdown-toggle w-100 d-flex justify-content-between align-items-center" 
-                    type="button" 
-                    id={`dropdown-${index}`}
-                    data-bs-toggle="dropdown" 
-                    aria-expanded="false"
-                >
-                    {getDisplayText()}
-                </button>
-                <ul className="dropdown-menu">
-                    <li><button className="dropdown-item" type="button" onClick={() => handleStatusChange('full_day')}>Full Day</button></li>
-                    <li><button className="dropdown-item" type="button" onClick={() => handleStatusChange('custom')}>Custom Hours</button></li>
-                    <li><button className="dropdown-item" type="button" onClick={() => handleStatusChange('unavailable')}>Unavailable</button></li>                
-                </ul>
-                <input type="hidden" name={`day_status_${index}`} value={status} />
-            </div>
-
+            <select 
+                className="form-control" 
+                name={`day_status_${index}`}
+                value={status} // Use value to be a controlled component
+                onChange={(e) => setStatus(e.target.value)}
+            >
+                <option value="full_day">Full Day</option>
+                <option value="custom">Custom Hours</option>
+                <option value="unavailable">Unavailable</option>
+            </select>
+            
             {status === 'custom' && (
                 <div className="d-flex mt-2 align-items-center" style={{ gap: '10px' }}>
                     <input 
                         type="time" 
                         name={`day_from_time_${index}`} 
-                        className="form-control" 
-                        // CHANGED: Use `value` instead of `defaultValue`
+                        className="form-control"
+                        // 3. Use `value` and `onChange` for the time inputs
                         value={fromTime}
-                        // CHANGED: Add `onChange` to update state
                         onChange={(e) => setFromTime(e.target.value)}
                     />
                     <span>to</span>
                     <input 
                         type="time" 
                         name={`day_to_time_${index}`} 
-                        className="form-control" 
-                        // CHANGED: Use `value` instead of `defaultValue`
+                        className="form-control"
                         value={toTime}
-                        // CHANGED: Add `onChange` to update state
                         onChange={(e) => setToTime(e.target.value)}
                     />
                 </div>
@@ -109,7 +88,6 @@ export default function ScheduleManager({ initialData }) {
     const [state, formAction] = useActionState(updateScheduleSettings, { message: null });
     const nextSevenDays = getNextSevenDays();
 
-    // Helper to find the full settings object for a given date
     const getDaySettings = (date) => {
         const dateString = format(date, 'yyyy-MM-dd');
         return initialData?.dayAvailability?.find(d => d.date === dateString) || {};
@@ -120,6 +98,7 @@ export default function ScheduleManager({ initialData }) {
             window.swal("Status", state.message, state.message.includes('success') ? "success" : "error");
         }
     }, [state]);
+
 
     return (
         <form className="forms-sample mt-4" action={formAction}>

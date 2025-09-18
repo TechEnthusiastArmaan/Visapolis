@@ -21,6 +21,7 @@
     "@vercel/analytics": "^1.5.0",
     "admin-lte": "^4.0.0-rc4",
     "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
     "bootstrap": "^5.3.7",
     "cookie": "^1.0.2",
     "date-fns": "^4.1.0",

@@ -1,60 +1,64 @@
 // scripts/seedAdmin.js
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt'; // Using bcrypt now
-import dotenv from 'dotenv';
-import path from 'path';
-
-dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
-
+import bcrypt from 'bcryptjs';
 import dbConnect from '../src/lib/dbconnect.js';
 import Admin from '../src/models/Admin.js';
-import { getMaxListeners } from 'events';
+
+
+// // --- This robust path is the key fix ---
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+// dotenv.config({ path: path.resolve(__dirname, '..', '.env.local') });
+// // ------------------------------------
+
 
 const seedAdmin = async () => {
-    if (!process.env.MONGODB_URI) { /* ... */ }
+    if (!process.env.MONGODB_URI) {
+        console.error('\x1b[31m%s\x1b[0m', 'ERROR: MONGODB_URI not found. Please ensure .env.local is in the project root and is configured correctly.');
+        process.exit(1);
+    }
     
+    // We can use the Next.js dbConnect here, as it's an ES Module
     try {
         await dbConnect();
-    console.log('Database connected successfully.');
-
-    // --- CONFIGURE YOUR FIRST ADMIN USER HERE ---
-    const adminEmail = "abc@gmail.com";
-    const adminPassword = "abc";
-    const adminName = "Administrator";
-
-    // 1. Check if the admin user already exists
-    const existingAdmin = await Admin.findOne({ email: adminEmail });
-
-    if (existingAdmin) {
-      console.log('Admin user already exists. No action taken.');
-      return;
+        console.log('\x1b[32m%s\x1b[0m', 'Database connected successfully.');
+    } catch(dbError) {
+        console.error('\x1b[31m%s\x1b[0m', 'Database connection failed:', dbError);
+        process.exit(1);
     }
 
-    // 2. If no admin exists, create one
-    console.log('No admin user found. Creating a new one...');
-    
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(adminPassword, salt);
-    console.log('Password hashed successfully.');
+    try {
+        const adminEmail = "abc@gmail.com";
+        const adminPassword = "abc";
+        const adminName = "Administrator";
 
-    const admin = new Admin({
-      name: adminName,
-      email: adminEmail,
-      password: hashedPassword, // Save the HASHED password
-      role: 'admin',
-    });
+        const existingAdmin = await Admin.findOne({ email: adminEmail });
+        if (existingAdmin) {
+            console.log('\x1b[33m%s\x1b[0m', `Admin user "${adminEmail}" already exists. No action taken.`);
+            return;
+        }
 
-    await admin.save();
-    console.log('Admin user with hashed password created!');
-    console.log(`Email: ${adminEmail}`);
-    console.log(`Password: ${adminPassword}`);
+        console.log(`Creating new admin user "${adminEmail}"...`);
+        const hashedPassword = await bcrypt.hash(adminPassword, 12);
 
-  } catch (error) {
-    console.error('Error seeding admin user:', error);
-  } finally {
-    await mongoose.connection.close();
-    console.log('Database connection closed.');
-  }
+        const admin = new Admin({
+          name: adminName,
+          email: adminEmail,
+          password: hashedPassword,
+          role: 'admin',
+        });
+        await admin.save();
+        
+        console.log('\x1b[32m%s\x1b[0m', '✅ Admin user created successfully!');
+        console.log(`   Email: ${adminEmail}`);
+        console.log(`   Password: ${adminPassword}`);
+
+    } catch (error) {
+        console.error('\x1b[31m%s\x1b[0m', 'Error during admin user creation:', error);
+    } finally {
+        await mongoose.connection.close();
+        console.log('Database connection closed.');
+    }
 };
 
 seedAdmin();

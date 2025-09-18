@@ -12,6 +12,6 @@ const BlogSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Ensure we create an index on the slug for fast lookups
-BlogSchema.index({ slug: 1 });
+// BlogSchema.index({ slug: 1 });
 
 export default mongoose.models.Blog || mongoose.model('Blog', BlogSchema);
