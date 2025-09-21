@@ -71,6 +71,8 @@ export async function bookAppointment(bookingData) {
         return { success: true, data: JSON.parse(JSON.stringify(booking)) };
 
     } catch (error) {
+            console.error("CRITICAL BOOKING ERROR ON VERCEL:", error); 
+
         console.error('Booking Error:', error);
         // Handle potential unique constraint error more gracefully
         if (error.code === 11000) {
