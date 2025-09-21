@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
       <body>
         {children}
         <Analytics />
-
+<SpeedInsights/>
         {/* --- STEP 2: ADD THE SWEETALERT SCRIPT TAG HERE --- */}
         {/*
           By placing this script in the root layout, the 'swal' function becomes
