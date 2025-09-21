@@ -3,7 +3,7 @@
 import { Analytics } from "@vercel/analytics/react"; // Correct import path for Analytics
 import Script from 'next/script'; // <-- STEP 1: Import the Script component
 import "./globals.css";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 export const metadata = {
   title: "Visapolis",
   description: "Website and Admin Panel",
