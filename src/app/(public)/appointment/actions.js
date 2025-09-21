@@ -15,12 +15,16 @@ export async function bookAppointment(bookingData) {
         const appointmentDate = startOfDay(new Date(bookingData.date));
 
         const existingBooking = await Booking.findOne({ 
-            date: appointmentDate, // Query with the corrected date object
+            date: appointmentDate,
             time: bookingData.time 
         });
         if (existingBooking) {
             return { success: false, error: 'This time slot is no longer available. Please select another time.' };
         }
+         const newBookingData = {
+            ...bookingData, // Spread all the string/number fields
+            date: appointmentDate, // Explicitly override the date string with the Date object
+        };
 
         const booking = new Booking(bookingData);
         await booking.save();
@@ -37,7 +41,7 @@ export async function bookAppointment(bookingData) {
 
         // Email to Client
         await transporter.sendMail({
-            from: `"Your Company Name" <${process.env.EMAIL_USER}>`,
+            from: `"Visapolis Immigration" <${process.env.EMAIL_USER}>`,
             to: bookingData.email,
             subject: 'Appointment Confirmation',
             html: `
