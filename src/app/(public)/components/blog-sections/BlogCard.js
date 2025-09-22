@@ -1,4 +1,5 @@
 // src/app/components/blog-sections/BlogCard.js
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -29,7 +30,7 @@ const BlogCard = ({ post, delay }) => {
                     </Link>
                     <div className="meta">
                         <ul>
-                            <li><i className="fas fa-clock"></i> {postDate}</li>
+                            <li><FontAwesomeIcon icon={faClock} /> {postDate}</li>
                             <li>
                                 {/* The author link can be made dynamic later if you have author pages. */}
                                 <Link href="#">{post.author || 'Admin'}</Link>
