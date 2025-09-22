@@ -18,6 +18,13 @@ const nextConfig = {
           port: '',
           pathname: '/wp-content/uploads/**',
         },
+        {
+          protocol: 'https',
+          hostname: 'res.cloudinary.com',
+          // port and pathname are optional but good to keep
+          port: '',
+          pathname: '/**', // This allows any path from your Cloudinary account
+        },
         // You can add more patterns here for other image sources
       ],
     },

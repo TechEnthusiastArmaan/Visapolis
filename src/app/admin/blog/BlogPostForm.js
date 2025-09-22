@@ -20,29 +20,29 @@ const Editor = dynamic(
 );
 
 // A sub-component for the submit button to show a pending state
-function SubmitButton({ label = 'Publish' }) {
+function SubmitButton({ label, isUploading }) { // <-- Pass isUploading prop
   const { pending } = useFormStatus();
+  // Disable button if an upload is in progress OR the form is submitting
+  const disabled = pending || isUploading;
+
   return (
-    <button type="submit" disabled={pending} className="btn btn-gradient-primary me-2">
-      {pending ? 'Saving…' : label}
+    <button type="submit" disabled={disabled} className="btn btn-gradient-primary me-2">
+      {isUploading ? 'Uploading Image...' : (pending ? 'Saving Post...' : label)}
     </button>
   );
 }
 
 // The main form component
-export default function BlogPostForm({
-  formAction,
-  initialData = {},
-  intent,
-}) {
-  // Use the correct `useActionState` hook
+export default function BlogPostForm({ formAction, initialData = {},intent, }) {
   const [state, action] = useActionState(formAction, { message: null });
-  
-  // Use `useState` for reliable control over the editor's content
   const [content, setContent] = useState(initialData?.content || '');
-  
-  // State for the image preview
   const [preview, setPreview] = useState(initialData?.imageUrl || '');
+
+  // --- NEW STATE FOR CLOUDINARY WORKFLOW ---
+  // This will hold the final Cloudinary URL to be saved in the database
+  const [imageUrl, setImageUrl] = useState(initialData?.imageUrl || '');
+  // This tracks the upload progress
+  const [isUploading, setIsUploading] = useState(false);
 
   // Ref to hold the editor instance for any advanced interactions
   const editorRef = useRef(null);
@@ -64,14 +64,38 @@ export default function BlogPostForm({
 
 
   // ... handleImageChange ...
-   const handleImageChange = (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setPreview(URL.createObjectURL(file));
-    } else {
-      // If the user cancels file selection, revert to the initial image (if any)
-      setPreview(initialData?.imageUrl || '');
-    }
+   const handleImageChange = async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+
+      setIsUploading(true);
+      setPreview(URL.createObjectURL(file)); // Show local preview instantly
+
+      const formData = new FormData();
+      formData.append('file', file);
+      // This MUST match the name of your unsigned upload preset in Cloudinary
+      formData.append('upload_preset', 'visapolis_uploads');
+
+      try {
+          const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, {
+              method: 'POST',
+              body: formData,
+          });
+          const data = await response.json();
+          if (data.secure_url) {
+              // On success, set the final URL for submission
+              setImageUrl(data.secure_url);
+          } else {
+              throw new Error('Cloudinary upload failed');
+          }
+      } catch (error) {
+          console.error("Image upload error:", error);
+          window.swal("Upload Failed", "Could not upload the image. Please try a different file.", "error");
+          setPreview(initialData?.imageUrl || ''); // Revert preview on failure
+          setImageUrl(initialData?.imageUrl || '');
+      } finally {
+          setIsUploading(false);
+      }
   };
   
 
@@ -105,6 +129,7 @@ export default function BlogPostForm({
       encType="multipart/form-data"
     >
       {/* Hidden input to pass the editor's content reliably */}
+      <input type="hidden" name="imageUrl" value={imageUrl} />
       <input type="hidden" name="content" value={content} />
 
       {/* --- Fields you wanted --- */}
@@ -123,29 +148,25 @@ export default function BlogPostForm({
       </div>
 
       {/* 2. Featured Image */}
-      <div className="form-group">
-        <label htmlFor="image">Featured Image</label>
-        <input
-          id="image"
-          name="image"
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange} // This now correctly points to the function above
-          className="form-control"
-        />
-        {preview && (
-          <div className="mt-3">
-            <p className="card-description">Image Preview:</p>
-            <Image
-              src={preview}
-              alt="Image Preview"
-              width={600}
-              height={338}
-              style={{ width: '100%', height: 'auto', maxWidth: 400, borderRadius: '5px' }}
+       <div className="form-group">
+            <label htmlFor="image">Featured Image</label>
+            <input
+                id="image"
+                name="image_file_input" // Renamed to avoid confusion, it's just a trigger now
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="form-control"
+                disabled={isUploading}
             />
-          </div>
-        )}
-      </div>
+            {isUploading && <p className="text-muted mt-2">Uploading, please wait...</p>}
+            {preview && (
+                <div className="mt-3">
+                    <p className="card-description">Image Preview:</p>
+                    <Image src={preview} alt="Preview" width={400} height={225} style={{ width: '100%', height: 'auto', maxWidth: 400, borderRadius: '5px' }} />
+                </div>
+            )}
+        </div>
 
       {/* 3. WYSIWYG Editor */}
       <div className="form-group">
@@ -191,12 +212,11 @@ export default function BlogPostForm({
       {intent ? <input type="hidden" name="intent" value={intent} /> : null}
 
       {/* Action Buttons */}
-      <div className="mt-4">
-          <SubmitButton label={initialData?._id ? 'Save Changes' : 'Publish Post'} />
-          <Link href="/admin/blog" className="btn btn-light">
-              Cancel
-          </Link>
-      </div>
+       <div className="mt-4">
+            {/* Pass isUploading state to the button */}
+            <SubmitButton label={initialData?._id ? 'Save Changes' : 'Publish Post'} isUploading={isUploading} />
+            <Link href="/admin/blog" className="btn btn-light">Cancel</Link>
+        </div>
     </form>
   );
 }

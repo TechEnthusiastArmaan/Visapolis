@@ -13,12 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/*
-          The commented-out links for AdminLTE are no longer needed
-          because your admin layout now handles its own specific stylesheets.
-          Keeping this area clean is good practice.
-        */}
-        <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
+          <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
 
       </head>
       <body>

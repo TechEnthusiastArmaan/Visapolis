@@ -2,7 +2,9 @@
 'use client'; // This is a client component
 
 import Image from 'next/image';
-import Link from 'next/link'; // Keep for any potential future links
+import Link from 'next/link'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default function BlogPostClient({ post }) {
     // A safeguard in case the post prop is missing
@@ -48,10 +50,10 @@ export default function BlogPostClient({ post }) {
                 <div className="meta">
                     <ul>
                         <li>
-                            <i className="fas fa-calendar-alt"></i> {formattedDate}
+                            <FontAwesomeIcon icon={faCalendar} /> {formattedDate}
                         </li>
                         <li>
-                            <i className="fas fa-user-circle"></i> By {post.author || 'Admin'}
+                            <FontAwesomeIcon icon={faUserCircle} /> By {post.author || 'Admin'}
                         </li>
                     </ul>
                 </div>

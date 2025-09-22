@@ -35,38 +35,25 @@ export async function createPost(prevState, formData) {
   if (!title) return { message: 'Title is required.' };
 
   await dbConnect();
-
-  const file = formData.get('image');
-  const imageUrl = await saveFileToPublicDir(file);
-
-  // WYSIWYG HTML + plain textarea
+  
+  // --- THIS IS THE KEY CHANGE ---
+  // We now read the URL from the hidden input field instead of the file.
+  const imageUrl = formData.get('imageUrl')?.toString() ?? '';
+  
   const content = formData.get('content')?.toString() ?? '';
-  // const rawContent = formData.get('rawContent')?.toString() ?? '';
-
-  // If page sent `intent=publish`, publish even if checkbox wasn’t ticked
-  const intent = formData.get('intent')?.toString();
-  const isPublished =
-    intent === 'publish' || formData.get('isPublished') === 'on';
+  const isPublished = formData.get('isPublished') === 'on';
 
   const doc = {
     title,
     slug: createSlug(title),
     content,
-    // rawContent,
-
-    imageUrl,
+    imageUrl, // Save the Cloudinary URL
     isPublished,
   };
 
   try {
     await Blog.create(doc);
   } catch (error) {
-    if (error?.code === 11000) {
-      return {
-        message:
-          'A post with a similar title already exists. Please choose a different title.',
-      };
-    }
     return { message: `Failed to create post: ${error.message}` };
   }
 
@@ -75,30 +62,24 @@ export async function createPost(prevState, formData) {
   redirect('/admin/blog');
 }
 
+
 // --- UPDATE ---
 export async function updatePost(postId, prevState, formData) {
   await dbConnect();
 
-  // Load existing post to compare slug & keep old image if needed
   const existing = await Blog.findById(postId);
   if (!existing) return { message: 'Post not found.' };
-  const oldSlug = existing.slug;
 
   const title = formData.get('title')?.toString().trim();
   if (!title) return { message: 'Title is required.' };
-
-  // Optional new image
-  const file = formData.get('image');
-  const newImageUrl = await saveFileToPublicDir(file);
-  const imageUrl = newImageUrl || existing.imageUrl || '';
-
+  
+  // --- KEY CHANGE ---
+  // The 'imageUrl' from the form will be the new Cloudinary URL if the user
+  // uploaded a new image, or the old one if they didn't.
+  const imageUrl = formData.get('imageUrl')?.toString() || existing.imageUrl;
+  
   const content = formData.get('content')?.toString() ?? '';
-  // const// rawContent = formData.get('rawContent')?.toString() ?? '';
-
-  const intent = formData.get('intent')?.toString();
-  const isPublished =
-    intent === 'publish' || formData.get('isPublished') === 'on';
-
+  const isPublished = formData.get('isPublished') === 'on';
   const newSlug = createSlug(title);
 
   try {
@@ -106,26 +87,13 @@ export async function updatePost(postId, prevState, formData) {
       title,
       slug: newSlug,
       content,
-      // rawContent,
-      imageUrl,
+      imageUrl, // Save the new or existing URL
       isPublished,
     });
   } catch (error) {
-    if (error?.code === 11000) {
-      return { message: 'A post with a similar title already exists.' };
-    }
     return { message: `Failed to update post: ${error.message}` };
   }
-
-  // Revalidate list and both old/new detail pages (if slug changed)
-  revalidatePath('/blog');
-  revalidatePath(`/blog/${oldSlug}`);
-  if (newSlug !== oldSlug) revalidatePath(`/blog/${newSlug}`);
-  revalidatePath('/admin/blog');
-
-  redirect('/admin/blog');
 }
-
 // --- DELETE ---
 export async function deletePost(postId) {
   try {
