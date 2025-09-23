@@ -65,7 +65,7 @@ export default function FooterClient({ settings }) {
                             <div className="f-item about">
 
                                 <h4 className="widget-title">About Us</h4>
-                                <p>Visapolis Immigration is a registered firm located in Edmonton, Alberta, Canda and provides comprehensive immigration services. It was founded by Ramandeep Singh, a CICC licensed Regulated Canadian immigration consultant (RCIC).</p>
+                                <p>Visapolis Immigration is a registered firm located in Edmonton, Alberta, Canada and provides comprehensive immigration services. It was founded by Ramandeep Singh, a CICC licensed Regulated Canadian immigration consultant (RCIC).</p>
                                 <ul className="footer-social-regular mt-30">
                                     {displaySettings.facebookUrl && <li><a href={displaySettings.facebookUrl}><FontAwesomeIcon icon={faFacebookF} /></a></li>}
                                     {displaySettings.twitterUrl && <li><a href={displaySettings.twitterUrl}><Image src="/assets/img/icon/twitter-x.png" alt="Twitter X Logo" width={16} height={16} /></a></li>}

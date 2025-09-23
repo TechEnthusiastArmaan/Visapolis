@@ -45,9 +45,18 @@ export async function bookAppointment(bookingData) {
             to: bookingData.email,
             subject: 'Appointment Confirmation',
             html: `
-                <p>Hi ${bookingData.name},</p>
-                <p>Thank you for booking with us. Your appointment for <strong>${formattedDate}</strong> at <strong>${bookingData.time}</strong> is confirmed.</p>
-                <p>We look forward to speaking with you.</p>
+                <div style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6;">
+                    <p>Hi ${bookingData.name},</p>
+                    <p>Thank you for booking with us. Your appointment for <strong>${formattedDate}</strong> at <strong>${bookingData.time}</strong> is confirmed.</p>
+                    <p>We look forward to speaking with you.</p>
+                    <br>
+                    <p>Regards,</p>
+                    <p style="margin: 0; font-weight: bold;">Ramandeep Singh, RCIC-IRB</p>
+                    <p style="margin: 0;">Visapolis Immigration Inc.</p>
+                    <p style="margin: 0;">Edmonton, Alberta</p>
+                    <p style="margin: 0;">Phone no: 1(780)566-9900</p>
+                    <p style="margin: 0;">Email: connectvisapolisimmigration@gmail.com</p>
+                </div>
             `,
         });
 
