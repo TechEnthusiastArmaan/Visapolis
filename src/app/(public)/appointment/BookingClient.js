@@ -18,7 +18,7 @@ export default function BookingClient({ settings }) {
     const [selectedTime, setSelectedTime] = useState('');
     const [submissionStatus, setSubmissionStatus] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
-
+const [submittedData, setSubmittedData] = useState(null);
     const handleDateSelect = (date) => {
         setSelectedDate(date);
         setStep(2);
@@ -29,7 +29,10 @@ export default function BookingClient({ settings }) {
         setStep(3);
     };
     
-    const handleSuccess = () => setSubmissionStatus('success');
+    const handleSuccess = (bookingData) => {
+        setSubmittedData(bookingData);
+        setSubmissionStatus('success');
+    };
     const handleError = (errorMsg) => {
         setSubmissionStatus('error');
         setErrorMessage(errorMsg);
@@ -44,6 +47,7 @@ export default function BookingClient({ settings }) {
     };
 
     const renderConfirmation = () => {
+        const name = submittedData?.name || 'Customer';
         // Create a full date object to format it correctly
         const [hour, minute] = selectedTime.split(':');
         const appointmentDateTime = new Date(selectedDate);
@@ -52,15 +56,27 @@ export default function BookingClient({ settings }) {
         // Format the date and time exactly as you want it displayed
         const formattedDateTime = format(appointmentDateTime, "h:mm a 'on' MMMM d, yyyy"); // e.g., "10:30 AM on September 25, 2025"
 
-        return (
+         return (
             <div className="booking-container submission-status-box">
                  <div className="icon success">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <h3>Booking Confirmed!</h3>
-                <p style={{ fontSize: '18px', color: '#555', lineHeight: '1.6', maxWidth: '450px', margin: '0 auto 25px auto' }}>
-                    Your appointment for <strong>{formattedDateTime}</strong> is scheduled. A confirmation email has been sent to you.
-                </p>
+
+                {/* New, detailed confirmation message */}
+                <div style={{ textAlign: 'left', maxWidth: '470px', margin: '0 auto 10px auto', fontSize: '16px', lineHeight: '1.6' }}>
+                    <p style={{ margin: 0 }}>Dear {name},</p>
+                    <br />
+                    <p style={{ margin: 0 }}>Thank you for booking a consultation with us. Your appointment is confirmed for <strong>{formattedDateTime}</strong>.</p>
+                    <br />
+                    <p style={{ margin: 0 }}>Regards,</p>
+                    <p style={{ margin: 0, fontWeight: 'bold' }}>Ramandeep Singh, RCIC-IRB</p>
+                    <p style={{ margin: 0 }}>Visapolis Immigration Inc.</p>
+                    <p style={{ margin: 0 }}>Edmonton, Alberta</p>
+                    <p style={{ margin: 0 }}>Phone no: 1(780)566-9900</p>
+                    <p style={{ margin: 0 }}>Email: connectvisapolisimmigration@gmail.com</p>
+                </div>
+
                  <button onClick={handleReset} className="btn-style-one circle">Book Another Appointment</button>
             </div>
         );
