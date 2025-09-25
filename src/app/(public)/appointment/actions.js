@@ -5,6 +5,7 @@ import dbConnect from '@/lib/dbconnect';   // <-- BEST PRACTICE
 import Booking from '@/models/Booking';     // <-- BEST PRACTICE
 import nodemailer from 'nodemailer';
 import { startOfDay } from 'date-fns';
+import { startOfDay, format } from 'date-fns';
 // Helper to format array data for email
 const formatArrayForEmail = (arr) => arr && arr.length > 0 ? `<ul>${arr.map(item => `<li>${item}</li>`).join('')}</ul>` : 'Not specified';
 const formatStringForEmail = (str) => str ? str : 'Not specified';
@@ -36,8 +37,10 @@ export async function bookAppointment(bookingData) {
             secure: process.env.EMAIL_PORT == 465, // Note: Use == for type coercion or === with proper type
             auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
         });
-
-        const formattedDate = new Date(bookingData.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+     const [hour, minute] = bookingData.time.split(':');
+        const appointmentDateTime = new Date(bookingData.date);
+        appointmentDateTime.setHours(hour, minute);
+        const formattedDateTime = format(appointmentDateTime, "EEEE, d MMMM 'at' h:mm a");
 
         // Email to Client
         await transporter.sendMail({
@@ -48,7 +51,7 @@ export async function bookAppointment(bookingData) {
                 <div style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6;">
                     <p>Dear ${bookingData.name},</p>
                     <br>
-                    <p>Thank you for booking a consultation with us. Your appointment is confirmed for <strong>${formattedDate}</strong>.</p>
+                    <p>Thank you for booking a consultation with us. Your appointment is confirmed for <strong>${formattedDateTime}</strong>.</p>
                     <br>
                     <p>Regards,</p>
                     <p style="margin: 0; font-weight: bold;">Ramandeep Singh, RCIC-IRB</p>
