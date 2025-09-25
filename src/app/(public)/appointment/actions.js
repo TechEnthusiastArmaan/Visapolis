@@ -46,9 +46,9 @@ export async function bookAppointment(bookingData) {
             subject: 'Appointment Confirmation',
             html: `
                 <div style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6;">
-                    <p>Hi ${bookingData.name},</p>
-                    <p>Thank you for booking with us. Your appointment for <strong>${formattedDate}</strong> at <strong>${bookingData.time}</strong> is confirmed.</p>
-                    <p>We look forward to speaking with you.</p>
+                    <p>Dear ${bookingData.name},</p>
+                    <br>
+                    <p>Thank you for booking a consultation with us. Your appointment is confirmed for <strong>${formattedDate}</strong>.</p>
                     <br>
                     <p>Regards,</p>
                     <p style="margin: 0; font-weight: bold;">Ramandeep Singh, RCIC-IRB</p>
