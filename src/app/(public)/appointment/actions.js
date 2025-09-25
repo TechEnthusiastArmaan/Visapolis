@@ -40,7 +40,7 @@ export async function bookAppointment(bookingData) {
      const [hour, minute] = bookingData.time.split(':');
         const appointmentDateTime = new Date(bookingData.date);
         appointmentDateTime.setHours(hour, minute);
-        const formattedDateTime = format(appointmentDateTime, "EEEE, d MMMM 'at' h:mm a");
+const formattedDateTime = format(appointmentDateTime, "EEEE, d MMMM 'at' h:mm a");
 
         // Email to Client
         await transporter.sendMail({
@@ -70,8 +70,7 @@ export async function bookAppointment(bookingData) {
             subject: 'New Appointment Scheduled!',
             html: `
                 <h1>New Booking Details</h1>
-                <p><strong>Date:</strong> ${formattedDate}</p>
-                <p><strong>Time:</strong> ${bookingData.time}</p>
+                <p><strong>Appointment:</strong> ${formattedDateTime}</p>
                 <hr>
                 <h2>Client Information</h2>
                 <p><strong>Name:</strong> ${bookingData.name}</p>
