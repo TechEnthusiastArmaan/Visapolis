@@ -4,8 +4,8 @@
 import dbConnect from '@/lib/dbconnect';   // <-- BEST PRACTICE
 import Booking from '@/models/Booking';     // <-- BEST PRACTICE
 import nodemailer from 'nodemailer';
-import { startOfDay } from 'date-fns';
-import { startOfDay, format } from 'date-fns';
+import { startOfDay } from 'date-fns/startOfDay';
+import { format } from 'date-fns/format';
 // Helper to format array data for email
 const formatArrayForEmail = (arr) => arr && arr.length > 0 ? `<ul>${arr.map(item => `<li>${item}</li>`).join('')}</ul>` : 'Not specified';
 const formatStringForEmail = (str) => str ? str : 'Not specified';

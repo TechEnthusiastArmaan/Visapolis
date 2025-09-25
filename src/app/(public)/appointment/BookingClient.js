@@ -8,6 +8,7 @@ import BookingForm from '../components/booking/BookingForm';
 import AppointmentIntro from '../components/booking/AppointmentIntro';
 // import PageHeader from '../components/PageHeader';
 import './booking.css'; 
+import { format } from 'date-fns';
 import Breadcrumb from '../../(public)/components/about-sections/Breadcrumb';
 
 
@@ -42,18 +43,28 @@ export default function BookingClient({ settings }) {
         setErrorMessage('');
     };
 
-    const renderConfirmation = () => (
-        <div className="booking-container submission-status-box">
-             <div className="icon success">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+    const renderConfirmation = () => {
+        // Create a full date object to format it correctly
+        const [hour, minute] = selectedTime.split(':');
+        const appointmentDateTime = new Date(selectedDate);
+        appointmentDateTime.setHours(hour, minute);
+        
+        // Format the date and time exactly as you want it displayed
+        const formattedDateTime = format(appointmentDateTime, "h:mm a 'on' MMMM d, yyyy"); // e.g., "10:30 AM on September 25, 2025"
+
+        return (
+            <div className="booking-container submission-status-box">
+                 <div className="icon success">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h3>Booking Confirmed!</h3>
+                <p style={{ fontSize: '18px', color: '#555', lineHeight: '1.6', maxWidth: '450px', margin: '0 auto 25px auto' }}>
+                    Your appointment for <strong>{formattedDateTime}</strong> is scheduled. A confirmation email has been sent to you.
+                </p>
+                 <button onClick={handleReset} className="btn-style-one circle">Book Another Appointment</button>
             </div>
-            <h3>Booking Confirmed!</h3>
-            <p>
-                Your appointment for {selectedTime} on {selectedDate?.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} is scheduled. A confirmation email has been sent to you.
-            </p>
-             <button onClick={handleReset} className="btn-style-one circle">Book Another Appointment</button>
-        </div>
-    );
+        );
+    };
     
     const renderError = () => (
          <div className="booking-container submission-status-box">
